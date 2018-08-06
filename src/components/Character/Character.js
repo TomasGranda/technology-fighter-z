@@ -13,9 +13,9 @@ const Character = props => {
         <Panel.Title componentClass="h3">{name}</Panel.Title>
       </Panel.Heading>
       <Panel.Body>
-        <p>Life: {life}</p>
-        <p>Defense: {defense}</p>
-        <p>Attack: {attack}</p>
+        <p><FontAwesomeIcon icon="stroopwafel" /> {life}</p>
+        <p><FontAwesomeIcon icon="shield-alt" /> {defense}</p>
+        <p><FontAwesomeIcon icon="burn" /> {attack}</p>
       </Panel.Body>
     </Panel>
   );
