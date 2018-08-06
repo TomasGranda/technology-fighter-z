@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Col } from 'react-bootstrap';
 
 import Character from './Character';
 
 import charactersJSON from '../../config/characters.json';
 
-class CharacterList extends Component {
-  render() {
-    const characters = charactersJSON.map((character, i) => {
-      return (
+const CharacterList = () => {
+  const characters = charactersJSON.map((character, i) => {
+    return (
+      <Col xs={4} >
         <Character 
           key={i}
           name={character.name}
@@ -15,11 +16,11 @@ class CharacterList extends Component {
           defense={character.defense} 
           attack={character.attack}
         />
-      )
-    })
+      </Col>
+    )
+  })
 
-    return characters;
-  }
+  return characters;
 }
 
 export default CharacterList;

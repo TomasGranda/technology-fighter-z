@@ -1,25 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { Panel } from 'react-bootstrap';
 
 import './Character.css';
 
-class Character extends Component {
-  constructor(props) {
-    super(props);
-  };
+const Character = props => {
+  const {name, life, defense, attack} = props;
 
-  render() {
-    const {name, life, defense, attack} = this.props;
-
-    return (
-      <div>
-        <h2>{name}</h2>
-        <h5>Life: {life}</h5>
-        <h5>Defense: {defense}</h5>
-        <h5>Attack: {attack}</h5>
-      </div>
-    );
-  };
+  return (
+    <Panel bsStyle="info">
+      <Panel.Heading>
+        <Panel.Title componentClass="h3">{name}</Panel.Title>
+      </Panel.Heading>
+      <Panel.Body>
+        <p>Life: {life}</p>
+        <p>Defense: {defense}</p>
+        <p>Attack: {attack}</p>
+      </Panel.Body>
+    </Panel>
+  );
 };
 
 Character.propTypes = {

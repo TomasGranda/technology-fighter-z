@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Grid, Row, Col } from 'react-bootstrap';
 
 import CharacterList from '../Character/CharacterList';
 
@@ -7,10 +8,11 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <div>
-        GAME
-        <CharacterList />
-      </div>
+      <Grid>
+        <Row>
+          <CharacterList />
+        </Row>
+      </Grid>
     );
   };
 };
