@@ -11,10 +11,13 @@ const CharacterList = () => {
       <Col xs={4} >
         <Character 
           key={i}
+          id={character.id}
+          icon={character.icon}
           name={character.name}
           life={character.life} 
           defense={character.defense} 
           attack={character.attack}
+          speed={character.speed}
         />
       </Col>
     )

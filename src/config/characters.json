@@ -1,20 +1,65 @@
 [
   {
+    "id": 1,
+    "icon": "fab fa-docker",
     "name": "Docker",
     "life": 1000,
     "defense": 40,
-    "attack": 10
+    "attack": 10,
+    "speed": 10
   },
   {
+    "id": 2,
+    "icon": "fab fa-react",
     "name": "ReactJs",
     "life": 1000,
     "defense": 10,
-    "attack": 40
+    "attack": 40,
+    "speed": 40
   },
   {
+    "id": 3,
+    "icon": "fab fa-html5",
     "name": "HTML",
     "life": 1000,
     "defense": 20,
-    "attack": 20
+    "attack": 20,
+    "speed": 100
+  },
+  {
+    "id": 4,
+    "icon": "fab fa-js",
+    "name": "JS",
+    "life": 1000,
+    "defense": 5,
+    "attack": 50,
+    "speed": 40
+  },
+  {
+    "id": 5,
+    "icon": "fab fa-firefox",
+    "name": "Firefox",
+    "life": 1000,
+    "defense": 25,
+    "attack": 30,
+    "speed": 30
+  },
+  {
+    "id": 6,
+    "icon": "fab fa-internet-explorer",
+    "name": "Internet Explorer",
+    "life": 1500,
+    "defense": 5,
+    "attack": 5,
+    "speed": 5
+  },
+  {
+    "id": 7,
+    "icon": "fab fa-chrome",
+    "name": "Chrome",
+    "life": 1000,
+    "defense": 35,
+    "attack": 20,
+    "speed": 35
   }
 ]
