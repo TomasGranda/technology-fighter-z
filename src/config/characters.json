@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Docker",
+    "life": 1000,
+    "defense": 40,
+    "attack": 10
+  },
+  {
+    "name": "ReactJs",
+    "life": 1000,
+    "defense": 10,
+    "attack": 40
+  },
+  {
+    "name": "HTML",
+    "life": 1000,
+    "defense": 20,
+    "attack": 20
+  }
+]
