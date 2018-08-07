@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from "react-redux";
 import { Panel, Button } from 'react-bootstrap';
+
+import { selectCharacter, unselectCharacter } from '../../actions/characterActions';
 
 import './Character.css';
 
@@ -14,6 +17,15 @@ class Character extends Component {
   };
 
   handleClick = () => {
+    const { selection } = this.state;
+    const { id, selectCharacter, unselectCharacter } = this.props;
+
+    if (selection) {
+      unselectCharacter(id);
+    } else {
+      selectCharacter(id);
+    }
+
     this.setState(prevState => ({
       selection: !prevState.selection
     }));
@@ -61,4 +73,4 @@ Character.propTypes = {
   speed: PropTypes.number.isRequired
 };
 
-export default Character;
+export default connect(null, { selectCharacter, unselectCharacter })(Character);
