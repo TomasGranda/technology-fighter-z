@@ -8,7 +8,7 @@ import charactersJSON from '../../config/characters.json';
 const CharacterList = () => {
   const characters = charactersJSON.map((character, i) => {
     return (
-      <Col xs={4} key={i}>
+      <Col xs={3} key={i}>
         <Character 
           id={character.id}
           icon={character.icon}
