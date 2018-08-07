@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { ProgressBar, ButtonGroup, Button } from 'react-bootstrap';
 
 import Character from './Character';
 
 import { getCharacterById } from '../../utils/getCharacterById';
+import { attack } from '../../actions/fightActions';
 
 class CharacterFighter extends Component {
   constructor(props) {
@@ -19,6 +21,23 @@ class CharacterFighter extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.fight) {
+      let lifeAux = nextProps.fight.characters[this.props.numberCharacter].life;
+
+      if (lifeAux < 0) {
+        lifeAux = 0;
+      }
+
+      this.setState({
+        life: lifeAux
+      })
+    }
+  }
+
+  handleClick = () => {
+    this.props.attack(this.props.numberCharacter);
+  }
 
   render() {
     const { life, icon, divisor } = this.state;
@@ -29,10 +48,7 @@ class CharacterFighter extends Component {
         <Character icon={icon} size='200px' />
         <br />
         <ButtonGroup vertical>
-          <Button block>Attack 1</Button>
-          <Button block>Attack 2</Button>
-          <Button block>Attack 3</Button>
-          <Button block>Attack 4</Button>
+          <Button onClick={this.handleClick} block>Attack 1</Button>
         </ButtonGroup>
       </div>
     )
@@ -40,7 +56,13 @@ class CharacterFighter extends Component {
 }
 
 CharacterFighter.propTypes = {
-  id: PropTypes.string.isRequired
+  id: PropTypes.string.isRequired,
+  numberCharacter: PropTypes.number.isRequired,
+  fight: PropTypes.object.isRequired
 };
 
-export default CharacterFighter;
+const mapStateToProps = state => ({
+  fight: state.fight
+});
+
+export default connect(mapStateToProps, { attack })(CharacterFighter);

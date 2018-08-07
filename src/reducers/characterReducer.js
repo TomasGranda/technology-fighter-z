@@ -1,7 +1,7 @@
 import { 
   SELECT_CHARACTER,
   UNSELECT_CHARACTER
-} from "../actions/types";
+} from '../actions/types';
 
 const initialState = {
   selected: []

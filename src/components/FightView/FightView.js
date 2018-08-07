@@ -5,14 +5,20 @@ import { Grid, Row, Col } from 'react-bootstrap';
 
 import CharacterFighter from '../Character/CharacterFighter';
 
+import { loadCharacters } from '../../actions/fightActions';
+
 class FightView extends Component {
   render() {
-    const { character } = this.props;
+    const { character, loadCharacters } = this.props;
+
+    loadCharacters(character.selected[0], character.selected[1]);
+    
     const characters = character.selected.map((id, i) => {
       return (
         <CharacterFighter
           key={i} 
           id={id} 
+          numberCharacter={i}
         />
       );
     });
@@ -43,4 +49,4 @@ const mapStateToProps = state => ({
   character: state.character
 });
 
-export default connect(mapStateToProps, null)(FightView);
+export default connect(mapStateToProps, { loadCharacters })(FightView);
