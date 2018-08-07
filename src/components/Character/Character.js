@@ -49,7 +49,7 @@ class Character extends Component {
     return (
       <Panel id={`${id}`} height="30px">
         <Panel.Heading>
-          <Panel.Title componentClass="h3">{id} <i className={icon} /> {name}</Panel.Title>
+          <Panel.Title componentClass="h3"><i className={icon} /> {name}</Panel.Title>
         </Panel.Heading>
         <Panel.Body>
           <p><i className="fa fa-heart"/>  {life}</p>

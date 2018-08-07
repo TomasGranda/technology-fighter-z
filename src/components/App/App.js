@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Grid, Row } from 'react-bootstrap';
 import { Provider } from "react-redux";
 
-import CharacterList from '../Character/CharacterList';
 import NavbarApp from '../NavbarApp/NavbarApp';
+import Content from '../Content/Content';
 
 import store from "../../store";
 
@@ -15,11 +14,7 @@ class App extends Component {
       <Provider store={store}>
         <div>
           <NavbarApp />
-          <Grid>
-            <Row>
-              <CharacterList />
-            </Row>
-          </Grid>
+          <Content />
         </div>
       </Provider>
     );
