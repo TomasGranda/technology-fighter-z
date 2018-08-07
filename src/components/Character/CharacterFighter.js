@@ -41,11 +41,13 @@ class CharacterFighter extends Component {
 
   render() {
     const { life, icon, divisor } = this.state;
+    let dead;
+    life === 0 ? dead = true : dead = false;
 
     return (
       <div>
         <ProgressBar now={(life * divisor)} label={`${life}`} />
-        <Character icon={icon} size='200px' />
+        <Character icon={icon} size='200px' dead={dead} />
         <br />
         <ButtonGroup vertical>
           <Button onClick={this.handleClick} block>Attack 1</Button>
