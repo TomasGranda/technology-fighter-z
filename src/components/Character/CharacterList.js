@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col } from 'react-bootstrap';
 
-import Character from './Character';
+import CharacterCard from './CharacterCard';
 
 import charactersJSON from '../../config/characters.json';
 
@@ -9,7 +9,7 @@ const CharacterList = () => {
   const characters = charactersJSON.map((character, i) => {
     return (
       <Col xs={3} key={i}>
-        <Character 
+        <CharacterCard 
           id={character.id}
           icon={character.icon}
           name={character.name}
