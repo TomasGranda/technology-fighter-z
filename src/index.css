@@ -2,3 +2,8 @@ body {
   margin: 0;
   padding: 0;
 }
+
+
+.without-transition {
+  transition: 0ms !important;
+}

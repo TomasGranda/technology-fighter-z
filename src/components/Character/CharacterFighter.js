@@ -136,10 +136,10 @@ class CharacterFighter extends Component {
         <ProgressBar now={(life * divisorLife)} label={`${life}`} />
         <Character icon={icon} size='200px' dead={dead} />
         <hr />
-        <ProgressBar bsStyle="success" now={attackProgress} label={`${attackProgress}`} />  
+        <ProgressBar bsStyle="success" now={attackProgress} label={`${attackProgress}`} className="without-transition" />  
         {attack}
         <hr />
-        <ProgressBar bsStyle="warning" now={specialProgress} label={`${specialProgress}`} />
+        <ProgressBar bsStyle="warning" now={specialProgress} label={`${specialProgress}`} className="without-transition" />
         {ultimate}
       </div>
     );
