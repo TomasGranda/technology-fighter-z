@@ -5,17 +5,14 @@ import { Grid, Row, Col } from 'react-bootstrap';
 
 import CharacterFighter from '../Character/CharacterFighter';
 
-import { getCharacterById } from '../../utils/getCharacterById';
-
 class FightView extends Component {
   render() {
     const { character } = this.props;
     const characters = character.selected.map((id, i) => {
-      let character = getCharacterById(id);
       return (
         <CharacterFighter
           key={i} 
-          icon={character.icon} 
+          id={id} 
         />
       );
     });
