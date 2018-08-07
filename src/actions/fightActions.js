@@ -1,7 +1,9 @@
 import { 
   LOAD_CHARACTERS,
   ATTACK_0,
-  ATTACK_1
+  ATTACK_1,
+  ULTIMATE_0,
+  ULTIMATE_1
 } from './types';
 
 import { getCharacterById } from '../utils/getCharacterById';
@@ -26,6 +28,18 @@ export const attack = numberCharacter => dispatch => {
   } else {
     dispatch({
       type: ATTACK_1
+    })
+  }
+};
+
+export const ultimate = numberCharacter => dispatch => {
+  if (numberCharacter === 0) {
+    dispatch({
+      type: ULTIMATE_0
+    })
+  } else {
+    dispatch({
+      type: ULTIMATE_1
     })
   }
 };

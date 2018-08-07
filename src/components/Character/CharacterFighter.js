@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { ProgressBar, ButtonGroup, Button } from 'react-bootstrap';
+import { ProgressBar, Button } from 'react-bootstrap';
 
 import Character from './Character';
 
 import { getCharacterById } from '../../utils/getCharacterById';
-import { attack } from '../../actions/fightActions';
+import { calculateSpeedSpecial } from '../../utils/calculateSpeedSpecial';
+import { attack, ultimate } from '../../actions/fightActions';
 
 class CharacterFighter extends Component {
   constructor(props) {
@@ -16,9 +17,23 @@ class CharacterFighter extends Component {
 
     this.state = {
       life: character.life,
+      divisorLife: (100 / character.life),
       icon: character.icon,
-      divisor: (100 / character.life)
-    }
+      speed:  character.speed,
+      specialProgress: 0,
+      attackProgress: 0
+    };
+
+    this.loadingAttack();
+    this.loadingSpecial();
+  };
+
+  componentDidMount() {
+    window.addEventListener("keydown", this.makeAttack);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("keydown", this.makeAttack);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -27,35 +42,109 @@ class CharacterFighter extends Component {
 
       if (lifeAux < 0) {
         lifeAux = 0;
-      }
+      };
 
       this.setState({
         life: lifeAux
-      })
+      });
+    };
+  };
+
+  makeAttack = e => {
+    let keyCode = e.keyCode;
+    
+    switch (keyCode) {
+      // q => attack first player
+      case 81:
+        if (this.props.numberCharacter === 0 && this.state.attackProgress === 100) this.handleClick();
+        break;
+      // o => attack second player
+      case 79:
+        if (this.props.numberCharacter === 1  && this.state.attackProgress === 100) this.handleClick();
+        break;
+      // w => special first player
+      case 87:
+        if (this.props.numberCharacter === 0  && this.state.specialProgress === 100) this.handleUltimate();
+        break;
+      // p => special second player
+      case 80:
+        if (this.props.numberCharacter === 1  && this.state.specialProgress === 100) this.handleUltimate();
+        break;
+      default:
+        break;
     }
-  }
+  };
 
   handleClick = () => {
     this.props.attack(this.props.numberCharacter);
-  }
 
+    this.loadingAttack();
+  };
+
+  handleUltimate = () => {
+    this.props.ultimate(this.props.numberCharacter);
+
+    this.loadingSpecial();
+  };
+
+  loadingAttack = () => {
+    let time = 250 / calculateSpeedSpecial(this.state.speed);
+
+    for (let i = 0; i <= 100; i++) {
+      setTimeout(() => {
+        this.setState({
+          attackProgress: i
+        })
+      }, time * i);
+    };
+  };
+
+  loadingSpecial = () => {
+    let time = 1000 / calculateSpeedSpecial(this.state.speed);
+
+    for (let i = 0; i <= 100; i++) {
+      setTimeout(() => {
+        this.setState({
+          specialProgress: i
+        })
+      }, time * i);
+    };
+  };
+
+  
   render() {
-    const { life, icon, divisor } = this.state;
-    let dead;
-    life === 0 ? dead = true : dead = false;
+    const { life, icon, divisorLife, attackProgress, specialProgress } = this.state;
+    let dead = (life === 0 ? true : false);
+
+    let ultimate;
+    if (specialProgress === 100) {
+      ultimate = <Button onClick={this.handleUltimate} block>Ultimate</Button>
+    } else {
+      ultimate = <Button onClick={this.handleUltimate} block disabled>Ultimate</Button>
+    };
+
+    let attack;
+    if (attackProgress === 100) {
+      attack = <Button onClick={this.handleClick} block>Attack</Button>
+    } else {
+      attack = <Button onClick={this.handleClick} block disabled>Attack</Button>
+    };
+    
 
     return (
       <div>
-        <ProgressBar now={(life * divisor)} label={`${life}`} />
+        <ProgressBar now={(life * divisorLife)} label={`${life}`} />
         <Character icon={icon} size='200px' dead={dead} />
-        <br />
-        <ButtonGroup vertical>
-          <Button onClick={this.handleClick} block>Attack 1</Button>
-        </ButtonGroup>
+        <hr />
+        <ProgressBar bsStyle="success" now={attackProgress} label={`${attackProgress}`} />  
+        {attack}
+        <hr />
+        <ProgressBar bsStyle="warning" now={specialProgress} label={`${specialProgress}`} />
+        {ultimate}
       </div>
-    )
-  }
-}
+    );
+  };
+};
 
 CharacterFighter.propTypes = {
   id: PropTypes.string.isRequired,
@@ -67,4 +156,4 @@ const mapStateToProps = state => ({
   fight: state.fight
 });
 
-export default connect(mapStateToProps, { attack })(CharacterFighter);
+export default connect(mapStateToProps, { attack, ultimate })(CharacterFighter);

@@ -3,3 +3,5 @@ export const UNSELECT_CHARACTER = 'UNSELECT_CHARACTER';
 export const LOAD_CHARACTERS = 'LOAD_CHARACTERS';
 export const ATTACK_0 = 'ATTACK_0';
 export const ATTACK_1 = 'ATTACK_1';
+export const ULTIMATE_0 = 'ULTIMATE_0';
+export const ULTIMATE_1 = 'ULTIMATE_1';

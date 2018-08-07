@@ -6,7 +6,8 @@
     "life": 1000,
     "defense": 40,
     "attack": 10,
-    "speed": 10
+    "speed": 50,
+    "ultimate": 100
   },
   {
     "id": "2",
@@ -15,7 +16,8 @@
     "life": 1000,
     "defense": 10,
     "attack": 40,
-    "speed": 40
+    "speed": 85,
+    "ultimate": 60
   },
   {
     "id": "3",
@@ -24,7 +26,8 @@
     "life": 1000,
     "defense": 20,
     "attack": 20,
-    "speed": 100
+    "speed": 100,
+    "ultimate": 30
   },
   {
     "id": "4",
@@ -33,7 +36,8 @@
     "life": 1000,
     "defense": 5,
     "attack": 50,
-    "speed": 40
+    "speed": 85,
+    "ultimate": 60
   },
   {
     "id": "5",
@@ -42,16 +46,18 @@
     "life": 1000,
     "defense": 25,
     "attack": 30,
-    "speed": 30
+    "speed": 70,
+    "ultimate": 50
   },
   {
     "id": "6",
     "icon": "fab fa-internet-explorer",
     "name": "Internet Explorer",
     "life": 1500,
-    "defense": 5,
-    "attack": 5,
-    "speed": 5
+    "defense": 15,
+    "attack": 15,
+    "speed": 30,
+    "ultimate": 40
   },
   {
     "id": "7",
@@ -60,6 +66,7 @@
     "life": 1000,
     "defense": 35,
     "attack": 20,
-    "speed": 35
+    "speed": 75,
+    "ultimate": 40
   }
 ]
