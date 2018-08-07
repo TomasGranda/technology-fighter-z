@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 import { Panel, Button } from 'react-bootstrap';
 
 import { selectCharacter, unselectCharacter } from '../../actions/characterActions';
-
-import './Character.css';
 
 class CharacterCard extends Component {
   constructor(props){

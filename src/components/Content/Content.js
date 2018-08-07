@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 
 import SelectionView from '../SelectionView/SelectionView';
+import FightView from '../FightView/FightView';
 
 class Content extends Component {
   constructor(props) {
@@ -26,7 +27,7 @@ class Content extends Component {
     let content;
 
     if (selected.length === 2) {
-      content = (<p>Selected 2 characters. </p>)
+      content = (<FightView />)
     } else {
       content = (<SelectionView />);
     };

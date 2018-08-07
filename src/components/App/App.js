@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { Provider } from "react-redux";
+import { Provider } from 'react-redux';
 
 import NavbarApp from '../NavbarApp/NavbarApp';
 import Content from '../Content/Content';
 
 import store from "../../store";
-
-import './App.css';
 
 class App extends Component {
   render() {
