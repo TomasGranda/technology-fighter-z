@@ -3,7 +3,7 @@ import { Col } from 'react-bootstrap';
 
 import CharacterCard from './CharacterCard';
 
-import charactersJSON from '../../config/characters.json';
+import * as charactersJSON from '../../config/characters.json';
 
 const CharacterList = () => {
   const characters = charactersJSON.map((character, i) => {

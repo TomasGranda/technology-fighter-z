@@ -1,4 +1,4 @@
-import charactersJSON from '../config/characters.json';
+import * as charactersJSON from '../config/characters.json';
 
 export const getCharacterById = id => {
   let character = charactersJSON.find((element) => {

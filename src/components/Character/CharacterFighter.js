@@ -9,7 +9,7 @@ import { getCharacterById } from '../../utils/getCharacterById';
 import { calculateSpeedSpecial } from '../../utils/calculateSpeedSpecial';
 import { attack, ultimate } from '../../actions/fightActions';
 
-import keyboards from '../../config/keyboards.json';
+import * as keyboards from '../../config/keyboards.json';
 
 class CharacterFighter extends Component {
   constructor(props) {
