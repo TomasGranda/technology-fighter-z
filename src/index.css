@@ -7,3 +7,7 @@ body {
 .without-transition {
   transition: 0ms !important;
 }
+
+.cursor-clicked {
+  cursor: pointer;
+}
