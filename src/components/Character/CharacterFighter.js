@@ -9,6 +9,8 @@ import { getCharacterById } from '../../utils/getCharacterById';
 import { calculateSpeedSpecial } from '../../utils/calculateSpeedSpecial';
 import { attack, ultimate } from '../../actions/fightActions';
 
+import keyboards from '../../config/keyboards.json';
+
 class CharacterFighter extends Component {
   constructor(props) {
     super(props);
@@ -55,19 +57,19 @@ class CharacterFighter extends Component {
     
     switch (keyCode) {
       // q => attack first player
-      case 81:
+      case keyboards.attack1:
         if (this.props.numberCharacter === 0 && this.state.attackProgress === 100) this.handleClick();
         break;
       // o => attack second player
-      case 79:
+      case keyboards.attack2:
         if (this.props.numberCharacter === 1  && this.state.attackProgress === 100) this.handleClick();
         break;
       // w => special first player
-      case 87:
+      case keyboards.ultimate1:
         if (this.props.numberCharacter === 0  && this.state.specialProgress === 100) this.handleUltimate();
         break;
       // p => special second player
-      case 80:
+      case keyboards.ultimate2:
         if (this.props.numberCharacter === 1  && this.state.specialProgress === 100) this.handleUltimate();
         break;
       default:
@@ -134,12 +136,12 @@ class CharacterFighter extends Component {
     return (
       <div>
         <ProgressBar now={(life * divisorLife)} label={`${life}`} />
-        <Character icon={icon} size='200px' dead={dead} />
+        <Character icon={icon} size="200px" dead={dead} />
         <hr />
-        <ProgressBar bsStyle="success" now={attackProgress} label={`${attackProgress}`} className="without-transition" />  
+        <ProgressBar bsStyle="success without-transition" now={attackProgress} label={`${attackProgress}`} />  
         {attack}
         <hr />
-        <ProgressBar bsStyle="warning" now={specialProgress} label={`${specialProgress}`} className="without-transition" />
+        <ProgressBar bsStyle="warning without-transition" now={specialProgress} label={`${specialProgress}`} />
         {ultimate}
       </div>
     );
