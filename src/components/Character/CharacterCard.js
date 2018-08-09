@@ -31,18 +31,20 @@ class CharacterCard extends Component {
 
   render(){
     const { selection } = this.state;
-    const { id, icon, name, life, defense, attack, speed } = this.props;
+    const { id, icon, name, life, defense, attack, speed, selectable } = this.props;
     let button;
 
-    if (selection) {
-      button = (
-        <Button onClick={this.handleClick} bsStyle="danger" block>Unselect</Button>
-      );
-    } else {
-      button = (
-        <Button onClick={this.handleClick} bsStyle="primary" block>Select</Button>
-      );
-    };
+    if (selectable) {
+      if (selection) {
+        button = (
+          <Button onClick={this.handleClick} bsStyle="danger" block>Unselect</Button>
+        );
+      } else {
+        button = (
+          <Button onClick={this.handleClick} bsStyle="primary" block>Select</Button>
+        );
+      };
+    }
 
     return (
       <Panel id={`${id}`} height="30px">
@@ -61,6 +63,10 @@ class CharacterCard extends Component {
   }
 };
 
+CharacterCard.defaultProps = {
+  selectable: true
+}
+
 CharacterCard.propTypes = {
   id: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
@@ -68,7 +74,8 @@ CharacterCard.propTypes = {
   life: PropTypes.number.isRequired,
   defense: PropTypes.number.isRequired,
   attack: PropTypes.number.isRequired,
-  speed: PropTypes.number.isRequired
+  speed: PropTypes.number.isRequired,
+  selectable: PropTypes.bool,
 };
 
 export default connect(null, { selectCharacter, unselectCharacter })(CharacterCard);

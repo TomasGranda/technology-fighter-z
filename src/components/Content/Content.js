@@ -35,8 +35,6 @@ class Content extends Component {
   render() {
     const { selected, section } = this.state;
     let content;
-
-    console.log(section);
     
     switch (section) {
       case sectionJSON.home:
