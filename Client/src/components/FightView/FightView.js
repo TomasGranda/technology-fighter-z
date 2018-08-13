@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Grid, Row, Col } from 'react-bootstrap';
 
-import CharacterFighter from '../Character/CharacterFighter';
-
 import { loadCharacters } from '../../actions/fightActions';
+
+import CharacterFighter from '../Character/CharacterFighter';
 
 class FightView extends Component {
   render() {
@@ -42,7 +42,8 @@ class FightView extends Component {
 }
 
 FightView.propTypes = {
-  character: PropTypes.object.isRequired
+  character: PropTypes.object.isRequired,
+  loadCharacters: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({

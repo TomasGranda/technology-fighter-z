@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { Grid, Row, Col, ControlLabel, Form, FormGroup, FormControl, InputGroup,Button } from 'react-bootstrap';
 
@@ -83,7 +84,7 @@ class CreateCharacter extends Component {
 
       let character = {
         "icon": "fas fa-times-circle",
-        "name": this.state.characterStats.name,
+        "name": this.state.name,
         "life": this.state.characterStats.life * 50,
         "defense": this.state.characterStats.defense,
         "attack": this.state.characterStats.attack,
@@ -230,5 +231,9 @@ class CreateCharacter extends Component {
     )
   }
 }
+
+CreateCharacter.propTypes = {
+  addCharacter: PropTypes.func.isRequired
+};
 
 export default connect(null, { addCharacter })(CreateCharacter);

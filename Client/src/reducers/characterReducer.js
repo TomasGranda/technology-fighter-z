@@ -1,4 +1,5 @@
 import { 
+  GET_CHARACTERS,
   SELECT_CHARACTER,
   UNSELECT_CHARACTER,
   ADD_CHARACTER
@@ -11,6 +12,11 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
+    case GET_CHARACTERS:
+      return({
+        ...state,
+        characters: action.payload
+      })
     case SELECT_CHARACTER:
       return({
         ...state,

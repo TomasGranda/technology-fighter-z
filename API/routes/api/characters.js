@@ -9,6 +9,17 @@ const Character = require('../../models/Character');
 // @access Public
 router.get('/test', (req, res) => res.json({msg: "Characters Works"}));
 
+// @route  GET api/characters
+// @desc   Get all characters
+// @access Public
+router.get('/', (req, res) => {
+  Character.find()
+      .sort({date: -1})
+      .then(characters => res.json(characters))
+      .catch(() => res.status(404).json({ nocharactersfound: 'No characters found' })
+  );
+});
+
 // @route  POST api/characters
 // @desc   Create characters
 // @access Public

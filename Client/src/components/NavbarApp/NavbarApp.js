@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { connect } from "react-redux";
 
@@ -29,6 +30,12 @@ const NavbarApp = props => {
       </Navbar.Collapse>
     </Navbar>
   );
+};
+
+NavbarApp.propTypes = {
+  setHome: PropTypes.func.isRequired,
+  setCreateCharacter: PropTypes.func.isRequired,
+  setFight: PropTypes.func.isRequired
 };
 
 export default connect(null, { setHome, setCreateCharacter, setFight })(NavbarApp);

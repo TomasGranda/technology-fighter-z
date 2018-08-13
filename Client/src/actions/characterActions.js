@@ -1,12 +1,30 @@
 import axios from 'axios';
 
 import { 
+  GET_CHARACTERS,
   SELECT_CHARACTER,
   UNSELECT_CHARACTER,
   ADD_CHARACTER,
   GET_ERRORS,
   CLEAR_ERRORS
 } from './types';
+
+export const getCharacters = () => dispatch => {
+  axios
+    .get('/api/characters')
+    .then(res => 
+      dispatch({
+          type: GET_CHARACTERS,
+          payload: res.data
+      })
+    )
+    .catch(() => 
+      dispatch({
+          type: GET_CHARACTERS,
+          payload: null
+      })
+    );
+};
 
 export const selectCharacter = character => dispatch => {
   dispatch({
@@ -46,4 +64,4 @@ export const clearErrors = () => {
   return {
       type: CLEAR_ERRORS
   }
-}
+};

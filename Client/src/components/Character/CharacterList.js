@@ -1,28 +1,40 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Col } from 'react-bootstrap';
 
 import CharacterCard from './CharacterCard';
 
-import * as charactersJSON from '../../config/characters.json';
+const CharacterList = props => {
+  let characters = (<p>Loading...</p>);
 
-const CharacterList = () => {
-  const characters = charactersJSON.map((character, i) => {
-    return (
-      <Col xs={3} key={i}>
-        <CharacterCard 
-          id={character.id}
-          icon={character.icon}
-          name={character.name}
-          life={character.life} 
-          defense={character.defense} 
-          attack={character.attack}
-          speed={character.speed}
-        />
-      </Col>
-    )
-  })
+  if (props.characters.length !== 0) {
+    characters = props.characters.map((character, i) => {
+      return (
+        <Col xs={3} key={i}>
+          <CharacterCard 
+            id={character._id}
+            icon={character.icon}
+            name={character.name}
+            life={character.life} 
+            defense={character.defense} 
+            attack={character.attack}
+            speed={character.speed}
+          />
+        </Col>
+      );
+    });
+  };
 
   return characters;
-}
+};
 
-export default CharacterList;
+CharacterList.propTypes = {
+  characters: PropTypes.array.isRequired
+};
+
+const mapStateToProps = state => ({
+  characters: state.character.characters
+});
+
+export default connect(mapStateToProps)(CharacterList);

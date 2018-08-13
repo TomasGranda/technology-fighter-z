@@ -75,6 +75,8 @@ CharacterCard.propTypes = {
   defense: PropTypes.number.isRequired,
   attack: PropTypes.number.isRequired,
   speed: PropTypes.number.isRequired,
+  selectCharacter: PropTypes.func.isRequired,
+  unselectCharacter: PropTypes.func.isRequired,
   selectable: PropTypes.bool,
 };
 

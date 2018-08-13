@@ -1,16 +1,30 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Grid, Row } from 'react-bootstrap';
+
+import { getCharacters } from '../../actions/characterActions';
 
 import CharacterList from '../Character/CharacterList';
 
-const SelectionView = () => {
-  return (
-    <Grid>
-      <Row>
-        <CharacterList />
-      </Row>
-    </Grid>
-  );
+class SelectionView extends Component {
+  componentDidMount() {
+    this.props.getCharacters();
+  }
+
+  render() {
+    return (
+      <Grid>
+        <Row>
+          <CharacterList />
+        </Row>
+      </Grid>
+    );
+  };
 };
 
-export default SelectionView;
+SelectionView.propTypes = {
+  getCharacters: PropTypes.func.isRequired
+};
+
+export default connect(null, { getCharacters })(SelectionView);

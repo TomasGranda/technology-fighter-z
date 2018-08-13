@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { ProgressBar, Button } from 'react-bootstrap';
 
+import { attack, ultimate } from '../../actions/fightActions';
+
 import Character from './Character';
 
 import { getCharacterById } from '../../utils/getCharacterById';
 import { calculateSpeedSpecial } from '../../utils/calculateSpeedSpecial';
-import { attack, ultimate } from '../../actions/fightActions';
 
 import * as keyboards from '../../config/keyboards.json';
 
@@ -151,7 +152,9 @@ class CharacterFighter extends Component {
 CharacterFighter.propTypes = {
   id: PropTypes.string.isRequired,
   numberCharacter: PropTypes.number.isRequired,
-  fight: PropTypes.object.isRequired
+  fight: PropTypes.object.isRequired,
+  attack: PropTypes.func.isRequired,
+  ultimate: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
