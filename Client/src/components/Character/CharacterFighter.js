@@ -16,7 +16,7 @@ class CharacterFighter extends Component {
   constructor(props) {
     super(props);
 
-    let character = getCharacterById(this.props.id);
+    let character = getCharacterById(this.props.charactersList, this.props.id);
 
     this.state = {
       life: character.life,
@@ -136,7 +136,7 @@ class CharacterFighter extends Component {
 
     return (
       <div>
-        <ProgressBar now={(life * divisorLife)} label={`${life}`} />
+        <ProgressBar now={(life * divisorLife)} label={`${Math.round(life)}`} />
         <Character icon={icon} size="200px" dead={dead} />
         <hr />
         <ProgressBar bsStyle="success without-transition" now={attackProgress} label={`${attackProgress}`} />  
@@ -154,11 +154,13 @@ CharacterFighter.propTypes = {
   numberCharacter: PropTypes.number.isRequired,
   fight: PropTypes.object.isRequired,
   attack: PropTypes.func.isRequired,
-  ultimate: PropTypes.func.isRequired
+  ultimate: PropTypes.func.isRequired,
+  charactersList: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => ({
-  fight: state.fight
+  fight: state.fight,
+  charactersList: state.character.characters
 });
 
 export default connect(mapStateToProps, { attack, ultimate })(CharacterFighter);

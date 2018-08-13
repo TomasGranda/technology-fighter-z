@@ -2,12 +2,14 @@ import {
   GET_CHARACTERS,
   SELECT_CHARACTER,
   UNSELECT_CHARACTER,
-  ADD_CHARACTER
+  ADD_CHARACTER,
+  LOADING_CHARACTERS
 } from '../actions/types';
 
 const initialState = {
   selected: [],
-  characters: []
+  characters: [],
+  loading: false
 };
 
 export default function(state = initialState, action) {
@@ -15,7 +17,8 @@ export default function(state = initialState, action) {
     case GET_CHARACTERS:
       return({
         ...state,
-        characters: action.payload
+        characters: action.payload,
+        loading: false
       })
     case SELECT_CHARACTER:
       return({
@@ -31,6 +34,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         characters: [action.payload, ...state.characters]
+      }
+    case LOADING_CHARACTERS:
+      return {
+        ...state,
+        loading: true
       }
     default:
       return state;

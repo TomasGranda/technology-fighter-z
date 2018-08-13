@@ -11,7 +11,7 @@ class FightView extends Component {
   render() {
     const { character, loadCharacters } = this.props;
 
-    loadCharacters(character.selected[0], character.selected[1]);
+    loadCharacters(character.characters, character.selected[0], character.selected[1]);
     
     const characters = character.selected.map((id, i) => {
       return (

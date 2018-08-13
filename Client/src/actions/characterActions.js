@@ -6,10 +6,13 @@ import {
   UNSELECT_CHARACTER,
   ADD_CHARACTER,
   GET_ERRORS,
-  CLEAR_ERRORS
+  CLEAR_ERRORS,
+  LOADING_CHARACTERS
 } from './types';
 
 export const getCharacters = () => dispatch => {
+  dispatch(setCharactersLoading());
+  
   axios
     .get('/api/characters')
     .then(res => 
@@ -58,10 +61,16 @@ export const addCharacter = character => dispatch => {
       );
 };
 
+// Set loading state
+export const setCharactersLoading = () => {
+  return {
+    type: LOADING_CHARACTERS
+  };
+};
 
 // Clear errors
 export const clearErrors = () => {
   return {
       type: CLEAR_ERRORS
-  }
+  };
 };

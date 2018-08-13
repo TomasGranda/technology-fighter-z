@@ -47,7 +47,7 @@ class CharacterCard extends Component {
     }
 
     return (
-      <Panel id={`${id}`} height="30px">
+      <Panel id={id} height="30px">
         <Panel.Heading>
           <Panel.Title componentClass="h3"><i className={icon} /> {name}</Panel.Title>
         </Panel.Heading>

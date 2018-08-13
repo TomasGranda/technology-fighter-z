@@ -8,11 +8,11 @@ import {
 
 import { getCharacterById } from '../utils/getCharacterById';
 
-export const loadCharacters = (id1, id2) => dispatch => {
+export const loadCharacters = (characters, id1, id2) => dispatch => {
   let payload = [];
 
-  payload.push(getCharacterById(id1));
-  payload.push(getCharacterById(id2));
+  payload.push(getCharacterById(characters, id1));
+  payload.push(getCharacterById(characters, id2));
 
   dispatch({
     type: LOAD_CHARACTERS,
