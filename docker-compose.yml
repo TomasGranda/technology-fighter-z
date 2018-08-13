@@ -26,3 +26,24 @@ services:
       - "3000:3000"
     volumes:
       - ./Client:/usr/app
+    links:
+      - api
+      
+  nginx:
+    image: valian/docker-nginx-auto-ssl
+    hostname: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    expose:
+      - '80'
+      - '443'
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
+      - ./nginx/ssl-data:/etc/resty-auto-ssl
+    depends_on:
+      - api
+      - client
+    links:
+      - api
+      - client

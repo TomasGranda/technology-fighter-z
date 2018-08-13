@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
-import { 
-  Grid, 
-  Row,
-  Col, 
-  ControlLabel, 
-  Form, FormGroup, 
-  FormControl, 
-  InputGroup,
-  Button
-} from 'react-bootstrap';
+import { connect } from "react-redux";
+import { Grid, Row, Col, ControlLabel, Form, FormGroup, FormControl, InputGroup,Button } from 'react-bootstrap';
+
+import { addCharacter } from '../../actions/characterActions';
 
 import CharacterCard from '../Character/CharacterCard';
 
@@ -88,25 +82,17 @@ class CreateCharacter extends Component {
       });
 
       let character = {
-        "id": "6",
         "icon": "fas fa-times-circle",
         "name": this.state.characterStats.name,
-        "life": this.state.characterStats.life,
+        "life": this.state.characterStats.life * 50,
         "defense": this.state.characterStats.defense,
         "attack": this.state.characterStats.attack,
         "speed": this.state.characterStats.speed,
         "ultimate": this.state.characterStats.ultimate
       }
 
-      this.createCharacter(character);
+      this.props.addCharacter(character);
     };
-
-  };
-
-  createCharacter = character => {
-    character = JSON.stringify(character);
-    
-    console.log(character);
   };
 
   validateCreate = () => {
@@ -245,4 +231,4 @@ class CreateCharacter extends Component {
   }
 }
 
-export default CreateCharacter;
+export default connect(null, { addCharacter })(CreateCharacter);

@@ -1,10 +1,12 @@
 import { 
   SELECT_CHARACTER,
-  UNSELECT_CHARACTER
+  UNSELECT_CHARACTER,
+  ADD_CHARACTER
 } from '../actions/types';
 
 const initialState = {
-  selected: []
+  selected: [],
+  characters: []
 };
 
 export default function(state = initialState, action) {
@@ -19,6 +21,11 @@ export default function(state = initialState, action) {
         ...state,
         selected: state.selected.filter(id => id !== action.payload)
       });
+    case ADD_CHARACTER:
+      return {
+        ...state,
+        characters: [action.payload, ...state.characters]
+      }
     default:
       return state;
   }
