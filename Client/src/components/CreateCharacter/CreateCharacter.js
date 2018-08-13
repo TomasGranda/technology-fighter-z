@@ -17,7 +17,7 @@ class CreateCharacter extends Component {
     super(props);
 
     this.state = {
-      maxPoints: settings.maxPoints,
+      maxPoints: (settings.maxPoints - 5),
       name: '',
       icon: '',
       characterStats: {
