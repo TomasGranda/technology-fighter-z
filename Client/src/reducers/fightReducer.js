@@ -1,15 +1,18 @@
 import { 
   LOAD_CHARACTERS,
+  CLEAR_FIGHT,
   ATTACK_0,
   ATTACK_1,
   ULTIMATE_0,
-  ULTIMATE_1
+  ULTIMATE_1,
+  SET_WINNER
 } from '../actions/types';
 
 import { calculateDamage } from '../utils/calculateDamage';
 
 const initialState = {
-  characters: []
+  characters: [],
+  winner: null,
 };
 
 export default function(state = initialState, action) {
@@ -18,6 +21,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         characters: action.payload
+      }
+    case CLEAR_FIGHT:
+      return {
+        characters: [],
+        winner: null
       }
     case ATTACK_0:
       return {
@@ -62,6 +70,11 @@ export default function(state = initialState, action) {
             life: (state.characters[0].life - calculateDamage(state.characters[1].ultimate, state.characters[0].defense))
           }
         }
+      }
+    case SET_WINNER:
+      return {
+        ...state,
+        winner: action.payload
       }
     default:
       return state;

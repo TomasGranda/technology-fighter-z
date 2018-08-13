@@ -3,7 +3,8 @@ import {
   SELECT_CHARACTER,
   UNSELECT_CHARACTER,
   ADD_CHARACTER,
-  LOADING_CHARACTERS
+  LOADING_CHARACTERS,
+  CLEAR_SELECTION
 } from '../actions/types';
 
 const initialState = {
@@ -29,6 +30,11 @@ export default function(state = initialState, action) {
       return({
         ...state,
         selected: state.selected.filter(id => id !== action.payload)
+      });
+    case CLEAR_SELECTION:
+      return({
+        ...state,
+        selected: []
       });
     case ADD_CHARACTER:
       return {

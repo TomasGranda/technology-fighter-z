@@ -7,7 +7,8 @@ import {
   ADD_CHARACTER,
   GET_ERRORS,
   CLEAR_ERRORS,
-  LOADING_CHARACTERS
+  LOADING_CHARACTERS,
+  CLEAR_SELECTION
 } from './types';
 
 export const getCharacters = () => dispatch => {
@@ -65,6 +66,13 @@ export const addCharacter = character => dispatch => {
 export const setCharactersLoading = () => {
   return {
     type: LOADING_CHARACTERS
+  };
+};
+
+// Clear selection
+export const clearSelection = () => {
+  return {
+    type: CLEAR_SELECTION
   };
 };
 

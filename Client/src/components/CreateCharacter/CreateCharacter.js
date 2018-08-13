@@ -107,10 +107,10 @@ class CreateCharacter extends Component {
         "name": this.state.name,
         "icon": this.state.icon,
         "life": this.state.characterStats.life * 50,
-        "defense": this.state.characterStats.defense,
-        "attack": this.state.characterStats.attack,
-        "speed": this.state.characterStats.speed,
-        "ultimate": this.state.characterStats.ultimate
+        "defense": this.state.characterStats.defense * 5,
+        "attack": this.state.characterStats.attack * 5,
+        "speed": this.state.characterStats.speed * 5,
+        "ultimate": this.state.characterStats.ultimate * 5
       }
 
       this.props.addCharacter(character);

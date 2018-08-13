@@ -3,7 +3,9 @@ import {
   ATTACK_0,
   ATTACK_1,
   ULTIMATE_0,
-  ULTIMATE_1
+  ULTIMATE_1,
+  SET_WINNER,
+  CLEAR_FIGHT
 } from './types';
 
 import { getCharacterById } from '../utils/getCharacterById';
@@ -42,4 +44,18 @@ export const ultimate = numberCharacter => dispatch => {
       type: ULTIMATE_1
     })
   }
+};
+
+export const setWinner = id => dispatch => {
+  dispatch({
+    type: SET_WINNER,
+    payload: (id + 1)
+  });
+};
+
+// Clear fight
+export const clearFight = () => {
+  return {
+    type: CLEAR_FIGHT
+  };
 };
