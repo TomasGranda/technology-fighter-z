@@ -136,7 +136,7 @@ class CharacterFighter extends Component {
 
     return (
       <div>
-        <ProgressBar now={(life * divisorLife)} label={`${Math.round(life)}`} />
+        <ProgressBar now={(life * divisorLife)} label={`${(Math.round(life))}`} />
         <Character icon={icon} size="200px" dead={dead} />
         <hr />
         <ProgressBar bsStyle="success without-transition" now={attackProgress} label={`${attackProgress}`} />  
