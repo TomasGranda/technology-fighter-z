@@ -1,6 +1,7 @@
 {
-  "name": "technology-fighter-z",
+  "name": "client",
   "version": "0.1.0",
+  "description": "UI for TFZ",
   "private": true,
   "dependencies": {
     "react": "^16.4.2",

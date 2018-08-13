@@ -1,0 +1,28 @@
+version: '2'
+services:
+  api:
+    build:
+      context: ./API/
+    hostname: api
+    command: npm start
+    ports:
+      - "8080:8080"
+    environment:
+      - MONGOURI=mongodb://tomas:t123456@ds119662.mlab.com:19662/technology-fighter-z
+      # - SECRETORKEY=${SECRETORKEY}
+      - PORT=8080
+      - NODE_ENV=development
+    volumes:
+      - ./API:/usr/app
+      
+  client:
+    build:
+      context: ./Client/
+    hostname: client
+    command: npm start
+    depends_on:
+      - api
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./Client:/usr/app
