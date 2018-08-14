@@ -27,8 +27,11 @@ class CreateCharacter extends Component {
         speed: 1,
         ultimate: 1
       },
-      error: '',
-      displaySnackbar: false
+      snackbar: {
+        displaySnackbar: false,
+        message: '',
+        type: ''
+      }
     };
   };
 
@@ -41,9 +44,12 @@ class CreateCharacter extends Component {
       });
     };
 
-    if (this.state.displaySnackbar) {
+    if (this.state.snackbar.displaySnackbar) {
       this.setState({
-        displaySnackbar: false
+        snackbar: {
+          ...this.state.snackbar,
+          displaySnackbar: false
+        }
       });
 
       const snackbar = document.getElementById("snackbar");
@@ -94,6 +100,7 @@ class CreateCharacter extends Component {
     if (this.validateCreate()) {
       this.setState({
         name: '',
+        icon: '',
         characterStats: {
           life: 1,
           defense: 1,
@@ -114,6 +121,15 @@ class CreateCharacter extends Component {
       }
 
       this.props.addCharacter(character);
+
+      this.setState({
+        snackbar: {
+          ...this.state.snackbar,
+          displaySnackbar: true,
+          type: "success",
+          message: "Character created"
+        }
+      });
     };
   };
 
@@ -134,8 +150,12 @@ class CreateCharacter extends Component {
 
     if (!result) {
       this.setState({
-        error: error,
-        displaySnackbar: true
+        snackbar: {
+          ...this.state.snackbar,
+          displaySnackbar: true,
+          type: "warning",
+          message: error
+        }
       });
     };
 
@@ -143,7 +163,8 @@ class CreateCharacter extends Component {
   };
 
   render() {
-    const { name, icon, maxPoints, characterStats, error } = this.state;
+    const { name, icon, maxPoints, characterStats } = this.state;
+    const { message, type } = this.state.snackbar;
     const calculateLife = characterStats.life * 50;
 
     const calculateStat = stat => {
@@ -177,9 +198,9 @@ class CreateCharacter extends Component {
                 </Col>
                 <Col componentClass={ControlLabel} sm={9}>       
                   <InputGroup>
-                    <InputGroup.Addon><i className={icon} /></InputGroup.Addon>           
+                    <InputGroup.Addon><i className={(icon ? icon : "fas fa-hand-pointer")} /></InputGroup.Addon>           
                     <FormControl componentClass="select" placeholder="select" onChange={this.handleSelect}>
-                      <option value="select">Select</option>
+                      <option value="">Select</option>
                       {iconsList}
                     </FormControl>
                   </InputGroup>
@@ -278,7 +299,7 @@ class CreateCharacter extends Component {
             <Button onClick={this.handleClick} bsStyle="primary" block>Create</Button>
           </Col>
         </Row>
-        <SnackBar type="warning" message={error} />
+        <SnackBar type={type} message={message} id="snackbar" />
       </Grid>
     )
   }

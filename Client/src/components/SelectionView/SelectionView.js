@@ -7,6 +7,7 @@ import { getCharacters } from '../../actions/characterActions';
 
 import CharacterList from '../Character/CharacterList';
 import Spinner from '../Spinner/Spinner';
+import ElementCenter from '../ElementCenter/ElementCenter';
 
 import ImgSpinner from '../../assets/spinner.png';
 
@@ -20,9 +21,17 @@ class SelectionView extends Component {
     let content;
     
     if (characters === null || loading) {
-      content = (<Spinner src={ImgSpinner} width="20px" />);
+      content = (
+        <ElementCenter>
+          <Spinner src={ImgSpinner} width="80px" />
+        </ElementCenter>
+      );
     } else if (characters.length === 0) {
-      content  = (<p>No characters found</p>);
+      content  = (
+        <ElementCenter>
+          <p>No characters found</p>
+        </ElementCenter>
+      );
     } else { 
       content = (<CharacterList characters={characters} />);
     };

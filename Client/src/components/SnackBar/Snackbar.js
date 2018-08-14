@@ -6,10 +6,10 @@ import './Snackbar.css';
 
 const SnackBar = props => {
   return (
-    <Grid fluid>
+    <Grid className="snackbar" id={props.id} fluid>
       <Row>
         <Col sm={1} />
-        <Col sm={2} className={`snackbar snackbar-${props.type}`} id="snackbar">
+        <Col sm={3} className={`snackbar-pill snackbar-${props.type}`}>
           <p>{props.message}</p>
         </Col>
       </Row>
@@ -19,6 +19,7 @@ const SnackBar = props => {
 
 SnackBar.propTypes = {
   type: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired
 }
 

@@ -3,11 +3,22 @@ body {
   padding: 0;
 }
 
-
 .without-transition {
   transition: 0ms !important;
 }
 
 .cursor-clicked {
   cursor: pointer;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.height-25 {
+  height: 25vh;
+}
+
+.height-50 {
+  height: 50vh;
 }
