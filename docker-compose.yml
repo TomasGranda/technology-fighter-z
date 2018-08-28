@@ -12,8 +12,6 @@ services:
       # - SECRETORKEY=${SECRETORKEY}
       - PORT=8080
       - NODE_ENV=development
-    volumes:
-      - ./API:/usr/app
       
   client:
     build:
@@ -24,8 +22,6 @@ services:
       - api
     ports:
       - "3000:3000"
-    volumes:
-      - ./Client:/usr/app
     links:
       - api
       
