@@ -12,6 +12,11 @@ services:
       # - SECRETORKEY=${SECRETORKEY}
       - PORT=8080
       - NODE_ENV=development
+    volumes: 
+      - ./API/config:/usr/app/config
+      - ./API/models:/usr/app/models
+      - ./API/routes:/usr/app/routes
+      - ./API/server.js:/usr/app/server.js
       
   client:
     build:
@@ -24,6 +29,8 @@ services:
       - "3000:3000"
     links:
       - api
+    volumes: 
+      - ./Client/src:/usr/app/src
       
   nginx:
     image: valian/docker-nginx-auto-ssl
