@@ -24,8 +24,7 @@ class CreateCharacter extends Component {
         life: 1,
         defense: 1,
         attack: 1,
-        speed: 1,
-        ultimate: 1
+        speed: 1
       },
       snackbar: {
         displaySnackbar: false,
@@ -105,8 +104,7 @@ class CreateCharacter extends Component {
           life: 1,
           defense: 1,
           attack: 1,
-          speed: 1,
-          ultimate: 1
+          speed: 1
         }
       });
 
@@ -116,8 +114,7 @@ class CreateCharacter extends Component {
         "life": this.state.characterStats.life * 50,
         "defense": this.state.characterStats.defense * 5,
         "attack": this.state.characterStats.attack * 5,
-        "speed": this.state.characterStats.speed * 5,
-        "ultimate": this.state.characterStats.ultimate * 5
+        "speed": this.state.characterStats.speed * 5
       }
 
       this.props.addCharacter(character);
@@ -252,7 +249,7 @@ class CreateCharacter extends Component {
                     <InputGroup.Addon><i className="fa fa-fire"/></InputGroup.Addon>
                     <FormControl type="number" name="attack" value={characterStats.attack} onChange={this.handleChageStats} min="1" />
                   </InputGroup>
-                  <HelpBlock>Attack of character. 1 pt = 50 Atk</HelpBlock>
+                  <HelpBlock>Attack of character. 1 pt = 5 Atk</HelpBlock>
                 </Col>
               </FormGroup>
               <FormGroup>
@@ -264,19 +261,7 @@ class CreateCharacter extends Component {
                     <InputGroup.Addon><i className="fas fa-tachometer-alt"/> </InputGroup.Addon>
                     <FormControl type="number" name="speed" value={characterStats.speed} onChange={this.handleChageStats} min="1" />
                   </InputGroup>
-                  <HelpBlock>Speed of character. 1 pt = 50 Speed.</HelpBlock>
-                </Col>
-              </FormGroup>
-              <FormGroup>
-                <Col componentClass={ControlLabel} sm={3}>
-                  Ultimate
-                </Col>
-                <Col componentClass={ControlLabel} sm={9}>
-                  <InputGroup>
-                    <InputGroup.Addon><i className="fas fa-surprise"/> </InputGroup.Addon>
-                    <FormControl type="number" name="ultimate" value={characterStats.ultimate} onChange={this.handleChageStats} min="1" />
-                  </InputGroup>
-                  <HelpBlock>Ultimate of character. 1 pt = 5 U</HelpBlock>
+                  <HelpBlock>Speed of character. 1 pt = 5 Speed.</HelpBlock>
                 </Col>
               </FormGroup>
             </Form>

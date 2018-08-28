@@ -56,7 +56,7 @@ export default function(state = initialState, action) {
           ...state.characters,
           1 : {
             ...state.characters[1],
-            life: (state.characters[1].life - calculateDamage(state.characters[0].ultimate, state.characters[1].defense))
+            life: (state.characters[1].life - calculateDamage((state.characters[0].attack*2), state.characters[1].defense))
           }
         }
       }
@@ -67,7 +67,7 @@ export default function(state = initialState, action) {
           ...state.characters,
           0 : {
             ...state.characters[0],
-            life: (state.characters[0].life - calculateDamage(state.characters[1].ultimate, state.characters[0].defense))
+            life: (state.characters[0].life - calculateDamage((state.characters[1].attack*2), state.characters[0].defense))
           }
         }
       }

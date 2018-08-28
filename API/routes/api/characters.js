@@ -32,8 +32,7 @@ router.post(
       life: req.body.life,
       defense: req.body.defense,
       attack: req.body.attack,
-      speed: req.body.speed,
-      ultimate: req.body.ultimate
+      speed: req.body.speed
     });
 
     newCharacter.save()
