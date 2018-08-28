@@ -27,4 +27,4 @@ const CharacterSchema = new Schema ({
     }
 });
 
-module.exports = Post = mongoose.model('character', CharacterSchema);
+module.exports = mongoose.model('character', CharacterSchema);
