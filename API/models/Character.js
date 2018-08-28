@@ -21,9 +21,6 @@ const CharacterSchema = new Schema ({
     },
     speed: {
         type: Number
-    },
-    ultimate: {
-        type: Number
     }
 });
 
