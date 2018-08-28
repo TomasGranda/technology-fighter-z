@@ -68,10 +68,9 @@ class CreateCharacter extends Component {
 
   handleChageStats = e => {
     let value = Number(e.target.value);
-    let operation = (this.state.characterStats[e.target.name] > value ? -1 : 1);
-    let points = this.getTotalPoints() + operation;
+    let points = this.getTotalPoints() - this.state.characterStats[e.target.name] + value;
 
-    if (points <= settings.maxPoints) {
+    if (points <= settings.maxPoints && value > 0) {
       this.setState({ characterStats: {
         ...this.state.characterStats,
         [e.target.name]: value }
@@ -184,7 +183,7 @@ class CreateCharacter extends Component {
                 <Col componentClass={ControlLabel} sm={9}>
                   <InputGroup>
                     <InputGroup.Addon>N</InputGroup.Addon>
-                    <FormControl type="text" name="name" value={name} onChange={this.handleChange} maxlength="20"/>
+                    <FormControl type="text" name="name" value={name} onChange={this.handleChange} />
                   </InputGroup>
                   <HelpBlock>Name of character</HelpBlock>
                 </Col>
