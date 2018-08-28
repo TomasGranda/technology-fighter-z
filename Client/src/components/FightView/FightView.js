@@ -6,6 +6,7 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import { loadCharacters } from '../../actions/fightActions';
 
 import CharacterFighter from '../Character/CharacterFighter';
+import GameOver from "../GameOver/GameOver";
 
 class FightView extends Component {
   render() {
@@ -25,6 +26,7 @@ class FightView extends Component {
 
     return (
       <div>
+        <GameOver></GameOver>
         <Grid style={{ textAlign: 'center' }} >
           <Row>
             <Col xs={4}>
