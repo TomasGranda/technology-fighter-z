@@ -184,7 +184,7 @@ class CreateCharacter extends Component {
                 <Col componentClass={ControlLabel} sm={9}>
                   <InputGroup>
                     <InputGroup.Addon>N</InputGroup.Addon>
-                    <FormControl type="text" name="name" value={name} onChange={this.handleChange} />
+                    <FormControl type="text" name="name" value={name} onChange={this.handleChange} maxlength="20"/>
                   </InputGroup>
                   <HelpBlock>Name of character</HelpBlock>
                 </Col>
