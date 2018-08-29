@@ -77,3 +77,53 @@ div.fight.attack1 {
   from { transform: rotate(0deg); }
   to { transform: rotate(-360deg); }
 }
+
+div.fight.damage i {
+  -webkit-animation: damageGo 1s,damageBack 1s;
+  animation: damageGo 1s,damageBack 1s;
+}
+
+@-webkit-keyframes damageGo {
+  from { color: #333; }
+  to { color: red; }
+}
+
+@keyframes damageGo {
+  from { color: #333; }
+  to { color: red; }
+}
+
+@-webkit-keyframes damageBack {
+  from { color: red;}
+  to { color: #333;  }
+}
+
+@keyframes damageBack {
+  from { color: red;}
+  to { color: #333;  }
+}
+
+div.fight.damageU i {
+  -webkit-animation: damageUGo 2s,damageUBack 2s;
+  animation: damageUGo 2s,damageUBack 2s;
+}
+
+@-webkit-keyframes damageUGo {
+  from { color: #333; }
+  to { color: red; }
+}
+
+@keyframes damageUGo {
+  from { color: #333; }
+  to { color: red; }
+}
+
+@-webkit-keyframes damageUBack {
+  from { color: red;}
+  to { color: #333;  }
+}
+
+@keyframes damageUBack {
+  from { color: red;}
+  to { color: #333;  }
+}

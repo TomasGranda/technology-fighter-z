@@ -94,6 +94,8 @@ class CharacterFighter extends Component {
 
     const characters = document.getElementsByClassName("fight");
     showSome(characters[numberCharacter], `attack${numberCharacter}`, 1000);
+    const oponent = numberCharacter === 1? 0 : 1;
+    showSome(characters[oponent], "damage", 2000);
     
     this.loadingAttack();
   };
@@ -105,6 +107,8 @@ class CharacterFighter extends Component {
 
     const characters = document.getElementsByClassName("fight");
     showSome(characters[numberCharacter], `ultimate${numberCharacter}`, 2000);
+    const oponent = numberCharacter === 1? 0 : 1;
+    showSome(characters[oponent], "damageU", 4000);
 
     this.loadingSpecial();
   };
