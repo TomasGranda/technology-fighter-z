@@ -1,5 +1,5 @@
-import React from 'react';
-import { Grid, Row, Col } from 'react-bootstrap';
+import React from "react";
+import { Grid, Row, Col } from "react-bootstrap";
 
 const ElementCenter = props => {
   return (

@@ -1,14 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import React from "react";
+import PropTypes from "prop-types";
+import { Navbar, Nav, NavItem } from "react-bootstrap";
 import { connect } from "react-redux";
 
-import { setHome, setCreateCharacter, setFight } from '../../actions/sectionActions';
+import {
+  setHome,
+  setCreateCharacter,
+  setFight
+} from "../../actions/sectionActions";
 
 const NavbarApp = props => {
   const { setHome, setCreateCharacter, setFight } = props;
 
-  return (    
+  return (
     <Navbar inverse collapseOnSelect>
       <Navbar.Header>
         <Navbar.Brand>

@@ -1,25 +1,27 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Grid, Row, Col, ControlLabel, Form, FormGroup, FormControl, InputGroup, HelpBlock, Button } from 'react-bootstrap';
+import { Grid, Row, Col, Form, Button } from "react-bootstrap";
 
-import { addCharacter } from '../../actions/characterActions';
-import { showSnackBar } from '../../utils/showSnackBar';
+import { addCharacter } from "../../actions/characterActions";
+import { showSnackBar } from "../../utils/showSnackBar";
 
-import CharacterCard from '../Character/CharacterCard';
-import SnackBar from '../SnackBar/Snackbar';
+import CharacterCard from "../Character/CharacterCard";
+import SnackBar from "../SnackBar/Snackbar";
+import Input from "../Input/Input";
+import SelectInput from "../SelectInput/SelectInput";
 
-import * as settings from '../../config/settings.json';
-import * as icons from '../../config/icons.json';
+import * as settings from "../../config/settings.json";
+import * as icons from "../../config/icons.json";
 
 class CreateCharacter extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      maxPoints: (settings.maxPoints - 5),
-      name: '',
-      icon: '',
+      maxPoints: settings.maxPoints - 4,
+      name: "",
+      icon: "",
       characterStats: {
         life: 1,
         defense: 1,
@@ -28,20 +30,20 @@ class CreateCharacter extends Component {
       },
       snackbar: {
         displaySnackbar: false,
-        message: '',
-        type: ''
+        message: "",
+        type: ""
       }
     };
-  };
+  }
 
   componentDidUpdate() {
     let points = settings.maxPoints - this.getTotalPoints();
 
-    if (points !== this.state.maxPoints ) {
+    if (points !== this.state.maxPoints) {
       this.setState({
         maxPoints: points
       });
-    };
+    }
 
     if (this.state.snackbar.displaySnackbar) {
       this.setState({
@@ -54,35 +56,37 @@ class CreateCharacter extends Component {
       const snackbar = document.getElementById("snackbar");
       showSnackBar(snackbar);
     }
-  };
+  }
 
   getTotalPoints = () => {
     let total = 0;
 
     for (let key in this.state.characterStats) {
       total += this.state.characterStats[key];
-    };
+    }
 
     return total;
   };
 
-  handleChageStats = e => {
+  handleChangeStats = e => {
     let value = Number(e.target.value);
     let points = this.getTotalPoints() - this.state.characterStats[e.target.name] + value;
 
     if (points <= settings.maxPoints && value > 0) {
-      this.setState({ characterStats: {
-        ...this.state.characterStats,
-        [e.target.name]: value }
+      this.setState({
+        characterStats: {
+          ...this.state.characterStats,
+          [e.target.name]: value
+        }
       });
-    };
+    }
   };
 
   handleChange = e => {
     e.preventDefault();
 
     this.setState({
-      [e.target.name]: e.target.value 
+      [e.target.name]: e.target.value
     });
   };
 
@@ -92,13 +96,13 @@ class CreateCharacter extends Component {
     this.setState({
       icon: e.target.value
     });
-  }
+  };
 
   handleClick = () => {
     if (this.validateCreate()) {
       this.setState({
-        name: '',
-        icon: '',
+        name: "",
+        icon: "",
         characterStats: {
           life: 1,
           defense: 1,
@@ -108,13 +112,13 @@ class CreateCharacter extends Component {
       });
 
       let character = {
-        "name": this.state.name,
-        "icon": this.state.icon,
-        "life": this.state.characterStats.life * 50,
-        "defense": this.state.characterStats.defense * 5,
-        "attack": this.state.characterStats.attack * 5,
-        "speed": this.state.characterStats.speed * 5
-      }
+        name: this.state.name,
+        icon: this.state.icon,
+        life: this.state.characterStats.life * 50,
+        defense: this.state.characterStats.defense * 5,
+        attack: this.state.characterStats.attack * 5,
+        speed: this.state.characterStats.speed * 5
+      };
 
       this.props.addCharacter(character);
 
@@ -126,23 +130,23 @@ class CreateCharacter extends Component {
           message: "Character created"
         }
       });
-    };
+    }
   };
 
   validateCreate = () => {
     let result = true;
-    let error = '';
+    let error = "";
 
     if (this.state.maxPoints !== 0) {
-      error = 'You must assign all points';
+      error = "You must assign all points";
       result = false;
-    } else if (this.state.name === '') {
-      error = 'You must enter a name';
+    } else if (this.state.name === "") {
+      error = "You must enter a name";
       result = false;
-    } else if (this.state.icon === '') {
+    } else if (this.state.icon === "") {
       error = "You must select a icon";
       result = false;
-    };
+    }
 
     if (!result) {
       this.setState({
@@ -153,7 +157,7 @@ class CreateCharacter extends Component {
           message: error
         }
       });
-    };
+    }
 
     return result;
   };
@@ -164,128 +168,115 @@ class CreateCharacter extends Component {
     const calculateLife = characterStats.life * 50;
 
     const calculateStat = stat => {
-      return stat * 5
+      return stat * 5;
     };
 
     const iconsList = icons.map((icon, i) => {
-      return (<option key={i} value={icon.icon}>{icon.name}</option>)
+      return (
+        <option key={i} value={icon.icon}>
+          {icon.name}
+        </option>
+      );
     });
 
     return (
-      <Grid>
-        <Row>
-          <Col sm={6}>
-            <Form horizontal>
-              <FormGroup>
-                <Col componentClass={ControlLabel} sm={3}>
-                  Name
-                </Col>
-                <Col componentClass={ControlLabel} sm={9}>
-                  <InputGroup>
-                    <InputGroup.Addon>N</InputGroup.Addon>
-                    <FormControl type="text" name="name" value={name} onChange={this.handleChange} />
-                  </InputGroup>
-                  <HelpBlock>Name of character</HelpBlock>
-                </Col>
-              </FormGroup>
-              <FormGroup>
-                <Col componentClass={ControlLabel} sm={3}>
-                  Icon
-                </Col>
-                <Col componentClass={ControlLabel} sm={9}>       
-                  <InputGroup>
-                    <InputGroup.Addon><i className={(icon ? icon : "fas fa-hand-pointer")} /></InputGroup.Addon>           
-                    <FormControl componentClass="select" placeholder="select" onChange={this.handleSelect}>
-                      <option value="">Select</option>
-                      {iconsList}
-                    </FormControl>
-                  </InputGroup>
-                  <HelpBlock>Icon of character</HelpBlock>
-                </Col>
-              </FormGroup>
-              <FormGroup>
-                <Col componentClass={ControlLabel} sm={3}>
-                  Max Points
-                </Col>
-                <Col componentClass={ControlLabel} sm={9}>
-                  <InputGroup>
-                    <InputGroup.Addon><i className="fab fa-product-hunt"/></InputGroup.Addon>
-                    <FormControl type="number" name="maxPoints" value={maxPoints} readOnly />
-                  </InputGroup>
-                  <HelpBlock>Points to assign</HelpBlock>
-                </Col>
-              </FormGroup>
-              <FormGroup>
-                <Col componentClass={ControlLabel} sm={3}>
-                  Life
-                </Col>
-                <Col componentClass={ControlLabel} sm={9}>
-                  <InputGroup>
-                    <InputGroup.Addon><i className="fa fa-heart"/></InputGroup.Addon>
-                    <FormControl type="number" name="life" value={characterStats.life} onChange={this.handleChageStats} min="1" />
-                  </InputGroup>
-                  <HelpBlock>Life of character. 1 pt = 50 HP</HelpBlock>
-                </Col>
-              </FormGroup>
-              <FormGroup>
-                <Col componentClass={ControlLabel} sm={3}>
-                  Defense
-                </Col>
-                <Col componentClass={ControlLabel} sm={9}>
-                  <InputGroup>
-                    <InputGroup.Addon><i className="fa fa-shield-alt"/></InputGroup.Addon>
-                    <FormControl type="number" name="defense" value={characterStats.defense} onChange={this.handleChageStats} min="1" />
-                  </InputGroup>
-                  <HelpBlock>Defense of character. 1 pt = 5 Def</HelpBlock>
-                </Col>
-              </FormGroup>
-              <FormGroup>
-                <Col componentClass={ControlLabel} sm={3}>
-                  Attack
-                </Col>
-                <Col componentClass={ControlLabel} sm={9}>
-                  <InputGroup>
-                    <InputGroup.Addon><i className="fa fa-fire"/></InputGroup.Addon>
-                    <FormControl type="number" name="attack" value={characterStats.attack} onChange={this.handleChageStats} min="1" />
-                  </InputGroup>
-                  <HelpBlock>Attack of character. 1 pt = 5 Atk</HelpBlock>
-                </Col>
-              </FormGroup>
-              <FormGroup>
-                <Col componentClass={ControlLabel} sm={3}>
-                  Speed
-                </Col>
-                <Col componentClass={ControlLabel} sm={9}>
-                  <InputGroup>
-                    <InputGroup.Addon><i className="fas fa-tachometer-alt"/> </InputGroup.Addon>
-                    <FormControl type="number" name="speed" value={characterStats.speed} onChange={this.handleChageStats} min="1" />
-                  </InputGroup>
-                  <HelpBlock>Speed of character. 1 pt = 5 Speed.</HelpBlock>
-                </Col>
-              </FormGroup>
-            </Form>
-          </Col>
-          <Col sm={6}>
-            <CharacterCard  
-              id="0"
-              icon={icon}
-              name={name}
-              life={calculateLife}
-              defense={calculateStat(characterStats.defense)}
-              attack={calculateStat(characterStats.attack)}
-              speed={calculateStat(characterStats.speed)}
-              selectable={false}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col sm={12}>
-            <Button onClick={this.handleClick} bsStyle="primary" block>Create</Button>
-          </Col>
-        </Row>
+      <React.Fragment>
+        <Grid>
+          <Row>
+            <Col sm={6}>
+              <Form horizontal>
+                <Input
+                  title="Name"
+                  icon="N"
+                  type="text"
+                  name="name"
+                  value={name}
+                  onChange={this.handleChange}
+                  maxLength="20"
+                  help="Name of character"
+                />
+                <SelectInput
+                  title="Icon"
+                  icon={<i className={icon ? icon : "fas fa-hand-pointer"} />}
+                  onChange={this.handleSelect}
+                  list={iconsList}
+                  help="Icon of character"
+                />
+                <Input
+                  title="Max Points"
+                  icon={<i className="fab fa-product-hunt" />}
+                  type="number"
+                  name="maxPoints"
+                  value={maxPoints}
+                  readOnly={true}
+                  help="Points to assign to Stats"
+                />
+                <Input
+                  title="Life"
+                  icon={<i className="fa fa-heart" />}
+                  type="number"
+                  name="life"
+                  value={characterStats.life}
+                  onChange={this.handleChangeStats}
+                  min="1"
+                  help="Life of character. 1 pt = 50 HP"
+                />
+                <Input
+                  title="Defense"
+                  icon={<i className="fa fa-shield-alt" />}
+                  type="number"
+                  name="defense"
+                  value={characterStats.defense}
+                  onChange={this.handleChangeStats}
+                  min="1"
+                  help="Defense of character. 1 pt = 5 Def"
+                />
+                <Input
+                  title="Attack"
+                  icon={<i className="fa fa-fire" />}
+                  type="number"
+                  name="attack"
+                  value={characterStats.attack}
+                  onChange={this.handleChangeStats}
+                  min="1"
+                  help="Attack of character. 1 pt = 5 Atk"
+                />
+                <Input
+                  title="Speed"
+                  icon={<i className="fas fa-tachometer-alt" />}
+                  type="number"
+                  name="speed"
+                  value={characterStats.speed}
+                  onChange={this.handleChangeStats}
+                  min="1"
+                  help="Speed of character. 1 pt = 5 Speed"
+                />
+              </Form>
+            </Col>
+            <Col sm={6}>
+              <CharacterCard
+                id="0"
+                icon={icon}
+                name={name}
+                life={calculateLife}
+                defense={calculateStat(characterStats.defense)}
+                attack={calculateStat(characterStats.attack)}
+                speed={calculateStat(characterStats.speed)}
+                selectable={false}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col sm={12}>
+              <Button onClick={this.handleClick} bsStyle="primary" block>
+                Create
+              </Button>
+            </Col>
+          </Row>
+        </Grid>
         <SnackBar type={type} message={message} id="snackbar" />
-      </Grid>
-    )
+      </React.Fragment>
+    );
   }
 }
 

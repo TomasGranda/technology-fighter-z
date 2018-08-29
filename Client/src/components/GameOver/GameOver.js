@@ -1,53 +1,69 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 import { Modal, Button } from "react-bootstrap";
-import { setHome, setCreateCharacter, setFight } from '../../actions/sectionActions';
+import { setFight } from "../../actions/sectionActions";
 
 class GameOver extends Component {
-	constructor() {
-		super();
+  constructor() {
+    super();
 
-		this.handleClose = this.handleClose.bind(this);
+    this.state = {
+      show: false,
+      winner: null
+    };
+  }
 
-		this.state = {
-			show: false
-		}
-	}
+  static getDerivedStateFromProps(props, state) {
+    if (props.fight.characters[0].life <= 0 || props.fight.characters[1].life <= 0) {
+      const winner =
+        props.fight.characters[0].life <= 0
+          ? props.fight.characters[0]
+          : props.fight.characters[1];
+      return {
+        show: true,
+        winner: winner
+      };
+    }
 
-	static getDerivedStateFromProps(nextProps){
-		if(nextProps.fight.characters[0].life <= 0 || nextProps.fight.characters[1].life <= 0){
-			return {
-				show: true
-			}
-		}
-	}
+    return state;
+  }
 
-	handleClose() {
-		
-	}
+  handleClose = () => {
+    this.props.setFight();
 
-	render() {
-		return (
-			<div className="static-modal">
-				<Modal show={this.state.show} onHide={this.handleClose}>
-					<Modal.Header>
-						<Modal.Title>Modal title</Modal.Title>
-					</Modal.Header>
+    this.setState({
+      show: false,
+      winner: null
+    });
+  };
 
-					<Modal.Body>One fine body...</Modal.Body>
+  render() {
+    const { show, winner } = this.state;
 
-					<Modal.Footer>
-            <Button onClick={this.handleClose}>Close</Button>
+    return (
+      <div className="static-modal">
+        <Modal show={show}>
+          <Modal.Header>
+            <Modal.Title>The winner is {winner ? winner.name : ""}!</Modal.Title>
+          </Modal.Header>
+          <Modal.Footer>
+            <Button onClick={this.handleClose}>Select Characters</Button>
           </Modal.Footer>
-				</Modal>
-			</div>
-		)
-	}
+        </Modal>
+      </div>
+    );
+  }
+}
+
+GameOver.propTypes = {
+  fight: PropTypes.object.isRequired,
+  setFight: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
   fight: state.fight
 });
 
-export default connect(mapStateToProps)(GameOver)
+export default connect(mapStateToProps, { setFight })(GameOver);

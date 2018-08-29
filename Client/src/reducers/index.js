@@ -1,9 +1,9 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 
-import characterReducer from './characterReducer';
-import fightReducer from './fightReducer';
-import sectionReducer from './sectionReducer';
-import errorReducer from './errorReducer';
+import characterReducer from "./characterReducer";
+import fightReducer from "./fightReducer";
+import sectionReducer from "./sectionReducer";
+import errorReducer from "./errorReducer";
 
 export default combineReducers({
   character: characterReducer,

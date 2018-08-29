@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import SelectionView from '../SelectionView/SelectionView';
-import FightView from '../FightView/FightView';
-import Home from '../Home/Home';
-import CreateCharacter from '../CreateCharacter/CreateCharacter';
+import SelectionView from "../SelectionView/SelectionView";
+import FightView from "../FightView/FightView";
+import Home from "../Home/Home";
+import CreateCharacter from "../CreateCharacter/CreateCharacter";
 
-import * as sectionJSON from '../../config/section.json';
+import * as sectionJSON from "../../config/section.json";
 
 class Content extends Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class Content extends Component {
     this.state = {
       selected: props.selected,
       section: props.section
-    }
+    };
   }
 
   componentWillReceiveProps(nextProps) {
@@ -24,41 +24,37 @@ class Content extends Component {
       this.setState({
         selected: nextProps.selected
       });
-    };
+    }
     if (nextProps.section >= 0) {
       this.setState({
         section: nextProps.section
       });
-    };
+    }
   }
 
   render() {
     const { selected, section } = this.state;
     let content;
-    
+
     switch (section) {
       case sectionJSON.home:
-        content = (<Home />);
+        content = <Home />;
         break;
       case sectionJSON.createCharacter:
-        content = (<CreateCharacter />);
+        content = <CreateCharacter />;
         break;
       case sectionJSON.fight:
         if (selected.length === 2) {
-          content = (<FightView />)
+          content = <FightView />;
         } else {
-          content = (<SelectionView />);
-        };
+          content = <SelectionView />;
+        }
         break;
       default:
         break;
     }
 
-    return (
-      <div>
-        {content}
-      </div>
-    );
+    return <div>{content}</div>;
   }
 }
 

@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios from "axios";
 
-import { 
+import {
   GET_CHARACTERS,
   SELECT_CHARACTER,
   UNSELECT_CHARACTER,
@@ -9,23 +9,23 @@ import {
   CLEAR_ERRORS,
   LOADING_CHARACTERS,
   CLEAR_SELECTION
-} from './types';
+} from "./types";
 
 export const getCharacters = () => dispatch => {
   dispatch(setCharactersLoading());
-  
+
   axios
-    .get('/api/characters')
-    .then(res => 
+    .get("/api/characters")
+    .then(res =>
       dispatch({
-          type: GET_CHARACTERS,
-          payload: res.data
+        type: GET_CHARACTERS,
+        payload: res.data
       })
     )
-    .catch(() => 
+    .catch(() =>
       dispatch({
-          type: GET_CHARACTERS,
-          payload: null
+        type: GET_CHARACTERS,
+        payload: null
       })
     );
 };
@@ -37,7 +37,7 @@ export const selectCharacter = character => dispatch => {
   });
 };
 
-export const unselectCharacter = character => dispatch =>{
+export const unselectCharacter = character => dispatch => {
   dispatch({
     type: UNSELECT_CHARACTER,
     payload: character
@@ -47,19 +47,19 @@ export const unselectCharacter = character => dispatch =>{
 export const addCharacter = character => dispatch => {
   dispatch(clearErrors());
   axios
-    .post('/api/characters', character)
-      .then(res => 
-        dispatch({
-            type: ADD_CHARACTER,
-            payload: res.data
-        })
-      )
-      .catch(err => 
-        dispatch({
-            type: GET_ERRORS,
-            payload: err
-        })
-      );
+    .post("/api/characters", character)
+    .then(res =>
+      dispatch({
+        type: ADD_CHARACTER,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err
+      })
+    );
 };
 
 // Set loading state
@@ -79,6 +79,6 @@ export const clearSelection = () => {
 // Clear errors
 export const clearErrors = () => {
   return {
-      type: CLEAR_ERRORS
+    type: CLEAR_ERRORS
   };
 };

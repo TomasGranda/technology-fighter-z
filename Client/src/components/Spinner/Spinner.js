@@ -1,17 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import './Spinner.css';
+import "./Spinner.css";
 
 const Spinner = props => {
   return (
     <div>
-        <img 
-            className={`spinner ${props.class}`}
-            src={props.src}
-            alt="Loading..."
-            width={props.width}
-        />
+      <img
+        className={`spinner ${props.class}`}
+        src={props.src}
+        alt="Loading..."
+        width={props.width}
+      />
     </div>
   );
 };
