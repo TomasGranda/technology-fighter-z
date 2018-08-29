@@ -19,8 +19,8 @@ class GameOver extends Component {
     if (props.fight.characters[0].life <= 0 || props.fight.characters[1].life <= 0) {
       const winner =
         props.fight.characters[0].life <= 0
-          ? props.fight.characters[0]
-          : props.fight.characters[1];
+          ? props.fight.characters[1]
+          : props.fight.characters[0];
       return {
         show: true,
         winner: winner
