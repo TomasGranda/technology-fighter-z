@@ -8,8 +8,8 @@ const SnackBar = props => {
   return (
     <Grid className="snackbar" id={props.id} fluid>
       <Row>
-        <Col sm={1} />
-        <Col sm={11} className={`snackbar-pill snackbar-${props.type}`}>
+        <Col sm={2} />
+        <Col sm={10} className={`snackbar-pill snackbar-${props.type}`}>
           <p>{props.message}</p>
         </Col>
       </Row>

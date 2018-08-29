@@ -3,5 +3,5 @@ export const showSnackBar = element => {
 
   setTimeout(() => {
     element.classList.remove("show");
-  }, 3000);
+  }, 3500);
 };
