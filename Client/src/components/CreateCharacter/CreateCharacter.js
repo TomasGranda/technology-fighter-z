@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Grid, Row, Col, Form, Button } from "react-bootstrap";
 
 import { addCharacter } from "../../actions/characterActions";
-import { showSnackBar } from "../../utils/showSnackBar";
+import { showSome } from "../../utils/showSome";
 
 import CharacterCard from "../Character/CharacterCard";
 import SnackBar from "../SnackBar/Snackbar";
@@ -54,7 +54,7 @@ class CreateCharacter extends Component {
       });
 
       const snackbar = document.getElementById("snackbar");
-      showSnackBar(snackbar);
+      showSome(snackbar, "show", 3500);
     }
   }
 

@@ -1,0 +1,79 @@
+div.fight.attack0 {
+  -webkit-animation: attackGo0 1s,attackBack0 1s;
+  animation: attackGo0 1s,attackBack0 1s;
+}
+
+.fight.ultimate0 {
+  -webkit-animation: ultimate0 1s;
+  animation: ultimate0 1s;
+}
+
+@-webkit-keyframes attackGo0 {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(70deg); }
+}
+
+@keyframes attackGo0 {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(70deg); }
+}
+
+@-webkit-keyframes attackBack0 {
+  from { transform: rotate(70deg); }
+  to { transform: rotate(0deg); }
+}
+
+@keyframes attackBack0 {
+  from { transform: rotate(70deg); }
+  to { transform: rotate(0deg); }
+}
+
+@-webkit-keyframes ultimate0 {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes ultimate0 {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+div.fight.attack1 {
+  -webkit-animation: attackGo1 1s,attackBack1 1s;
+  animation: attackGo1 1s,attackBack1 1s;
+}
+
+.fight.ultimate1 {
+  -webkit-animation: ultimate1 1s;
+  animation: ultimate1 1s;
+}
+
+@-webkit-keyframes attackGo1 {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-70deg); }
+}
+
+@keyframes attackGo1 {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-70deg); }
+}
+
+@-webkit-keyframes attackBack1 {
+  from { transform: rotate(-70deg); }
+  to { transform: rotate(0deg); }
+}
+
+@keyframes attackBack1 {
+  from { transform: rotate(-70deg); }
+  to { transform: rotate(0deg); }
+}
+
+@-webkit-keyframes ultimate1 {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes ultimate1 {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}

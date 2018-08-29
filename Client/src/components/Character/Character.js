@@ -10,18 +10,20 @@ const Character = props => {
     content = <i className={props.icon} style={{ fontSize: props.size }} />;
   }
 
-  return <div>{content}</div>;
+  return <div className={props.className}>{content}</div>;
 };
 
 Character.defaultProps = {
   size: "14px",
-  dead: false
+  dead: false,
+  className: ""
 };
 
 Character.propTypes = {
   icon: PropTypes.string.isRequired,
   size: PropTypes.string,
-  dead: PropTypes.bool
+  dead: PropTypes.bool,
+  className: PropTypes.string
 };
 
 export default Character;

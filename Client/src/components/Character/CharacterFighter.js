@@ -4,13 +4,15 @@ import { connect } from "react-redux";
 import { ProgressBar, Button } from "react-bootstrap";
 
 import { attack, ultimate } from "../../actions/fightActions";
+import { getCharacterById } from "../../utils/getCharacterById";
+import { calculateSpeedSpecial } from "../../utils/calculateSpeedSpecial";
+import { showSome } from "../../utils/showSome";
 
 import Character from "./Character";
 
-import { getCharacterById } from "../../utils/getCharacterById";
-import { calculateSpeedSpecial } from "../../utils/calculateSpeedSpecial";
-
 import * as keyboards from "../../config/keyboards.json";
+
+import "./CharacterFighter.css";
 
 class CharacterFighter extends Component {
   constructor(props) {
@@ -51,10 +53,7 @@ class CharacterFighter extends Component {
         life: lifeAux
       });
 
-      if (
-        nextProps.fight.characters[0].life < 0 ||
-        nextProps.fight.characters[1].life < 0
-      )
+      if (nextProps.fight.characters[0].life < 0 || nextProps.fight.characters[1].life < 0)
         window.removeEventListener("keydown", this.makeAttack);
     }
   }
@@ -89,13 +88,23 @@ class CharacterFighter extends Component {
   };
 
   handleClick = () => {
-    this.props.attack(this.props.numberCharacter);
+    const { numberCharacter } = this.props;
 
+    this.props.attack(numberCharacter);
+
+    const characters = document.getElementsByClassName("fight");
+    showSome(characters[numberCharacter], `attack${numberCharacter}`, 1000);
+    
     this.loadingAttack();
   };
 
   handleUltimate = () => {
-    this.props.ultimate(this.props.numberCharacter);
+    const { numberCharacter } = this.props;
+    
+    this.props.ultimate(numberCharacter);
+
+    const characters = document.getElementsByClassName("fight");
+    showSome(characters[numberCharacter], `ultimate${numberCharacter}`, 2000);
 
     this.loadingSpecial();
   };
@@ -161,7 +170,7 @@ class CharacterFighter extends Component {
     return (
       <div>
         <ProgressBar now={life * divisorLife} label={`${Math.round(life)}`} />
-        <Character icon={icon} size="200px" dead={dead} />
+        <Character className="fight" icon={icon} size="200px" dead={dead} />
         <hr />
         <ProgressBar
           bsStyle="success" 
