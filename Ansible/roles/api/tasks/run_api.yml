@@ -1,0 +1,17 @@
+---
+- name: Install packages based on package.json
+  become: true
+  npm:
+    path: "{{ app_path }}/API"
+
+- name: Run Node Api
+  command: npm start
+  args:
+    chdir: "{{ app_path }}/API"
+  environment:
+    MONGOURI: mongodb://tomas:t123456@ds119662.mlab.com:19662/technology-fighter-z
+  async: 1000
+  poll: 0
+
+- name: "algo"
+  command: echo "hola"

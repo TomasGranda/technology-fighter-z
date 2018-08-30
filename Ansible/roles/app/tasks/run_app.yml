@@ -1,0 +1,10 @@
+---
+- name: Install packages based on package.json
+  become: true
+  npm:
+    path: "{{ app_path }}/Client"
+
+- name: Run React App
+  command: npm start
+  args:
+    chdir: "{{ app_path }}/Client"

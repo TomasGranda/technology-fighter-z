@@ -1,0 +1,8 @@
+- name: Creating directory structure
+  become: true
+  file: path={{ app_path }} state=directory owner={{ app_user }} group={{ app_group }}
+
+- name: Copy files into instance
+  copy:
+    dest: "{{ app_path }}"
+    src: "../../Client"

@@ -1,0 +1,4 @@
+---
+# Vars File
+
+dest_host: 'tfz' # Localhost by default

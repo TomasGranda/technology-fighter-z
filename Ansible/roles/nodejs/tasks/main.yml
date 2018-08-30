@@ -1,0 +1,14 @@
+---
+- name: Update and upgrade apt packages
+  apt:
+    upgrade: yes
+    update_cache: yes
+    cache_valid_time: 86400 #One day
+
+- name: get nodejs package
+  shell: "curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -"
+
+- name: install node.js
+  apt:
+    name: nodejs
+    state: latest
