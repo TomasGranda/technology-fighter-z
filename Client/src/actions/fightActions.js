@@ -1,4 +1,4 @@
-import { 
+import {
   LOAD_CHARACTERS,
   ATTACK_0,
   ATTACK_1,
@@ -6,9 +6,9 @@ import {
   ULTIMATE_1,
   SET_WINNER,
   CLEAR_FIGHT
-} from './types';
+} from "./types";
 
-import { getCharacterById } from '../utils/getCharacterById';
+import { getCharacterById } from "../utils/getCharacterById";
 
 export const loadCharacters = (characters, id1, id2) => dispatch => {
   let payload = [];
@@ -26,11 +26,11 @@ export const attack = numberCharacter => dispatch => {
   if (numberCharacter === 0) {
     dispatch({
       type: ATTACK_0
-    })
+    });
   } else {
     dispatch({
       type: ATTACK_1
-    })
+    });
   }
 };
 
@@ -38,18 +38,18 @@ export const ultimate = numberCharacter => dispatch => {
   if (numberCharacter === 0) {
     dispatch({
       type: ULTIMATE_0
-    })
+    });
   } else {
     dispatch({
       type: ULTIMATE_1
-    })
+    });
   }
 };
 
 export const setWinner = id => dispatch => {
   dispatch({
     type: SET_WINNER,
-    payload: (id + 1)
+    payload: id + 1
   });
 };
 

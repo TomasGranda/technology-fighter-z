@@ -1,19 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Col } from 'react-bootstrap';
+import React from "react";
+import PropTypes from "prop-types";
+import { Col } from "react-bootstrap";
 
-import CharacterCard from './CharacterCard';
+import CharacterCard from "./CharacterCard";
 
 const CharacterList = props => {
   const characters = props.characters.map((character, i) => {
     return (
       <Col xs={3} key={i}>
-        <CharacterCard 
+        <CharacterCard
           id={character._id}
           icon={character.icon}
           name={character.name}
-          life={character.life} 
-          defense={character.defense} 
+          life={character.life}
+          defense={character.defense}
           attack={character.attack}
           speed={character.speed}
         />

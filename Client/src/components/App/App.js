@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { Provider } from 'react-redux';
+import React, { Component } from "react";
+import { Provider } from "react-redux";
 
-import NavbarApp from '../NavbarApp/NavbarApp';
-import Content from '../Content/Content';
+import NavbarApp from "../NavbarApp/NavbarApp";
+import Content from "../Content/Content";
 
 import store from "../../store";
 
@@ -16,7 +16,7 @@ class App extends Component {
         </div>
       </Provider>
     );
-  };
-};
+  }
+}
 
 export default App;

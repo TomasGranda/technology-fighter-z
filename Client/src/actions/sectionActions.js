@@ -1,11 +1,7 @@
-import { 
-  SET_HOME,
-  SET_CREATE_CHARACTER,
-  SET_FIGHT
-} from './types';
+import { SET_HOME, SET_CREATE_CHARACTER, SET_FIGHT } from "./types";
 
-import { clearSelection } from './characterActions';
-import { clearFight } from './fightActions';
+import { clearSelection } from "./characterActions";
+import { clearFight } from "./fightActions";
 
 export const setHome = () => dispatch => {
   dispatch(clearFight());

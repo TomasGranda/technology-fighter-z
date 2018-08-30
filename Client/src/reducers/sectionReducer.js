@@ -1,10 +1,6 @@
-import { 
-  SET_HOME,
-  SET_CREATE_CHARACTER,
-  SET_FIGHT
-} from '../actions/types';
+import { SET_HOME, SET_CREATE_CHARACTER, SET_FIGHT } from "../actions/types";
 
-import * as section from '../config/section.json';
+import * as section from "../config/section.json";
 
 const initialState = {
   section: section.home
@@ -13,21 +9,21 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case SET_HOME:
-      return({
+      return {
         ...state,
         section: section.home
-      });
+      };
     case SET_CREATE_CHARACTER:
-      return({
+      return {
         ...state,
         section: section.createCharacter
-      });
+      };
     case SET_FIGHT:
-      return({
+      return {
         ...state,
         section: section.fight
-      });
+      };
     default:
       return state;
   }
-};
+}

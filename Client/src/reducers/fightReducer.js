@@ -1,4 +1,4 @@
-import { 
+import {
   LOAD_CHARACTERS,
   CLEAR_FIGHT,
   ATTACK_0,
@@ -6,13 +6,13 @@ import {
   ULTIMATE_0,
   ULTIMATE_1,
   SET_WINNER
-} from '../actions/types';
+} from "../actions/types";
 
-import { calculateDamage } from '../utils/calculateDamage';
+import { calculateDamage } from "../utils/calculateDamage";
 
 const initialState = {
   characters: [],
-  winner: null,
+  winner: null
 };
 
 export default function(state = initialState, action) {
@@ -21,62 +21,82 @@ export default function(state = initialState, action) {
       return {
         ...state,
         characters: action.payload
-      }
+      };
     case CLEAR_FIGHT:
       return {
         characters: [],
         winner: null
-      }
+      };
     case ATTACK_0:
       return {
         ...state,
-        characters: { 
+        characters: {
           ...state.characters,
-          1 : {
+          1: {
             ...state.characters[1],
-            life: (state.characters[1].life - calculateDamage(state.characters[0].attack, state.characters[1].defense))
+            life:
+              state.characters[1].life -
+              calculateDamage(
+                state.characters[0].attack,
+                state.characters[1].defense
+              )
           }
         }
-      }
+      };
     case ATTACK_1:
       return {
         ...state,
-        characters: { 
+        characters: {
           ...state.characters,
-          0 : {
+          0: {
             ...state.characters[0],
-            life: (state.characters[0].life - calculateDamage(state.characters[1].attack, state.characters[0].defense))
+            life:
+              state.characters[0].life -
+              calculateDamage(
+                state.characters[1].attack,
+                state.characters[0].defense
+              )
           }
         }
-      }
+      };
     case ULTIMATE_0:
       return {
         ...state,
-        characters: { 
+        characters: {
           ...state.characters,
-          1 : {
+          1: {
             ...state.characters[1],
-            life: (state.characters[1].life - calculateDamage((state.characters[0].attack*2), state.characters[1].defense))
+            life:
+              state.characters[1].life -
+              calculateDamage(
+                state.characters[0].attack * 2,
+                state.characters[1].defense
+              )
           }
         }
-      }
+      };
     case ULTIMATE_1:
       return {
         ...state,
-        characters: { 
+        characters: {
           ...state.characters,
-          0 : {
+          0: {
             ...state.characters[0],
-            life: (state.characters[0].life - calculateDamage((state.characters[1].attack*2), state.characters[0].defense))
+            life:
+              state.characters[0].life -
+              calculateDamage(
+                state.characters[1].attack * 2,
+                state.characters[0].defense
+              )
           }
         }
-      }
+      };
     case SET_WINNER:
       return {
         ...state,
         winner: action.payload
-      }
+      };
     default:
       return state;
   }
-};
+}
