@@ -1,0 +1,5 @@
+---
+- hosts: '{{ dest_host }}'
+  roles:
+    - role: api
+    - role: app

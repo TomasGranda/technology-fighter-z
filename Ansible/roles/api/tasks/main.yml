@@ -3,5 +3,5 @@
   become: true
   apt: upgrade=full update_cache=yes cache_valid_time=3600
   
-- include: deploy_api.yml
+#- include: deploy_api.yml
 - include: run_api.yml

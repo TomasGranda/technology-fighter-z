@@ -10,8 +10,6 @@
     chdir: "{{ app_path }}/API"
   environment:
     MONGOURI: mongodb://tomas:t123456@ds119662.mlab.com:19662/technology-fighter-z
-  async: 1000
-  poll: 0
 
-- name: "algo"
-  command: echo "hola"
+- name: "API Running"
+  command: echo "API Running"
