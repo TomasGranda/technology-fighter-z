@@ -1,0 +1,4 @@
+---
+# docker_compose_version: "1.22.0" # 1.22.0 by default
+
+dest_host: 'tfz' # localhost by default

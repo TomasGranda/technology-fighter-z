@@ -4,10 +4,17 @@
   npm:
     path: "{{ app_path }}/API"
 
-- name: Run Node Api
-  command: npm start
-  args:
-    chdir: "{{ app_path }}/API"
+- name: Update pm2
+  npm:
+    name: pm2
+    global: yes
+
+- name: Delete old pm2 process
+  command: pm2 delete ws-node
+  ignore_errors: yes
+
+- name: Start pm2
+  command: pm2 start {{ app_path }}/API/server.js --name node-api
   environment:
     MONGOURI: mongodb://tomas:t123456@ds119662.mlab.com:19662/technology-fighter-z
 
