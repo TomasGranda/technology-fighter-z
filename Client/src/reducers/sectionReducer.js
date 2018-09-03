@@ -1,4 +1,4 @@
-import { SET_HOME, SET_CREATE_CHARACTER, SET_FIGHT } from "../actions/types";
+import { SET_HOME, SET_CREATE_CHARACTER, SET_FIGHT, SET_SETTINGS } from "../actions/types";
 
 import * as section from "../config/section.json";
 
@@ -23,6 +23,11 @@ export default function(state = initialState, action) {
         ...state,
         section: section.fight
       };
+    case SET_SETTINGS:
+      return {
+        ...state,
+        section: section.settings
+      }
     default:
       return state;
   }

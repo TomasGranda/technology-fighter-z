@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Grid, Row } from "react-bootstrap";
 
 import { getCharacters } from "../../actions/characterActions";
 
+import { Grid, Row } from "react-bootstrap";
 import CharacterList from "../Character/CharacterList";
 import Spinner from "../Spinner/Spinner";
 import ElementCenter from "../ElementCenter/ElementCenter";

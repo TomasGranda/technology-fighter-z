@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Col } from "react-bootstrap";
 
+import { Col } from "react-bootstrap";
 import CharacterCard from "./CharacterCard";
 
 const CharacterList = props => {

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Grid, Row, Col, Form, Button } from "react-bootstrap";
 
 import { addCharacter } from "../../actions/characterActions";
 import { showSome } from "../../utils/showSome";
 
+import { Grid, Row, Col, Form, Button } from "react-bootstrap";
 import CharacterCard from "../Character/CharacterCard";
 import SnackBar from "../SnackBar/Snackbar";
 import Input from "../Input/Input";

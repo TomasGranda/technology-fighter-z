@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Grid, Row, Col } from "react-bootstrap";
 
 import { loadCharacters } from "../../actions/fightActions";
 
+import { Grid, Row, Col } from "react-bootstrap";
 import CharacterFighter from "../Character/CharacterFighter";
 import GameOver from "../GameOver/GameOver";
 

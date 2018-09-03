@@ -1,16 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Navbar, Nav, NavItem } from "react-bootstrap";
 import { connect } from "react-redux";
 
 import {
   setHome,
   setCreateCharacter,
-  setFight
+  setFight,
+  setSettings
 } from "../../actions/sectionActions";
 
+import { Navbar, Nav, NavItem } from "react-bootstrap";
+
 const NavbarApp = props => {
-  const { setHome, setCreateCharacter, setFight } = props;
+  const { setHome, setCreateCharacter, setFight, setSettings } = props;
 
   return (
     <Navbar inverse collapseOnSelect>
@@ -30,6 +32,9 @@ const NavbarApp = props => {
           <NavItem eventKey={2} href="#" onClick={setFight}>
             Fight
           </NavItem>
+          <NavItem eventKey={3} href="#" onClick={setSettings}>
+            Settings
+          </NavItem>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
@@ -39,7 +44,8 @@ const NavbarApp = props => {
 NavbarApp.propTypes = {
   setHome: PropTypes.func.isRequired,
   setCreateCharacter: PropTypes.func.isRequired,
-  setFight: PropTypes.func.isRequired
+  setFight: PropTypes.func.isRequired,
+  setSettings: PropTypes.func.isRequired
 };
 
-export default connect(null, { setHome, setCreateCharacter, setFight })(NavbarApp);
+export default connect(null, { setHome, setCreateCharacter, setFight, setSettings })(NavbarApp);

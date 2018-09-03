@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { Modal, Button } from "react-bootstrap";
 import { setFight } from "../../actions/sectionActions";
+
+import { Modal, Button } from "react-bootstrap";
 
 class GameOver extends Component {
   constructor() {
