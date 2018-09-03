@@ -34,7 +34,7 @@ install:
   stage: install
   script:
     - cd Ansible/playbooks/pipeline
-    - ansible-playbook install-stage-play.yml -vvvv
+    - ansible-playbook install-stage-play.yml
   only:
     - master
   tags:
