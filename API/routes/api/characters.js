@@ -4,6 +4,9 @@ const router = express.Router();
 // Load Character Model
 const Character = require("../../models/Character");
 
+// Validation
+const validateCharacter = require('../../validation/character');
+
 // @route  GET api/character/test
 // @desc   Test character route
 // @access Public
@@ -25,6 +28,14 @@ router.get("/", (req, res) => {
 // @desc   Create characters
 // @access Public
 router.post("/", (req, res) => {
+  const { errors, isValid } = validateCharacter(req.body);
+
+  // Check Validation
+  if (!isValid) {
+      // If any error, send 400 with errors object
+      return res.status(400).json(errors);    
+  }
+
   const newCharacter = new Character({
     name: req.body.name,
     icon: req.body.icon,
