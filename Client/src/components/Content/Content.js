@@ -6,6 +6,7 @@ import SelectionView from "../SelectionView/SelectionView";
 import FightView from "../FightView/FightView";
 import Home from "../Home/Home";
 import CreateCharacter from "../CreateCharacter/CreateCharacter";
+import Settings from "../Settings/Settings";
 
 import * as sectionJSON from "../../config/section.json";
 
@@ -49,6 +50,9 @@ class Content extends Component {
         } else {
           content = <SelectionView />;
         }
+        break;
+      case sectionJSON.settings:
+        content = <Settings />;
         break;
       default:
         break;
