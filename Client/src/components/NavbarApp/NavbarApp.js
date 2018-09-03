@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Navbar, Nav, NavItem } from "react-bootstrap";
 import { connect } from "react-redux";
 
 import {
@@ -9,6 +8,8 @@ import {
   setFight,
   setSettings
 } from "../../actions/sectionActions";
+
+import { Navbar, Nav, NavItem } from "react-bootstrap";
 
 const NavbarApp = props => {
   const { setHome, setCreateCharacter, setFight, setSettings } = props;

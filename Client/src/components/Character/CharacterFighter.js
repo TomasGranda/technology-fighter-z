@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { ProgressBar, Button } from "react-bootstrap";
 
 import { attack, ultimate } from "../../actions/fightActions";
 import { getCharacterById } from "../../utils/getCharacterById";
 import { calculateSpeedSpecial } from "../../utils/calculateSpeedSpecial";
 import { showSome } from "../../utils/showSome";
 
+import { ProgressBar, Button } from "react-bootstrap";
 import Character from "./Character";
 
 import * as keyboards from "../../config/keyboards.json";
