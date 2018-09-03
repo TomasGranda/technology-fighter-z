@@ -1,0 +1,7 @@
+---
+app_path: "/opt/app"
+
+app_user: "ubuntu"
+app_group: "ubuntu"
+
+dest_host: 'tfz' # Localhost by default

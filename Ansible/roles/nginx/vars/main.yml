@@ -1,0 +1,4 @@
+---
+app_path: "/opt/app"
+
+dest_host: 'tfz' # Localhost by default
