@@ -39,10 +39,10 @@ router.post("/", (req, res) => {
   const newCharacter = new Character({
     name: req.body.name,
     icon: req.body.icon,
-    life: req.body.life,
-    defense: req.body.defense,
-    attack: req.body.attack,
-    speed: req.body.speed
+    life: req.body.life * 50,
+    defense: req.body.defense * 5,
+    attack: req.body.attack * 5,
+    speed: req.body.speed * 5
   });
 
   newCharacter

@@ -12,7 +12,7 @@ const validateCharacter = data => {
   };
   const maxIndivualStat = settings.maxPoints - Object.keys(stats).length + 1;
   let statsErrors = [];
-  let totalPoints;
+  let totalPoints = 0;
 
   if (!data.name) data.name = "";
   if (!data.icon) data.icon = "";
