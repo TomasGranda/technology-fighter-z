@@ -10,6 +10,8 @@ import create from "../../assets/CreateCharacter.jpg";
 import select from "../../assets/SelectCharacter.jpg";
 import fight from "../../assets/Fight.jpg";
 
+import "./Home.css";
+
 const Home = props => {
   const { setSettings } = props;
 
@@ -31,7 +33,7 @@ const Home = props => {
             <h3><strong>Fight with they</strong></h3>
             <img src={fight} alt="Fight" width="500px"></img>
             <hr />
-            <h4>Don't forget read the <a href="#" onClick={setSettings}>controls</a> before the fight</h4>
+            <h4>Don't forget read the <span className="link" onClick={setSettings}>controls</span> before the fight</h4>
             <br />
           </center>
         </Col>

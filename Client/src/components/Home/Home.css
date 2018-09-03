@@ -1,0 +1,8 @@
+span.link {
+  color: #3366BB;
+}
+
+span.link:hover {
+  cursor: pointer;
+  text-decoration: underline #3366BB;
+}
