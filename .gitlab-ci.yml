@@ -33,7 +33,7 @@ install:
   stage: install
   script:
     - cd Ansible/playbooks/pipeline
-    - ansible-playbook install-stage-play.yml --extra-vars "dest_host=$TF_INSTANCE_PUBLICIP"
+    - ansible-playbook install-stage-play.yml
   only:
     - master
   tags:
@@ -43,7 +43,7 @@ copy:
   stage: copy
   script:
     - cd Ansible/playbooks/pipeline
-    - ansible-playbook copy-stage-play.yml --extra-vars "dest_host=$TF_INSTANCE_PUBLICIP"
+    - ansible-playbook copy-stage-play.yml
   only:
     - master
   tags:
@@ -53,7 +53,7 @@ deploy:
   stage: deploy
   script:
     - cd Ansible/playbooks/pipeline
-    - ansible-playbook deploy-stage-play.yml --extra-vars "dest_host=$TF_INSTANCE_PUBLICIP"
+    - ansible-playbook deploy-stage-play.yml
   only:
     - master
   tags:
