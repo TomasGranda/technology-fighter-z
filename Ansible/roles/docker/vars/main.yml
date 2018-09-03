@@ -1,7 +1,0 @@
----
-# Vars File
-
-dest_host: 'tfz' # Localhost by default
-
-docker_group_members:  
-  - 'ubuntu'           # Ubuntu by default
