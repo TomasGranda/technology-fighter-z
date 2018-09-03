@@ -7,8 +7,8 @@ stages:
 
 before_script:
   - cd Terraform/dev/services/web-app
-  - export TF_INSTANCE_PUBLICIP=`terraform output public_ip`
   - terraform init
+  - export TF_INSTANCE_PUBLICIP=`terraform output public_ip`
   - cd $CI_PROJECT_PATH
 
 terraform:
