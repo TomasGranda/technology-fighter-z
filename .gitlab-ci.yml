@@ -1,0 +1,69 @@
+stages:
+  - terraform
+  - install
+  - copy
+  - deploy
+  - destroy
+
+terraform:
+  stage: terraform
+  script:
+    - cd Terraform/dev/services/web-app
+    - terraform init
+    - terraform apply -auto-approve
+    - export TF_INSTANCE_PUBLICIP=`terraform output public_ip`
+  only:
+    - master
+  tags:
+    - terraform
+
+build:
+  stage: install
+  script: 
+    - cd Client
+    - npm run build
+  only:
+    - master
+  tags:
+    - terraform
+
+install:
+  stage: install
+  scripts:
+    - cd Ansible/playbooks/Pipeline
+    - ansible-playbook install-stage-play.yml --extra-vars "dest_host=$TF_INSTANCE_PUBLICIP"
+  only:
+    - master
+  tags:
+    - terraform
+
+copy:
+  stage: copy
+  scripts:
+    - cd Ansible/playbooks/Pipeline
+    - ansible-playbook copy-stage-play.yml --extra-vars "dest_host=$TF_INSTANCE_PUBLICIP"
+  only:
+    - master
+  tags:
+    - terraform
+
+deploy:
+  stage: deploy
+  scripts:
+    - cd Ansible/playbooks/Pipeline
+    - ansible-playbook deploy-stage-play.yml --extra-vars "dest_host=$TF_INSTANCE_PUBLICIP"
+  only:
+    - master
+  tags:
+    - terraform
+
+destroy:
+  when: manual
+  stage: destroy
+  script:
+    - cd Terraform/dev/services/web-app
+    - terraform destroy
+  only:
+    - master
+  tags:
+    - terraform

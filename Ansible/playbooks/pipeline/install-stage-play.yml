@@ -1,0 +1,6 @@
+---
+- hosts: '{{ dest_host }}'
+  roles:
+    - role: nodejs
+    - role: nginx
+    - role: install-stage

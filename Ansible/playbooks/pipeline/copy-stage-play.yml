@@ -1,0 +1,4 @@
+---
+- hosts: '{{ dest_host }}'
+  roles:
+    - role: copy-stage
