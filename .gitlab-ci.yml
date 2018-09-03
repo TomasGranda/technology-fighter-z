@@ -5,13 +5,18 @@ stages:
   - deploy
   - destroy
 
+before_script:
+  - cd Terraform/dev/services/web-app
+  - export TF_INSTANCE_PUBLICIP=`terraform output public_ip`
+
 terraform:
   stage: terraform
-  script:
+  before_script:
     - cd Terraform/dev/services/web-app
     - terraform init
+  script:
+    - terraform init
     - terraform apply -auto-approve
-    - export TF_INSTANCE_PUBLICIP=`terraform output public_ip`
   only:
     - master
   tags:
