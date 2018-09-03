@@ -20,21 +20,8 @@ class Content extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.selected) {
-      this.setState({
-        selected: nextProps.selected
-      });
-    }
-    if (nextProps.section >= 0) {
-      this.setState({
-        section: nextProps.section
-      });
-    }
-  }
-
   render() {
-    const { selected, section } = this.state;
+    const { selected, section } = this.props;
     let content;
 
     switch (section) {

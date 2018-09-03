@@ -41,20 +41,21 @@ class CharacterFighter extends Component {
     window.removeEventListener("keydown", this.makeAttack);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.fight) {
-      let lifeAux = nextProps.fight.characters[this.props.numberCharacter].life;
+  static getDerivedStateFromProps(props, state) {
+    if (props.fight) {
+      let lifeAux = props.fight.characters[props.numberCharacter].life;
 
       if (lifeAux < 0) {
         lifeAux = 0;
       }
 
-      this.setState({
-        life: lifeAux
-      });
+      if (props.fight.characters[0].life < 0 ||props.fight.characters[1].life < 0)
+        window.removeEventListener("keydown", CharacterFighter.makeAttack);
 
-      if (nextProps.fight.characters[0].life < 0 || nextProps.fight.characters[1].life < 0)
-        window.removeEventListener("keydown", this.makeAttack);
+      return {
+        ...state,
+        life: lifeAux
+      };
     }
   }
 
@@ -94,20 +95,20 @@ class CharacterFighter extends Component {
 
     const characters = document.getElementsByClassName("fight");
     showSome(characters[numberCharacter], `attack${numberCharacter}`, 1000);
-    const oponent = numberCharacter === 1? 0 : 1;
+    const oponent = numberCharacter === 1 ? 0 : 1;
     showSome(characters[oponent], "damage", 2000);
-    
+
     this.loadingAttack();
   };
 
   handleUltimate = () => {
     const { numberCharacter } = this.props;
-    
+
     this.props.ultimate(numberCharacter);
 
     const characters = document.getElementsByClassName("fight");
     showSome(characters[numberCharacter], `ultimate${numberCharacter}`, 2000);
-    const oponent = numberCharacter === 1? 0 : 1;
+    const oponent = numberCharacter === 1 ? 0 : 1;
     showSome(characters[oponent], "damageU", 4000);
 
     this.loadingSpecial();
@@ -138,7 +139,7 @@ class CharacterFighter extends Component {
   };
 
   render() {
-    const {life, icon, divisorLife, attackProgress, specialProgress } = this.state;
+    const { life, icon, divisorLife, attackProgress, specialProgress } = this.state;
     let dead = life === 0 ? true : false;
 
     let ultimate;
@@ -177,7 +178,7 @@ class CharacterFighter extends Component {
         <Character className="fight" icon={icon} size="200px" dead={dead} />
         <hr />
         <ProgressBar
-          bsStyle="success" 
+          bsStyle="success"
           bsClass="without-transition progress-bar"
           now={attackProgress}
           label={`${attackProgress}`}
@@ -185,7 +186,7 @@ class CharacterFighter extends Component {
         {attack}
         <hr />
         <ProgressBar
-          bsStyle="warning" 
+          bsStyle="warning"
           bsClass="without-transition progress-bar"
           now={specialProgress}
           label={`${specialProgress}`}

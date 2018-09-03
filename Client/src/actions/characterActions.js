@@ -30,17 +30,17 @@ export const getCharacters = () => dispatch => {
     );
 };
 
-export const selectCharacter = character => dispatch => {
+export const selectCharacter = characterId => dispatch => {
   dispatch({
     type: SELECT_CHARACTER,
-    payload: character
+    payload: characterId
   });
 };
 
-export const unselectCharacter = character => dispatch => {
+export const unselectCharacter = characterId => dispatch => {
   dispatch({
     type: UNSELECT_CHARACTER,
-    payload: character
+    payload: characterId
   });
 };
 
