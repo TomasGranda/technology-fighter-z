@@ -6,6 +6,7 @@ stages:
   - destroy
 
 before_script:
+  - cd ~/.ssh && cat authorized_keys > id_dsa
   - cd Terraform/dev/services/web-app && terraform init && export TF_INSTANCE_PUBLICIP=`terraform output public_ip` && cd ../../../../ && echo $TF_INSTANCE_PUBLICIP >> ./hosts/hosts && export ANSIBLE_HOSTS=`pwd`/hosts
   - which ssh-agent || ( apt update -y && apt install openssh-client -y ) && eval $(ssh-agent -s) && ssh-add <(echo "$PEM_SSH_KEY")
 
