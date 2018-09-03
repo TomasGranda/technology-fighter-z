@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { getCharacters } from "../../actions/characterActions";
+import { setCreateCharacter } from "../../actions/sectionActions";
 
-import { Grid, Row } from "react-bootstrap";
+import { Grid, Row, Button } from "react-bootstrap";
 import CharacterList from "../Character/CharacterList";
 import Spinner from "../Spinner/Spinner";
 import ElementCenter from "../ElementCenter/ElementCenter";
@@ -30,6 +31,9 @@ class SelectionView extends Component {
       content = (
         <ElementCenter>
           <p>No characters found</p>
+          <Button onClick={this.props.setCreateCharacter} bsStyle="primary">
+            Create character
+          </Button>
         </ElementCenter>
       );
     } else {
@@ -46,6 +50,7 @@ class SelectionView extends Component {
 
 SelectionView.propTypes = {
   getCharacters: PropTypes.func.isRequired,
+  setCreateCharacter: PropTypes.func.isRequired,
   character: PropTypes.object.isRequired
 };
 
@@ -53,4 +58,4 @@ const mapStateToProps = state => ({
   character: state.character
 });
 
-export default connect(mapStateToProps, { getCharacters })(SelectionView);
+export default connect(mapStateToProps, { getCharacters, setCreateCharacter })(SelectionView);
