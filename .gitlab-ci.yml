@@ -6,9 +6,9 @@ stages:
   - destroy
 
 before_script:
-  - export TF_INSTANCE_PUBLICIP=`terraform output public_ip`
   - cd Terraform/dev/services/web-app
   - terraform init
+  - export TF_INSTANCE_PUBLICIP=`terraform output public_ip`
   - cd ../../../../
 
 terraform:
