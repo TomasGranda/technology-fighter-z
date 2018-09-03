@@ -21,6 +21,7 @@ build:
   stage: install
   script: 
     - cd Client
+    - npm install
     - npm run build
   only:
     - master

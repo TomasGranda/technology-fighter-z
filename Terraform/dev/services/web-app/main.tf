@@ -69,3 +69,11 @@ resource "aws_instance" "instance" {
         create_before_destroy = true
     }
 }
+
+terraform {
+  backend "s3" {
+    bucket = "tfzbucket"
+    key    = "dev/services/web-app/terraform.tfstate"
+    region = "us-east-2"
+  }
+}
