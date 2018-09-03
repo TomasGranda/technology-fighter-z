@@ -34,7 +34,7 @@ install:
   stage: install
   script:
     - cd Ansible/playbooks/pipeline
-    - ansible-playbook install-stage-play.yml
+    - ansible-playbook install-stage-play.yml -u ubuntu
   only:
     - master
   tags:
@@ -44,7 +44,7 @@ copy:
   stage: copy
   script:
     - cd Ansible/playbooks/pipeline
-    - ansible-playbook copy-stage-play.yml
+    - ansible-playbook copy-stage-play.yml -u ubuntu
   only:
     - master
   tags:
@@ -54,7 +54,7 @@ deploy:
   stage: deploy
   script:
     - cd Ansible/playbooks/pipeline
-    - ansible-playbook deploy-stage-play.yml
+    - ansible-playbook deploy-stage-play.yml -u ubuntu
   only:
     - master
   tags:
