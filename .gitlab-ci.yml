@@ -34,7 +34,7 @@ install:
   stage: install
   script:
     - cd Ansible/playbooks/pipeline
-    - ansible-playbook install-stage-play.yml --key-file $SSH_KEY_PATH
+    - ansible-playbook install-stage-play.yml --key-file "/home/ubuntu/.ssh/ec2ansibleplaybook.pem"
   only:
     - master
   tags:
