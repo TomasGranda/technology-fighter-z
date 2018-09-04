@@ -16,6 +16,7 @@ services:
       - ./API/config:/usr/app/config
       - ./API/models:/usr/app/models
       - ./API/routes:/usr/app/routes
+      - ./API/validation:/usr/app/validation
       - ./API/server.js:/usr/app/server.js
       
   client:
