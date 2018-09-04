@@ -33,7 +33,7 @@ install:
   stage: install
   script:
     - cd Ansible/playbooks/pipeline
-    - ansible-playbook install-stage-play.yml
+    - ansible-playbook install-stage-play.yml --key-file $SSH_KEY_PATH
   only:
     - master
   tags:
