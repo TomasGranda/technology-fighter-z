@@ -1,3 +1,4 @@
 [ssh_connection]
-control_path = /home/ubuntu/.ansible/cp/ansible-ssh-%h-%p-%r
+control_path=/home/ubuntu/.ansible/cp/ansible-ssh-%h-%p-%r
+
 [tfz]
