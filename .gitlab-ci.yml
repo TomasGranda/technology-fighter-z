@@ -7,7 +7,7 @@ stages:
 
 before_script:
   - cd Terraform/dev/services/web-app && terraform init && export TF_INSTANCE_PUBLICIP=`terraform output public_ip` && cd ../../../../ && echo $TF_INSTANCE_PUBLICIP >> ./hosts/hosts && export ANSIBLE_HOSTS=`pwd`/hosts
-  - chsh -s /bin/bash root
+  - chsh -s /bin/bash ubuntu
   
 terraform:
   stage: terraform
