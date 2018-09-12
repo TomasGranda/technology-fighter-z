@@ -32,6 +32,7 @@ services:
       - api
     volumes: 
       - ./Client/src:/usr/app/src
+      - ./Client/public:/usr/app/public
       
   nginx:
     image: valian/docker-nginx-auto-ssl

@@ -216,6 +216,7 @@ class CreateCharacter extends Component {
                   title="Name"
                   icon="N"
                   type="text"
+                  placeholder="Choose a Name"
                   name="name"
                   value={name}
                   onChange={this.handleChange}
