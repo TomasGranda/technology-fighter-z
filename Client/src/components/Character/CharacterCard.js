@@ -58,7 +58,7 @@ class CharacterCard extends Component {
       <Panel id={id} height="30px">
         <Panel.Heading>
           <Panel.Title componentClass="h3">
-            <i className={icon} /> {name}
+            <i className={icon} /> <span className={this.props.classType}>{name}</span>
           </Panel.Title>
         </Panel.Heading>
         <Panel.Body>
@@ -82,12 +82,14 @@ class CharacterCard extends Component {
 }
 
 CharacterCard.defaultProps = {
-  selectable: true
+  selectable: true,
+  classType: ""
 };
 
 CharacterCard.propTypes = {
   id: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
+  classType: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   life: PropTypes.number.isRequired,
   defense: PropTypes.number.isRequired,

@@ -21,6 +21,10 @@ const CharacterSchema = new Schema({
   },
   speed: {
     type: Number
+  },
+  classType: {
+    type: String,
+    required: true
   }
 });
 

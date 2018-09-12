@@ -1,0 +1,10 @@
+[
+    {
+        "name": "Warrior",
+        "icon": "fas fa-user-shield"
+    },
+    {
+        "name": "Ninja",
+        "icon": "fas fa-user-ninja"
+    }
+]

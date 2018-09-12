@@ -42,7 +42,8 @@ router.post("/", (req, res) => {
     life: req.body.life * 50,
     defense: req.body.defense * 5,
     attack: req.body.attack * 5,
-    speed: req.body.speed * 5
+    speed: req.body.speed * 5,
+    classType: req.body.classType
   });
 
   newCharacter
