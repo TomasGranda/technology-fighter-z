@@ -14,15 +14,20 @@ const validateCharacter = data => {
   let statsErrors = [];
   let totalPoints = 0;
 
-  if (!data.name) data.name = "";
-  if (!data.icon) data.icon = "";
+  if (!data.classType) data.classType = "";
+  if (!data.name)  data.name = "";
+  if (!data.icon)  data.icon = "";
 
   if (Validator.isEmpty(data.name)) {
     errors.name = "Name field is required";
-  } else {
-    if (!Validator.isLength(data.name, { min: 1, max: 20 })) {
-      errors.name = "Name must be between 1 and 20 characters";
-    }
+  } else if (!Validator.isLength(data.name, { min: 1, max: 20 })){
+    errors.name = "Name must be between 1 and 20 characters";
+  }
+
+  if (Validator.isEmpty(data.classType)) {
+    errors.classType = "Class field is required";
+  } else if (!Validator.isLength(data.classType, { min: 1, max: 20 })){
+    errors.classType = "Class must be between 1 and 20 characters";
   }
 
   if (Validator.isEmpty(data.icon)) {

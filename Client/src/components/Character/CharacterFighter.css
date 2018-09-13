@@ -1,3 +1,11 @@
+.Ninja{
+  color: blue;
+}
+
+.Warrior{
+  color: red;
+}
+
 div.fight.attack0 {
   -webkit-animation: attackGo0 1s,attackBack0 1s;
   animation: attackGo0 1s,attackBack0 1s;

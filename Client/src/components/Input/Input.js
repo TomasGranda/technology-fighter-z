@@ -20,6 +20,7 @@ const Input = props => {
         <InputGroup>
           <InputGroup.Addon>{props.icon}</InputGroup.Addon>
           <FormControl
+            placeholder={props.placeholder}
             type={props.type}
             name={props.name}
             value={props.value}
@@ -36,6 +37,7 @@ const Input = props => {
 };
 
 Input.defaultProps = {
+  placeholder: "",
   help: "",
   min: "",
   maxLength: "",

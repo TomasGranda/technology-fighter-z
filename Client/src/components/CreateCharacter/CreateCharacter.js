@@ -13,6 +13,7 @@ import SelectInput from "../SelectInput/SelectInput";
 
 import * as settings from "../../config/settings.json";
 import * as icons from "../../config/icons.json";
+import * as classes from "../../config/classes.json";
 
 class CreateCharacter extends Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class CreateCharacter extends Component {
       maxPoints: settings.maxPoints - 4,
       name: "",
       icon: "",
+      classType: "",
       characterStats: {
         life: 1,
         defense: 1,
@@ -98,6 +100,14 @@ class CreateCharacter extends Component {
     });
   };
 
+  handleClassSelect = e => {
+    e.preventDefault();
+
+    this.setState({
+      classType: e.target.value
+    });
+  };
+
   handleClick = () => {
     if (this.validateCreate()) {
       this.setState({
@@ -114,6 +124,7 @@ class CreateCharacter extends Component {
       let character = {
         name: this.state.name,
         icon: this.state.icon,
+        classType: this.state.classType,
         life: this.state.characterStats.life,
         defense: this.state.characterStats.defense,
         attack: this.state.characterStats.attack,
@@ -133,6 +144,11 @@ class CreateCharacter extends Component {
     }
   };
 
+  getIconByClass = (selectedClass) => {
+    const classIcon = classes.find( (classType) => { return classType.name === selectedClass });
+    return classIcon.icon;
+  }
+
   validateCreate = () => {
     let result = true;
     let error = "";
@@ -145,6 +161,9 @@ class CreateCharacter extends Component {
       result = false;
     } else if (this.state.icon === "") {
       error = "You must select a icon";
+      result = false;
+    } else if (this.state.classType === "") {
+      error = "You must select a class";
       result = false;
     }
 
@@ -163,7 +182,7 @@ class CreateCharacter extends Component {
   };
 
   render() {
-    const { name, icon, maxPoints, characterStats } = this.state;
+    const { name, icon, classType, maxPoints, characterStats } = this.state;
     const { message, type } = this.state.snackbar;
     const calculateLife = characterStats.life * 50;
 
@@ -179,6 +198,14 @@ class CreateCharacter extends Component {
       );
     });
 
+    const classList = classes.map((classType, i) => {
+      return (
+        <option key={i} value={classType.name}>
+          {classType.name}
+        </option>
+      );
+    });
+
     return (
       <React.Fragment>
         <Grid>
@@ -189,6 +216,7 @@ class CreateCharacter extends Component {
                   title="Name"
                   icon="N"
                   type="text"
+                  placeholder="Choose a Name"
                   name="name"
                   value={name}
                   onChange={this.handleChange}
@@ -201,6 +229,13 @@ class CreateCharacter extends Component {
                   onChange={this.handleSelect}
                   list={iconsList}
                   help="Icon of character"
+                />
+                <SelectInput
+                  title="Class"
+                  icon={<i className={classType ? this.getIconByClass(classType) : "fas fa-hand-pointer"} />}
+                  onChange={this.handleClassSelect}
+                  list={classList}
+                  help="Class of character"
                 />
                 <Input
                   title="Max Points"
@@ -258,6 +293,7 @@ class CreateCharacter extends Component {
                 id="0"
                 icon={icon}
                 name={name}
+                classType={classType}
                 life={calculateLife}
                 defense={calculateStat(characterStats.defense)}
                 attack={calculateStat(characterStats.attack)}

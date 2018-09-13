@@ -12,6 +12,7 @@ const CharacterList = props => {
           id={character._id}
           icon={character.icon}
           name={character.name}
+          classType={character.classType}
           life={character.life}
           defense={character.defense}
           attack={character.attack}
