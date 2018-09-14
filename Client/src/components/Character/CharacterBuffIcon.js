@@ -3,24 +3,11 @@ import { connect } from "react-redux";
 
 import { OverlayTrigger, Popover } from "react-bootstrap";
 
+import * as stats from "../../config/stats.json";
+
 import "./CharacterBuffIcon.css";
 
 class CharacterBuffIcon extends Component {
-    getBuffIcon = (buff) => {
-        switch (buff.stat) {
-            case "life":
-                return "fa fa-heart";
-            case "attack":
-                return "fa fa-fire";
-            case "speed":
-                return "fas fa-tachometer-alt";
-            case "defense":
-                return "fa fa-shield-alt";
-            default:
-                return "ERROR";
-        }
-    }
-
     generatePopover = (buff) => {
         return (
             <Popover id="popover-positioned-top">
@@ -34,7 +21,7 @@ class CharacterBuffIcon extends Component {
             const popoverTop = this.generatePopover(buff);
             return (
                 <span>
-                    <i className={`${this.getBuffIcon(buff)} stat`} />
+                    <i className={`${stats[buff.stat]} stat`} />
                     <OverlayTrigger trigger="hover" placement="top" overlay={popoverTop}>
                         <i class={`effect ${buff.buff > 0 ? "fas fa-angle-double-up buff" : "fas fa-angle-double-down debuff"}`} />
                     </OverlayTrigger>

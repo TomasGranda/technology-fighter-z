@@ -6,9 +6,7 @@ stages:
   - destroy
 
 before_script:
-  - sudo cat /home/ubuntu/.ssh/authorized_keys > /home/ubuntu/.ssh/id_dsa
   - cd Terraform/dev/services/web-app && terraform init && export TF_INSTANCE_PUBLICIP=`terraform output public_ip` && cd ../../../../ && echo $TF_INSTANCE_PUBLICIP >> ./hosts/hosts && export ANSIBLE_HOSTS=`pwd`/hosts
-  - which ssh-agent || ( apt update -y && apt install openssh-client -y ) && eval $(ssh-agent -s) && ssh-add <(echo "$PEM_SSH_KEY")
 
 terraform:
   stage: terraform
@@ -35,7 +33,7 @@ install:
   stage: install
   script:
     - cd Ansible/playbooks/pipeline
-    - ansible-playbook install-stage-play.yml
+    - ansible-playbook install-stage-play.yml --key-file "/home/ubuntu/.ssh/ec2ansibleplaybook.pem"
   only:
     - master
   tags:

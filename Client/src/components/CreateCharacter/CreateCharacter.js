@@ -16,6 +16,7 @@ import SelectInput from "../SelectInput/SelectInput";
 import * as settings from "../../config/settings.json";
 import * as icons from "../../config/icons.json";
 import * as classes from "../../config/classes.json";
+import * as stats from "../../config/stats.json";
 
 class CreateCharacter extends Component {
   constructor(props) {
@@ -247,7 +248,7 @@ class CreateCharacter extends Component {
                 />
                 <Input
                   title="Life"
-                  icon={<i className="fa fa-heart" />}
+                  icon={<i className={stats.life} />}
                   type="number"
                   name="life"
                   value={characterStats.life}
@@ -257,7 +258,7 @@ class CreateCharacter extends Component {
                 />
                 <Input
                   title="Defense"
-                  icon={<i className="fa fa-shield-alt" />}
+                  icon={<i className={stats.defense} />}
                   type="number"
                   name="defense"
                   value={characterStats.defense}
@@ -267,7 +268,7 @@ class CreateCharacter extends Component {
                 />
                 <Input
                   title="Attack"
-                  icon={<i className="fa fa-fire" />}
+                  icon={<i className={stats.attack} />}
                   type="number"
                   name="attack"
                   value={characterStats.attack}
@@ -277,7 +278,7 @@ class CreateCharacter extends Component {
                 />
                 <Input
                   title="Speed"
-                  icon={<i className="fas fa-tachometer-alt" />}
+                  icon={<i className={stats.speed} />}
                   type="number"
                   name="speed"
                   value={characterStats.speed}
