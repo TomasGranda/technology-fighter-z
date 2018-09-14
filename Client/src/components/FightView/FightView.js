@@ -21,7 +21,7 @@ class FightView extends Component {
     return (
       <div>
         <GameOver />
-        <Grid style={{ textAlign: "center" }}>
+        <Grid className="text-center">
           <Row>
             <Col xs={4}>{characters[0]}</Col>
             <Col xs={4} />

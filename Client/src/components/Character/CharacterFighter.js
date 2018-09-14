@@ -199,7 +199,7 @@ class CharacterFighter extends Component {
 
     return (
       <div>
-        <ProgressBar style={{ marginBottom: "0px" }} now={life * divisorLife} label={`${Math.round(life)}`} />
+        <ProgressBar className="margin-bottom-0" now={life * divisorLife} label={`${Math.round(life)}`} />
         <CharacterBuffIcon character={numberCharacter} />
         <Character className="fight" icon={icon} size="200px" dead={dead} />
         <hr />
