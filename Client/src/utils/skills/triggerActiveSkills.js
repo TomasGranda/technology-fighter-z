@@ -1,10 +1,11 @@
-import * as classes from "../../config/classes.json";
+import { getClassByName } from "../getClassByName";
 
 export const triggerActiveSkills = (characters, playerNumber) => {
     let ch1 = characters[0];
     let ch2 = characters[1];
-    const ch1Class = classes.find( (cl) => { return cl.name === ch1.classType });
-    const ch2Class = classes.find( (cl) => { return cl.name === ch2.classType });
+
+    const ch1Class = getClassByName(ch1.classType)
+    const ch2Class = getClassByName(ch2.classType)
     
     if(!ch1["buff"]){
         ch1["buff"] = []
@@ -14,60 +15,39 @@ export const triggerActiveSkills = (characters, playerNumber) => {
     }
 
     if(playerNumber === 0){
-        for(let skill in ch1Class.activeSkill){
-            let activeSkill = ch1Class.activeSkill[skill];
-            switch (activeSkill.target) {
-                case "self":
-                    ch1[activeSkill.stat] += activeSkill.buff;
-                    ch1["buff"].push(
-                        {
-                            "src": (activeSkill.target === "self" ? "self" : "enemy"),
-                            "stat": activeSkill.stat,
-                            "buff": activeSkill.buff
-                        });
-                    break;
-                case "enemy":
-                    ch2[activeSkill.stat] += activeSkill.buff;
-                    ch2["buff"].push(
-                        {
-                            "src": (activeSkill.target === "self" ? "self" : "enemy"),
-                            "stat": activeSkill.stat,
-                            "buff": activeSkill.buff
-                        });
-                    break;
-                default:
-                    console.log("Error: Invalid target character");
-                    break;
-            }
-        }
+        buffCharacters(ch1, ch2, ch1Class);
     } else {
-        for(let skill in ch2Class.activeSkill) {
-            let activeSkill = ch2Class.activeSkill[skill];
-            switch (activeSkill.target) {
-                case "self":
-                    ch2[activeSkill.stat] += activeSkill.buff;
-                    ch2["buff"].push(
-                        {
-                            "src": (activeSkill.target === "self" ? "self" : "enemy"),
-                            "stat": activeSkill.stat,
-                            "buff": activeSkill.buff
-                        });
-                    break;
-                case "enemy":
-                    ch1[activeSkill.stat] += activeSkill.buff;
-                    ch1["buff"].push(
-                        {
-                            "src": (activeSkill.target === "self" ? "self" : "enemy"),
-                            "stat": activeSkill.stat,
-                            "buff": activeSkill.buff
-                        });
-                    break;
-                default:
-                    console.log("Error: Invalid target character");
-                    break;
-            }
-        }
+        buffCharacters(ch2, ch1, ch2Class);
     }
 
     return [ch1, ch2];
 };
+
+const buffCharacters = (player, enemy, playerClass) => {
+    for(let skill in playerClass.activeSkill){
+        let activeSkill = playerClass.activeSkill[skill];
+        switch (activeSkill.target) {
+            case "self":
+                player[activeSkill.stat] += activeSkill.buff;
+                player["buff"].push(
+                    {
+                        "src": (activeSkill.target === "self" ? "self" : "enemy"),
+                        "stat": activeSkill.stat,
+                        "buff": activeSkill.buff
+                    });
+                break;
+            case "enemy":
+                enemy[activeSkill.stat] += activeSkill.buff;
+                enemy["buff"].push(
+                    {
+                        "src": (activeSkill.target === "self" ? "self" : "enemy"),
+                        "stat": activeSkill.stat,
+                        "buff": activeSkill.buff
+                    });
+                break;
+            default:
+                console.log("Error: Invalid target character");
+                break;
+        }
+    }
+}
