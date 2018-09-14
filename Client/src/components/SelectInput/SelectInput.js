@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import InfoButton from "../InfoButton/InfoButton";
+
 import {
   Col,
   ControlLabel,
@@ -11,6 +13,12 @@ import {
 } from "react-bootstrap";
 
 const SelectInput = props => {
+  let help;
+  if(props.hover){
+    help =  <InfoButton hover={props.hover} help={props.help} />;
+  }else{
+    help = props.help;
+  }
   return (
     <FormGroup>
       <Col componentClass={ControlLabel} sm={3}>
@@ -28,18 +36,20 @@ const SelectInput = props => {
             {props.list}
           </FormControl>
         </InputGroup>
-        <HelpBlock>{props.help}</HelpBlock>
+        <HelpBlock>{help}</HelpBlock>
       </Col>
     </FormGroup>
   );
 };
 
 SelectInput.defaultProps = {
+  hover: "",
   help: "",
   onChange: () => {}
 };
 
 SelectInput.propTypes = {
+  hover: PropTypes.string,
   title: PropTypes.string.isRequired,
   icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
   list: PropTypes.array.isRequired,

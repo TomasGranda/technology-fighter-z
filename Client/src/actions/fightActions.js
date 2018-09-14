@@ -2,6 +2,8 @@ import {
   LOAD_CHARACTERS,
   ATTACK_0,
   ATTACK_1,
+  SKILL1_0,
+  SKILL1_1,
   ULTIMATE_0,
   ULTIMATE_1,
   SET_WINNER,
@@ -9,7 +11,7 @@ import {
 } from "./types";
 
 import { getCharacterById } from "../utils/getCharacterById";
-import { triggerInitialAbilities } from "../utils/abilities/triggerInitialAbilities";
+import { triggerInitialSkills } from "../utils/skills/triggerInitialSkills";
 
 export const loadCharacters = (characters, id1, id2) => dispatch => {
   let payload = [];
@@ -17,7 +19,7 @@ export const loadCharacters = (characters, id1, id2) => dispatch => {
   let character1 = getCharacterById(characters, id1);
   let character2 = getCharacterById(characters, id2);
 
-  const buffedCharacters = triggerInitialAbilities(character1, character2);
+  const buffedCharacters = triggerInitialSkills(character1, character2);
 
   payload.push(buffedCharacters[0]);
   payload.push(buffedCharacters[1]);
@@ -36,6 +38,18 @@ export const attack = numberCharacter => dispatch => {
   } else {
     dispatch({
       type: ATTACK_1
+    });
+  }
+};
+
+export const skill1 = numberCharacter => dispatch => {
+  if (numberCharacter === 0) {
+    dispatch({
+      type: SKILL1_0
+    });
+  } else {
+    dispatch({
+      type: SKILL1_1
     });
   }
 };

@@ -10,7 +10,7 @@ const Character = props => {
     content = <i className={props.icon} style={{ fontSize: props.size }} />;
   }
 
-  return <div className={props.className}>{content}</div>;
+  return <div style={{ marginTop: "25px" }} className={props.className}>{content}</div>;
 };
 
 Character.defaultProps = {

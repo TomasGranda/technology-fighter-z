@@ -4,8 +4,10 @@ import { connect } from "react-redux";
 
 import { addCharacter } from "../../actions/characterActions";
 import { showSome } from "../../utils/showSome";
+import { getClassByName } from "../../utils/getClassByName";
 
 import { Grid, Row, Col, Form, Button } from "react-bootstrap";
+
 import CharacterCard from "../Character/CharacterCard";
 import SnackBar from "../SnackBar/Snackbar";
 import Input from "../Input/Input";
@@ -144,11 +146,6 @@ class CreateCharacter extends Component {
     }
   };
 
-  getIconByClass = (selectedClass) => {
-    const classIcon = classes.find( (classType) => { return classType.name === selectedClass });
-    return classIcon.icon;
-  }
-
   validateCreate = () => {
     let result = true;
     let error = "";
@@ -185,6 +182,7 @@ class CreateCharacter extends Component {
     const { name, icon, classType, maxPoints, characterStats } = this.state;
     const { message, type } = this.state.snackbar;
     const calculateLife = characterStats.life * 50;
+    const characterClass = getClassByName(classType);
 
     const calculateStat = stat => {
       return stat * 5;
@@ -232,10 +230,11 @@ class CreateCharacter extends Component {
                 />
                 <SelectInput
                   title="Class"
-                  icon={<i className={classType ? this.getIconByClass(classType) : "fas fa-hand-pointer"} />}
+                  icon={<i className={classType ? characterClass.icon : "fas fa-hand-pointer"} />}
                   onChange={this.handleClassSelect}
                   list={classList}
                   help="Class of character"
+                  hover={characterClass.description}
                 />
                 <Input
                   title="Max Points"

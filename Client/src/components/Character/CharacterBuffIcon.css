@@ -1,0 +1,24 @@
+.bufflist{
+    text-align: left;
+    margin-top: 0px;
+    float: left;
+}
+
+.effect{
+    position: relative;
+    right: 10px;
+    z-index: 1;
+    font-size: 14px;
+}
+
+.debuff{
+    color: red;
+}
+
+.buff{
+    color: green;
+}
+
+.stat{
+    font-size: 20px;
+}
