@@ -11,6 +11,8 @@ import {
   unselectCharacter
 } from "../../actions/characterActions";
 
+import * as stats from "../../config/stats.json";
+
 class CharacterCard extends Component {
   constructor(props) {
     super(props);
@@ -67,16 +69,16 @@ class CharacterCard extends Component {
         </Panel.Heading>
         <Panel.Body>
           <p>
-            <i className="fa fa-heart" /> {life}
+            <i className={stats.life} /> {life}
           </p>
           <p>
-            <i className="fa fa-shield-alt" /> {defense}
+            <i className={stats.defense} /> {defense}
           </p>
           <p>
-            <i className="fa fa-fire" /> {attack}
+            <i className={stats.attack} /> {attack}
           </p>
           <p>
-            <i className="fas fa-tachometer-alt" /> {speed}
+            <i className={stats.speed} /> {speed}
           </p>
           {button}
         </Panel.Body>
