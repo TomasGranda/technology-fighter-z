@@ -1,82 +1,103 @@
 [
     {
-        "name": "Warrior",
+        "name": "Guerrero",
         "icon": "fas fa-user-shield",
         "color": "red",
-        "pasiveSkill": {
-            "target": "self",
-            "stat": "attack",
-            "buff": 20
-        }
+        "pasiveSkill": [
+            {
+                "target": "self",
+                "stat": "attack",
+                "buff": 20
+            }
+        ]
     },
     {
         "name": "Ninja",
         "icon": "fas fa-user-ninja",
         "color": "blue",
-        "pasiveSkill": {
-            "target": "self",
-            "stat": "speed",
-            "buff": 20
-        }
+        "pasiveSkill": [
+            {
+                "target": "self",
+                "stat": "speed",
+                "buff": 20
+            }
+        ]
     },
     {
         "name": "Medico",
         "icon": "fas fa-user-md",
         "color": "green",
-        "pasiveSkill": {
-            "target": "self",
-            "stat": "life",
-            "buff": 200
-        }
+        "pasiveSkill": [
+            {
+                "target": "self",
+                "stat": "life",
+                "buff": 200
+            }
+        ]
     },
     {
         "name": "Cyborg",
         "icon": "fas fa-user-astronaut",
         "color": "grey",
-        "pasiveSkill": {
-            "target": "enemy",
-            "stat": "defense",
-            "buff": -20
-        }
+        "pasiveSkill": [
+            {
+                "target": "enemy",
+                "stat": "defense",
+                "buff": -20
+            }
+        ]
     },
     {
         "name": "Ingeniero",
         "icon": "fas fa-user-cog",
         "color": "yellow",
-        "pasiveSkill": {
-            "target": "enemy",
-            "stat": "attack",
-            "buff": -20
-        }
+        "pasiveSkill": [
+            {
+                "target": "enemy",
+                "stat": "attack",
+                "buff": -20
+            }
+        ]
     },
     {
         "name": "Creyente",
         "icon": "fas fa-pray",
         "color": "lime",
-        "pasiveSkill": {
-            "target": "self",
-            "stat": "defense",
-            "buff": 20
-        }
+        "pasiveSkill": [
+            {
+                "target": "self",
+                "stat": "defense",
+                "buff": 20
+            }
+        ]
     },
     {
         "name": "Sacerdote",
         "icon": "fas fa-bible",
         "color": "lightslategrey",
-        "pasiveSkill": {
-            "target": "self",
-            "stat": "defense",
-            "buff": 20
-        }
+        "pasiveSkill": [
+            {
+                "target": "self",
+                "stat": "defense",
+                "buff": 10
+            },
+            {
+                "target": "enemy",
+                "stat": "attack",
+                "buff": -10
+            }
+        ]
     },
     {
         "name": "Druida",
         "icon": "fas fa-paw",
         "color": "lawngreen",
-        "pasiveSkill": {
-            "target": "self",
-            "stat": "attack",
-            "buff": 20
-        }
+        "pasiveSkill": [
+            {
+                "target": "self",
+                "stat": "attack",
+                "buff": 20
+            }
+        ]
     }
 ]

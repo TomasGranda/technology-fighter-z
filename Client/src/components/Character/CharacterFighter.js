@@ -9,6 +9,7 @@ import { showSome } from "../../utils/showSome";
 
 import { ProgressBar, Button } from "react-bootstrap";
 import Character from "./Character";
+import CharacterBuffIcon from "./CharacterBuffIcon";
 
 import * as keyboards from "../../config/keyboards.json";
 
@@ -100,7 +101,7 @@ class CharacterFighter extends Component {
 
     this.loadingAttack();
   };
-
+  
   handleUltimate = () => {
     const { numberCharacter } = this.props;
 
@@ -139,7 +140,8 @@ class CharacterFighter extends Component {
   };
 
   render() {
-    const { life, icon, divisorLife, attackProgress, specialProgress } = this.state;
+    const { life, icon, divisorLife, attackProgress, specialProgress } = this.state;2
+    const { numberCharacter } = this.props;
     let dead = life === 0 ? true : false;
 
     let ultimate;
@@ -174,7 +176,8 @@ class CharacterFighter extends Component {
 
     return (
       <div>
-        <ProgressBar now={life * divisorLife} label={`${Math.round(life)}`} />
+        <ProgressBar style={{ marginBottom: "0px" }} now={life * divisorLife} label={`${Math.round(life)}`} />
+        <CharacterBuffIcon character={numberCharacter} />
         <Character className="fight" icon={icon} size="200px" dead={dead} />
         <hr />
         <ProgressBar

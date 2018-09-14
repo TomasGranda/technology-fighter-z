@@ -5,6 +5,8 @@ import * as classes from "../../config/classes.json";
 
 import { Panel, Button } from "react-bootstrap";
 
+import { getClassByName } from "../../utils/getClassByName";
+
 import {
   selectCharacter,
   unselectCharacter
@@ -19,10 +21,6 @@ class CharacterCard extends Component {
     };
   }
 
-  getIconByClass = (selectedClass) => {
-    const classIcon = classes.find( (classType) => { return classType.name === selectedClass });
-    return (classIcon ? classIcon.icon : "");
-  }
 
   handleClick = () => {
     const { selection } = this.state;
@@ -39,12 +37,8 @@ class CharacterCard extends Component {
     }));
   };
 
-  getClassColorByName = (classType) => {
-    const classColor = classes.find( (cl) => { return cl.name === classType })
-    return (classColor ? classColor.color : "");
-  }
-
   render() {
+    const classType = getClassByName(this.props.classType);
     const { selection } = this.state;
     const { id, icon, name, life, defense, attack, speed, selectable } = this.props;
     let button;
@@ -69,7 +63,7 @@ class CharacterCard extends Component {
       <Panel id={id} height="30px">
         <Panel.Heading>
           <Panel.Title componentClass="h3">
-            <i className={icon} /> <span style={{ color: this.getClassColorByName(this.props.classType) }}>{name ? name : "Choose a Name"}</span><p className="pull-right"><i className={this.getIconByClass(this.props.classType)} /></p>
+            <i className={icon} /> <span style={{ color: (classType.color ? classType.color : "" ) }}>{name ? name : "Choose a Name"}</span><p className="pull-right"><i className={classType.icon ? classType.icon : ""} /></p>
           </Panel.Title>
         </Panel.Heading>
         <Panel.Body>

@@ -9,7 +9,7 @@ import {
 } from "./types";
 
 import { getCharacterById } from "../utils/getCharacterById";
-import { triggerInitialAbilities } from "../utils/abilities/triggerInitialAbilities";
+import { triggerInitialSkills } from "../utils/skills/triggerInitialSkills";
 
 export const loadCharacters = (characters, id1, id2) => dispatch => {
   let payload = [];
@@ -17,7 +17,7 @@ export const loadCharacters = (characters, id1, id2) => dispatch => {
   let character1 = getCharacterById(characters, id1);
   let character2 = getCharacterById(characters, id2);
 
-  const buffedCharacters = triggerInitialAbilities(character1, character2);
+  const buffedCharacters = triggerInitialSkills(character1, character2);
 
   payload.push(buffedCharacters[0]);
   payload.push(buffedCharacters[1]);
