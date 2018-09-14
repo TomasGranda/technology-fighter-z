@@ -1,6 +1,6 @@
 [
     {
-        "name": "Guerrero",
+        "name": "Warrior",
         "icon": "fas fa-user-shield",
         "color": "red",
         "pasiveSkill": [
@@ -8,6 +8,14 @@
                 "target": "self",
                 "stat": "attack",
                 "buff": 20
+            }
+        ],
+        "activeSkill": [
+            {
+                "target": "self",
+                "stat": "defense",
+                "buff": 30,
+                "duration": 5
             }
         ]
     },
@@ -21,10 +29,18 @@
                 "stat": "speed",
                 "buff": 20
             }
+        ],
+        "activeSkill": [
+            {
+                "target": "self",
+                "stat": "attack",
+                "buff": 30,
+                "duration": 5
+            }
         ]
     },
     {
-        "name": "Medico",
+        "name": "Medic",
         "icon": "fas fa-user-md",
         "color": "green",
         "pasiveSkill": [
@@ -32,6 +48,14 @@
                 "target": "self",
                 "stat": "life",
                 "buff": 200
+            }
+        ],
+        "activeSkill": [
+            {
+                "target": "enemy",
+                "stat": "attack",
+                "buff": -30,
+                "duration": 5
             }
         ]
     },
@@ -45,10 +69,18 @@
                 "stat": "defense",
                 "buff": -20
             }
+        ],
+        "activeSkill": [
+            {
+                "target": "self",
+                "stat": "speed",
+                "buff": 30,
+                "duration": 5
+            }
         ]
     },
     {
-        "name": "Ingeniero",
+        "name": "Enginner",
         "icon": "fas fa-user-cog",
         "color": "yellow",
         "pasiveSkill": [
@@ -57,10 +89,18 @@
                 "stat": "attack",
                 "buff": -20
             }
+        ],
+        "activeSkill": [
+            {
+                "target": "self",
+                "stat": "speed",
+                "buff": -30,
+                "duration": 5
+            }
         ]
     },
     {
-        "name": "Creyente",
+        "name": "ReligionMan",
         "icon": "fas fa-pray",
         "color": "lime",
         "pasiveSkill": [
@@ -69,10 +109,18 @@
                 "stat": "defense",
                 "buff": 20
             }
+        ],
+        "activeSkill": [
+            {
+                "target": "self",
+                "stat": "defense",
+                "buff": 30,
+                "duration": 5
+            }
         ]
     },
     {
-        "name": "Sacerdote",
+        "name": "Priest",
         "icon": "fas fa-bible",
         "color": "lightslategrey",
         "pasiveSkill": [
@@ -86,10 +134,18 @@
                 "stat": "attack",
                 "buff": -10
             }
+        ],
+        "activeSkill": [
+            {
+                "target": "self",
+                "stat": "life",
+                "buff": 150,
+                "duration": 5
+            }
         ]
     },
     {
-        "name": "Druida",
+        "name": "Druid",
         "icon": "fas fa-paw",
         "color": "lawngreen",
         "pasiveSkill": [
@@ -97,6 +153,14 @@
                 "target": "self",
                 "stat": "attack",
                 "buff": 20
+            }
+        ],
+        "activeSkill": [
+            {
+                "target": "enemy",
+                "stat": "life",
+                "buff": 25,
+                "duration": 5
             }
         ]
     }

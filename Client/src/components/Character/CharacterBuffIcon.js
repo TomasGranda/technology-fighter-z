@@ -16,6 +16,8 @@ class CharacterBuffIcon extends Component {
                 return "fas fa-tachometer-alt";
             case "defense":
                 return "fa fa-shield-alt";
+            default:
+                return "ERROR";
         }
     }
 
@@ -34,7 +36,7 @@ class CharacterBuffIcon extends Component {
                 <span>
                     <i className={`${this.getBuffIcon(buff)} stat`} />
                     <OverlayTrigger trigger="hover" placement="top" overlay={popoverTop}>
-                        <i class={`${buff.buff > 0 ? "fas fa-angle-double-up buff" : "fas fa-angle-double-down debuff"}`} />
+                        <i class={`effect ${buff.buff > 0 ? "fas fa-angle-double-up buff" : "fas fa-angle-double-down debuff"}`} />
                     </OverlayTrigger>
                 </span>
             );

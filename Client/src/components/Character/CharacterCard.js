@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import * as classes from "../../config/classes.json";
 
 import { Panel, Button } from "react-bootstrap";
 

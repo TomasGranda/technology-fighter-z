@@ -2,6 +2,8 @@ import {
   LOAD_CHARACTERS,
   ATTACK_0,
   ATTACK_1,
+  SKILL1_0,
+  SKILL1_1,
   ULTIMATE_0,
   ULTIMATE_1,
   SET_WINNER,
@@ -36,6 +38,18 @@ export const attack = numberCharacter => dispatch => {
   } else {
     dispatch({
       type: ATTACK_1
+    });
+  }
+};
+
+export const skill1 = numberCharacter => dispatch => {
+  if (numberCharacter === 0) {
+    dispatch({
+      type: SKILL1_0
+    });
+  } else {
+    dispatch({
+      type: SKILL1_1
     });
   }
 };

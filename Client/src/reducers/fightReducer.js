@@ -3,12 +3,15 @@ import {
   CLEAR_FIGHT,
   ATTACK_0,
   ATTACK_1,
+  SKILL1_0,
+  SKILL1_1,
   ULTIMATE_0,
   ULTIMATE_1,
   SET_WINNER
 } from "../actions/types";
 
 import { calculateDamage } from "../utils/calculateDamage";
+import { triggerActiveSkills } from "../utils/skills/triggerActiveSkills";
 
 const initialState = {
   characters: [],
@@ -58,6 +61,16 @@ export default function(state = initialState, action) {
               )
           }
         }
+      };
+    case SKILL1_0:
+      return {
+        ...state,
+        characters: triggerActiveSkills(state.characters, 0)
+      };
+    case SKILL1_1:
+      return {
+        ...state,
+        characters: triggerActiveSkills(state.characters, 1)
       };
     case ULTIMATE_0:
       return {

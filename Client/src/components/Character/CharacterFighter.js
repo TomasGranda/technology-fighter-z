@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { attack, ultimate } from "../../actions/fightActions";
+import { attack, skill1, ultimate } from "../../actions/fightActions";
 import { getCharacterById } from "../../utils/getCharacterById";
 import { calculateSpeedSpecial } from "../../utils/calculateSpeedSpecial";
 import { showSome } from "../../utils/showSome";
@@ -115,6 +115,14 @@ class CharacterFighter extends Component {
     this.loadingSpecial();
   };
 
+  handleSkill1 = () => {
+    const { numberCharacter } = this.props;
+
+    this.props.skill1(numberCharacter);
+
+    this.loadingAttack();
+  };
+
   loadingAttack = () => {
     let time = 250 / calculateSpeedSpecial(this.state.speed);
 
@@ -140,7 +148,7 @@ class CharacterFighter extends Component {
   };
 
   render() {
-    const { life, icon, divisorLife, attackProgress, specialProgress } = this.state;2
+    const { life, icon, divisorLife, attackProgress, specialProgress } = this.state;
     const { numberCharacter } = this.props;
     let dead = life === 0 ? true : false;
 
@@ -174,6 +182,21 @@ class CharacterFighter extends Component {
       );
     }
 
+    let skill1;
+    if (attackProgress === 100) {
+      skill1 = (
+        <Button onClick={this.handleSkill1} block>
+          Skill 1
+        </Button>
+      );
+    } else {
+      skill1 = (
+        <Button onClick={this.handleSkill1} block disabled>
+          Skill 1
+        </Button>
+      );
+    }
+
     return (
       <div>
         <ProgressBar style={{ marginBottom: "0px" }} now={life * divisorLife} label={`${Math.round(life)}`} />
@@ -186,7 +209,10 @@ class CharacterFighter extends Component {
           now={attackProgress}
           label={`${attackProgress}`}
         />
+        <div className="basicActionButtonList">
         {attack}
+        {skill1}
+        </div>
         <hr />
         <ProgressBar
           bsStyle="warning"
@@ -205,6 +231,7 @@ CharacterFighter.propTypes = {
   numberCharacter: PropTypes.number.isRequired,
   fight: PropTypes.object.isRequired,
   attack: PropTypes.func.isRequired,
+  skill1: PropTypes.func.isRequired,
   ultimate: PropTypes.func.isRequired,
   charactersList: PropTypes.array.isRequired
 };
@@ -214,4 +241,4 @@ const mapStateToProps = state => ({
   charactersList: state.character.characters
 });
 
-export default connect(mapStateToProps, { attack, ultimate })(CharacterFighter);
+export default connect(mapStateToProps, { attack, skill1, ultimate })(CharacterFighter);

@@ -4,19 +4,18 @@
     float: left;
 }
 
-.debuff{
+.effect{
     position: relative;
     right: 10px;
     z-index: 1;
     font-size: 14px;
+}
+
+.debuff{
     color: red;
 }
 
 .buff{
-    position: relative;
-    right: 10px;
-    z-index: 1;
-    font-size: 14px;
     color: green;
 }
 

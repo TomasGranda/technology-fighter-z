@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 
-import { Panel, Button, ButtonToolbar, OverlayTrigger, Popover } from "react-bootstrap";
+import { ButtonToolbar, OverlayTrigger, Popover } from "react-bootstrap";
 
 class InfoButton extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         const popoverRight = (
-            <Popover id="popover-positioned-right" title="Efectos">
+            <Popover id="popover-positioned-right" title="Effects">
                 {this.props.hover.map( (ps) => {
                     return <p>{ps}</p>;
                 })}

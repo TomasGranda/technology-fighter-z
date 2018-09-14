@@ -179,10 +179,10 @@ class CreateCharacter extends Component {
   };
 
   render() {
-    const characterClass = getClassByName(classType);
     const { name, icon, classType, maxPoints, characterStats } = this.state;
     const { message, type } = this.state.snackbar;
     const calculateLife = characterStats.life * 50;
+    const characterClass = getClassByName(classType);
 
     const calculateStat = stat => {
       return stat * 5;
