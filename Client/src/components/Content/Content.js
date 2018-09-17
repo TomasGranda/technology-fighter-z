@@ -7,6 +7,7 @@ import FightView from "../FightView/FightView";
 import Home from "../Home/Home";
 import CreateCharacter from "../CreateCharacter/CreateCharacter";
 import Settings from "../Settings/Settings";
+import MultiplayerTest from "../MultiplayerTest/MultiplayerTest";
 
 import * as sectionJSON from "../../config/section.json";
 
@@ -40,6 +41,9 @@ class Content extends Component {
         break;
       case sectionJSON.settings:
         content = <Settings />;
+        break;
+      case sectionJSON.multiplayer:
+        content = <SelectionView multiplayer={true} />;
         break;
       default:
         break;

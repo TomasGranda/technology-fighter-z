@@ -39,7 +39,8 @@ FightView.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  character: state.character
+  character: state.character,
+  section: state.section.section
 });
 
 export default connect(mapStateToProps, { loadCharacters })(FightView);

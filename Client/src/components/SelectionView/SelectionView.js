@@ -12,12 +12,37 @@ import ElementCenter from "../ElementCenter/ElementCenter";
 
 import ImgSpinner from "../../assets/spinner.png";
 
+import connectToSocket from "../../multiplayer/connectToSocket";
+
 class SelectionView extends Component {
   componentDidMount() {
     this.props.getCharacters();
   }
 
+  componentWillUnmount() {
+    const socket = this.state.socket;
+    if (socket) {
+        socket.disconnect();
+    }
+  }
+
+  handleConnect = () => {
+    const ip = document.getElementById("ip");
+    this.setState({
+        socket: connectToSocket(ip.value)
+    });
+  };
+
   render() {
+    let connectInput;
+    if(this.props.multiplayer){
+      connectInput = (
+        <div>
+          <input id="ip" placeholder="IP"/> <button onClick={this.handleConnect}>Connect</button>
+        <br />
+        </div>
+      )
+    }
     const { characters, loading } = this.props.character;
     let content;
 
@@ -42,10 +67,15 @@ class SelectionView extends Component {
 
     return (
       <Grid>
+        {connectInput} {connectInput ? <br /> : ""}
         <Row>{content}</Row>
       </Grid>
     );
   }
+}
+
+SelectionView.defaultprops = {
+  multiplayer: false
 }
 
 SelectionView.propTypes = {

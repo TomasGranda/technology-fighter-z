@@ -3,6 +3,7 @@ export const SET_HOME = "SET_HOME";
 export const SET_CREATE_CHARACTER = "SET_CREATE_CHARACTER";
 export const SET_FIGHT = "SET_FIGHT";
 export const SET_SETTINGS = "SET_SETTINGS";
+export const SET_TEST = "SET_TEST";
 
 // Character
 export const SELECT_CHARACTER = "SELECT_CHARACTER";

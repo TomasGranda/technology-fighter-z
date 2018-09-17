@@ -6,13 +6,14 @@ import {
   setHome,
   setCreateCharacter,
   setFight,
-  setSettings
+  setSettings,
+  setTest
 } from "../../actions/sectionActions";
 
 import { Navbar, Nav, NavItem } from "react-bootstrap";
 
 const NavbarApp = props => {
-  const { setHome, setCreateCharacter, setFight, setSettings } = props;
+  const { setTest, setHome, setCreateCharacter, setFight, setSettings } = props;
 
   return (
     <Navbar inverse collapseOnSelect>
@@ -35,6 +36,9 @@ const NavbarApp = props => {
           <NavItem eventKey={3} href="#" onClick={setSettings}>
             Settings
           </NavItem>
+          <NavItem eventKey={4} href="#" onClick={setTest}>
+            Test
+          </NavItem>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
@@ -48,4 +52,4 @@ NavbarApp.propTypes = {
   setSettings: PropTypes.func.isRequired
 };
 
-export default connect(null, { setHome, setCreateCharacter, setFight, setSettings })(NavbarApp);
+export default connect(null, { setHome, setCreateCharacter, setFight, setSettings, setTest })(NavbarApp);
