@@ -7,9 +7,10 @@ import FightView from "../FightView/FightView";
 import Home from "../Home/Home";
 import CreateCharacter from "../CreateCharacter/CreateCharacter";
 import Settings from "../Settings/Settings";
-import MultiplayerTest from "../MultiplayerTest/MultiplayerTest";
 
 import * as sectionJSON from "../../config/section.json";
+import Lobby from "../Lobby/Lobby";
+import GlobalLobby from "../GlobalLobby/GlobalLobby";
 
 class Content extends Component {
   constructor(props) {
@@ -24,7 +25,6 @@ class Content extends Component {
   render() {
     const { selected, section } = this.props;
     let content;
-
     switch (section) {
       case sectionJSON.home:
         content = <Home />;
@@ -42,8 +42,15 @@ class Content extends Component {
       case sectionJSON.settings:
         content = <Settings />;
         break;
+      /*case sectionJSON.multiplayer:
+        if(selected.length === 1000){
+          content = <FightView multiplayer={true} />;
+        } else {
+          content = <Lobby />;
+        }
+        break;*/
       case sectionJSON.multiplayer:
-        content = <SelectionView multiplayer={true} />;
+        content = <GlobalLobby />
         break;
       default:
         break;

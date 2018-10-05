@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import connectToSocket from "../../multiplayer/connectToSocket";
 
 class MultiplayerTest extends Component {
     constructor(props) {
@@ -14,7 +13,7 @@ class MultiplayerTest extends Component {
 
     handleConnect = () => {
         this.setState({
-            socket: connectToSocket()
+            socket: ""
         });
     };
 

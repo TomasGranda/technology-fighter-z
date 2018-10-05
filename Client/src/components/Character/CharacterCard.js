@@ -11,6 +11,11 @@ import {
   unselectCharacter
 } from "../../actions/characterActions";
 
+import {
+  selectMultiplayerCharacter,
+  unselectMultiplayerCharacter
+} from "../../actions/multiplayerActions";
+
 import * as stats from "../../config/stats.json";
 
 class CharacterCard extends Component {
@@ -18,14 +23,28 @@ class CharacterCard extends Component {
     super(props);
 
     this.state = {
-      selection: false
+      selection: false,
     };
   }
 
-
   handleClick = () => {
     const { selection } = this.state;
-    const { id, selectCharacter, unselectCharacter } = this.props;
+    const {
+      id,
+      selectCharacter,
+      selectMultiplayerCharacter,
+      unselectCharacter,
+      unselectMultiplayerCharacter,
+      multiplayer,
+      socket } = this.props;
+
+    if (multiplayer) {
+      if (selection) {
+        unselectMultiplayerCharacter(id, socket);
+      } else {
+        selectMultiplayerCharacter(id, socket);
+      }
+    }
 
     if (selection) {
       unselectCharacter(id);
@@ -41,14 +60,19 @@ class CharacterCard extends Component {
   render() {
     const classType = getClassByName(this.props.classType);
     const { selection } = this.state;
-    const { id, icon, name, life, defense, attack, speed, selectable } = this.props;
+    const { section, selections, id, icon, name, life, defense, attack, speed, selectable } = this.props;
     let button;
-
     if (selectable) {
       if (selection) {
         button = (
           <Button onClick={this.handleClick} bsStyle="danger" block>
             Unselect
+          </Button>
+        );
+      } else if (section === 4 && selections.length > 0) {
+        button = (
+          <Button onClick={this.handleClick} bsStyle="primary" block disabled>
+            Select
           </Button>
         );
       } else {
@@ -64,7 +88,7 @@ class CharacterCard extends Component {
       <Panel id={id} height="30px">
         <Panel.Heading>
           <Panel.Title componentClass="h3">
-            <i className={icon} /> <span style={{ color: (classType.color ? classType.color : "" ) }}>{name ? name : "Choose a Name"}</span><p className="pull-right"><i className={classType.icon ? classType.icon : ""} /></p>
+            <i className={icon} /> <span style={{ color: (classType.color ? classType.color : "") }}>{name ? name : "Choose a Name"}</span><p className="pull-right"><i className={classType.icon ? classType.icon : ""} /></p>
           </Panel.Title>
         </Panel.Heading>
         <Panel.Body>
@@ -89,7 +113,8 @@ class CharacterCard extends Component {
 
 CharacterCard.defaultProps = {
   selectable: true,
-  classType: ""
+  classType: "",
+  multiplayer: false
 };
 
 CharacterCard.propTypes = {
@@ -103,7 +128,14 @@ CharacterCard.propTypes = {
   speed: PropTypes.number.isRequired,
   selectCharacter: PropTypes.func.isRequired,
   unselectCharacter: PropTypes.func.isRequired,
-  selectable: PropTypes.bool
+  selectable: PropTypes.bool,
+  multiplayer: PropTypes.bool
 };
 
-export default connect(null, { selectCharacter, unselectCharacter })(CharacterCard);
+const mapStateToProps = state => ({
+  selections: state.character.selected,
+  section: state.section.section,
+  socket: state.multiplayer.socket
+});
+
+export default connect(mapStateToProps, { selectCharacter, unselectCharacter, selectMultiplayerCharacter, unselectMultiplayerCharacter })(CharacterCard);
