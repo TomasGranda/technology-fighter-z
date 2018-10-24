@@ -9,17 +9,11 @@ import CharacterCard from "../Character/CharacterCard";
 import { getCharacters } from "../../actions/characterActions";
 import { createSocket } from "../../actions/multiplayerActions";
 
-class Lobby extends Component {
+class Room extends Component {
 
     componentDidMount() {
         this.props.getCharacters();
     }
-
-    handleConnect = () => {
-        const selectedCharacter = this.props.yourSelect;
-        console.log(selectedCharacter)
-        this.props.createSocket(document.getElementById("ip").value);
-    };
 
     getCharacter = (id) => {
         if (id) {
@@ -69,9 +63,7 @@ class Lobby extends Component {
                             </Panel.Body>
                         </Panel>
                     </Col>
-                    <Col xs={4} >
-                        <input id="ip" placeholder="IP" /> <button onClick={this.handleConnect}>Connect</button>
-                    </Col>
+                    <Col xs={4} />
                     <Col xs={4} >
                         <Panel>
                             <Panel.Heading>
@@ -94,7 +86,7 @@ class Lobby extends Component {
                     </Col>
                 </Row>
                 <Row>
-                    <SelectionView multiplayer={true} />
+                    <SelectionView/>
                 </Row>
             </Grid>
         );
@@ -104,8 +96,8 @@ class Lobby extends Component {
 const mapStateToProps = state => ({
     character: state.character,
     socket: state.multiplayer.socket,
-    yourSelect: state.multiplayer.yourSelect,
-    enemySelect: state.multiplayer.enemySelect
+    yourSelect: state.multiplayer.room.yourSelect,
+    enemySelect: state.multiplayer.room.enemySelect
 });
 
-export default connect(mapStateToProps, { getCharacters, createSocket })(Lobby);
+export default connect(mapStateToProps, { getCharacters, createSocket })(Room);

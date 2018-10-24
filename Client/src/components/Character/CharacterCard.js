@@ -35,14 +35,14 @@ class CharacterCard extends Component {
       selectMultiplayerCharacter,
       unselectCharacter,
       unselectMultiplayerCharacter,
-      multiplayer,
-      socket } = this.props;
-
-    if (multiplayer) {
+      roomId,
+      socket 
+    } = this.props;
+    if (roomId) {
       if (selection) {
-        unselectMultiplayerCharacter(id, socket);
+        unselectMultiplayerCharacter(id, socket, roomId);
       } else {
-        selectMultiplayerCharacter(id, socket);
+        selectMultiplayerCharacter(id, socket, roomId);
       }
     }
 
@@ -113,8 +113,7 @@ class CharacterCard extends Component {
 
 CharacterCard.defaultProps = {
   selectable: true,
-  classType: "",
-  multiplayer: false
+  classType: ""
 };
 
 CharacterCard.propTypes = {
@@ -122,20 +121,17 @@ CharacterCard.propTypes = {
   icon: PropTypes.string.isRequired,
   classType: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  life: PropTypes.number.isRequired,
-  defense: PropTypes.number.isRequired,
-  attack: PropTypes.number.isRequired,
-  speed: PropTypes.number.isRequired,
   selectCharacter: PropTypes.func.isRequired,
   unselectCharacter: PropTypes.func.isRequired,
   selectable: PropTypes.bool,
-  multiplayer: PropTypes.bool
+  roomId: PropTypes.string
 };
 
 const mapStateToProps = state => ({
   selections: state.character.selected,
   section: state.section.section,
-  socket: state.multiplayer.socket
+  socket: state.multiplayer.socket,
+  roomId: state.multiplayer.room.joined
 });
 
 export default connect(mapStateToProps, { selectCharacter, unselectCharacter, selectMultiplayerCharacter, unselectMultiplayerCharacter })(CharacterCard);

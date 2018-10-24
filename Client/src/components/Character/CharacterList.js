@@ -9,7 +9,6 @@ const CharacterList = props => {
     return (
       <Col xs={3} key={i}>
         <CharacterCard
-          multiplayer={props.multiplayer}
           id={character._id}
           icon={character.icon}
           name={character.name}

@@ -3,90 +3,138 @@ import { connect } from 'react-redux';
 import { Panel, Table, Grid, Row, Col } from 'react-bootstrap';
 
 import { createSocket } from "../../actions/multiplayerActions";
+import EmitEvents from './EmitEvents';
 
 class GlobalLobby extends Component {
+	constructor() {
+		super();
+		this.state = {
+			users: [],
+			challenges: [],
+			error: ""
+		}
 
-    getUsers = () => {
-        let socket = this.props.socket;
-        socket.emit("get_users");
-    };
+		this.EmitEvents = new EmitEvents(this);
+	}
 
-    handleConnect = () => {
-        const username = document.getElementById("username").value || "Player";
-        this.props.createSocket(document.getElementById("ip").value, username);
-    };
+	componentDidUpdate = () => {
+		const { users, challenges } = this.props;
+		if (this.state.users.length !== users.length) {
+			this.setState({
+				users
+			});
+		}
+		if (this.state.challenges.length !== challenges.length) {
+			this.setState({
+				challenges
+			});
+		}
+	};
 
-    handleChangeUsername = () => {
-        const username = document.getElementById("username").value || "Player";
-        let socket = this.props.socket;
-        socket.emit("change_username", { username: username });
-    };
+	render() {
+		const { users, challenges, error } = this.state;
+		let userRows = <div>hola</div>;
+		let challengesRows = <div>hola</div>;
 
-    render() {
-        const users = this.props.users;
-        let rows;
+		if (users) {
+			userRows = users.map((user, index) => {
+				return (
+					<tr key={index}>
+						<td>{user.username}</td>
+						<td>algomas</td>
+						<td>
+							<center>
+								<i style={{ cursor: "pointer" }} className="far fa-envelope" onClick={() => this.EmitEvents.sendChallenge(user.id)} />
+							</center>
+						</td>
+					</tr>
+				);
+			});
+		}
+		if (challenges) {
+			challengesRows = challenges.map((challenge, index) => {
+				return (
+					<tr key={index}>
+						<td>{challenge.challengerName}</td>
+						<td>
+							<i className="fas fa-check" style={{ color: "green", cursor: "pointer" }} onClick={() => this.EmitEvents.acceptChallenge(index)} />/<i className="fas fa-ban" style={{ color: "red", cursor: "pointer" }} />
+						</td>
+					</tr>
+				);
+			});
+		}
 
-        if (users) {
-            rows = users.map(user => {
-                return (
-                <tr>
-                    <td>{user}</td>
-                    <td>algomas</td>
-                    <td>
-                        <center><i style={{ cursor: "pointer" }} class="far fa-envelope" /></center>
-                    </td>
-                </tr>
-                );
-            });
-        }
-
-        return (
-            <Grid>
-                <Row>
-                    <Col xs={3}>
-                        <input id="username" placeholder="Username"></input>
-                        <input id="ip" placeholder="IP" />
-                        <button onClick={this.handleConnect}>Connect</button>
-                        <button onClick={this.handleChangeUsername}>Change Username</button>
-                        <button onClick={this.getUsers}>Refresh</button>
-                    </Col>
-                    <Col xs={6}>
-                        <Panel>
-                            <Panel.Heading>
-                                Users
+		return (
+			<Grid>
+				<Row>
+					<Col xs={2}>
+						<input id="username" placeholder="Username"></input>
+						<p style={{ color: "red" }}>{error}</p>
+						<button onClick={this.EmitEvents.handleConnect}>Conectar</button>
+						<button onClick={this.EmitEvents.handleChangeUsername}>Cambiar Nombre</button>
+						<button onClick={this.EmitEvents.getUsers}>Refrescar</button>
+					</Col>
+					<Col xs={7}>
+						<Panel>
+							<Panel.Heading>
+								Usuarios
                             </Panel.Heading>
-                            <Panel.Body>
-                                <Table bordered>
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                Name
+							<Panel.Body>
+								<Table bordered>
+									<thead>
+										<tr>
+											<th>
+												Nombre
+                      </th>
+											<th>
+												Otracosa
+                      </th>
+											<th style={{ width: "1px" }}>
+												Inv.
+                      </th>
+										</tr>
+									</thead>
+									<tbody>
+										{userRows}
+									</tbody>
+								</Table>
+							</Panel.Body>
+						</Panel>
+					</Col>
+					<Col xs={3}>
+						<Panel>
+							<Panel.Heading>
+								Invitaciones
+                            </Panel.Heading>
+							<Panel.Body>
+								<Table bordered>
+									<thead>
+										<tr>
+											<th className="col-md-9">
+												Usuario
                                             </th>
-                                            <th>
-                                                Otracosa
-                                            </th>
-                                            <th style={{ width: "1px" }}>
-                                                Inv.
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {rows}
-                                    </tbody>
-                                </Table>
-                            </Panel.Body>
-                        </Panel>
-                    </Col>
-                    <Col xs={3} />
-                </Row>
-            </Grid>
-        );
-    }
+											<th className="col-md-3">
+												<i className="fas fa-check" style={{ color: "green" }} />/<i className="fas fa-ban" style={{ color: "red" }} />
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										{challengesRows}
+									</tbody>
+								</Table>
+							</Panel.Body>
+						</Panel>
+					</Col>
+				</Row>
+			</Grid>
+		);
+	}
 }
 
 const mapStateToProps = state => ({
-    socket: state.multiplayer.socket,
-    users: state.multiplayer.users
+	socket: state.multiplayer.socket,
+	users: state.multiplayer.users,
+	challenges: state.multiplayer.challenges
 });
 
 export default connect(mapStateToProps, { createSocket })(GlobalLobby);

@@ -9,7 +9,7 @@ import CreateCharacter from "../CreateCharacter/CreateCharacter";
 import Settings from "../Settings/Settings";
 
 import * as sectionJSON from "../../config/section.json";
-import Lobby from "../Lobby/Lobby";
+import Room from "../Room/Room";
 import GlobalLobby from "../GlobalLobby/GlobalLobby";
 
 class Content extends Component {
@@ -50,7 +50,11 @@ class Content extends Component {
         }
         break;*/
       case sectionJSON.multiplayer:
-        content = <GlobalLobby />
+        if(this.props.joined){
+          content = <Room />
+        } else {
+          content = <GlobalLobby />
+        }
         break;
       default:
         break;
@@ -67,7 +71,8 @@ Content.propTypes = {
 
 const mapStateToProps = state => ({
   selected: state.character.selected,
-  section: state.section.section
+  section: state.section.section,
+  joined: state.multiplayer.room.joined
 });
 
 export default connect(mapStateToProps, null)(Content);

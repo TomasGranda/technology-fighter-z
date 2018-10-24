@@ -37,7 +37,7 @@ class SelectionView extends Component {
         </ElementCenter>
       ); 
     } else {
-      content = <CharacterList characters={characters} multiplayer={this.props.multiplayer} />;
+      content = <CharacterList characters={characters} />;
     }
 
     return (
@@ -46,10 +46,6 @@ class SelectionView extends Component {
       </Grid>
     );
   }
-}
-
-SelectionView.defaultprops = {
-  multiplayer: false
 }
 
 SelectionView.propTypes = {
