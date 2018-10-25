@@ -13,6 +13,12 @@ import {
 import { getCharacterById } from "../utils/getCharacterById";
 import { triggerInitialSkills } from "../utils/skills/triggerInitialSkills";
 
+import store from "../store";
+
+const getMultiplayer = () => {
+  return store.getState().multiplayer;
+};
+
 export const loadCharacters = (characters, id1, id2) => dispatch => {
   let payload = [];
 
@@ -32,6 +38,9 @@ export const loadCharacters = (characters, id1, id2) => dispatch => {
 
 export const attack = numberCharacter => dispatch => {
   if (numberCharacter === 0) {
+    if (getMultiplayer()) {
+      getMultiplayer().socket.emit("make_action", { action: "attack", roomId: getMultiplayer().room.joined })
+    }
     dispatch({
       type: ATTACK_0
     });

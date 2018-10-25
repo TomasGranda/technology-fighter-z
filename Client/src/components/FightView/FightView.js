@@ -12,13 +12,12 @@ class FightView extends Component {
   render() {
     const { character, loadCharacters, multiplayerRoom } = this.props;
     let selected;
-    loadCharacters(character.characters, character.selected[0], character.selected[1]);
-    
-    if(multiplayerRoom){
-      selected = [multiplayerRoom.enemySelect, multiplayerRoom.yourSelect]
+    if (multiplayerRoom.joined) {
+      selected = [multiplayerRoom.yourSelect, multiplayerRoom.enemySelect]
     } else {
       selected = character.selected;
     }
+    loadCharacters(character.characters, selected[0], selected[1]);
 
     const characters = selected.map((id, i) => {
       return <CharacterFighter key={i} id={id} numberCharacter={i} />;
