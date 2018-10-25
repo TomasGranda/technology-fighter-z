@@ -2,6 +2,8 @@ import {
   RECIEVE_MESSAGE,
   ENEMY_SELECT_CHARACTER,
   ENEMY_UNSELECT_CHARACTER,
+  START_COUNTDOWN,
+  STOP_COUNTDOWN,
   JOIN_ROOM
 } from "../types";
 
@@ -40,11 +42,29 @@ const unselect_character = (payload, dispatch) => {
   });
 };
 
+const start_countdown = (payload, dispatch) => {
+  payload.on("start_countdown", () => {
+    dispatch({
+      type: START_COUNTDOWN
+    });
+  });
+};
+
+const stop_countdown = (payload, dispatch) => {
+  payload.on("stop_countdown", () => {
+    dispatch({
+      type: STOP_COUNTDOWN
+    });
+  });
+};
+
 const socketEvents = [
   join_room,
   new_message,
   select_character,
-  unselect_character
+  unselect_character,
+  start_countdown,
+  stop_countdown
 ];
 
 const bindRoomEvents = (payload, dispatch) => {

@@ -34,6 +34,9 @@ export const ENEMY_UNSELECT_CHARACTER = "ENEMY_UNSELECT_CHARACTER";
 export const GET_USERS = "GET_USERS";
 export const ADD_CHALLENGE = "ADD_CHALLENGE";
 export const JOIN_ROOM = "JOIN_ROOM";
+export const START_COUNTDOWN = "START_COUNTDOWN";
+export const STOP_COUNTDOWN = "STOP_COUNTDOWN";
+export const FIGHT_INIT = "FIGHT_INIT";
 
 // Error
 export const GET_ERRORS = "GET_ERRORS";

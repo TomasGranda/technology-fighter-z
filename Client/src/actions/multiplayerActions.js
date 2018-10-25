@@ -5,6 +5,7 @@ import io from 'socket.io-client';
 import bindLobbyEvents from "./socketEvents/bindLobbyEvents";
 import bindRoomEvents from "./socketEvents/bindRoomEvents";
 import bindErrorsEvents from "./socketEvents/bindErrorsEvents";
+import bindFightEvents from "./socketEvents/bindFightEvents";
 
 export const createSocket = (username) => dispatch => {
 	let payload = io()
@@ -24,6 +25,7 @@ export const createSocket = (username) => dispatch => {
 	bindLobbyEvents(payload, dispatch, params);
 	bindRoomEvents(payload, dispatch, params);
 	bindErrorsEvents(payload, dispatch, params);
+	bindFightEvents(payload, dispatch, params);
 };
 
 export const unselectMultiplayerCharacter = (id, socket, roomId) => dispatch => {

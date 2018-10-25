@@ -10,13 +10,20 @@ import GameOver from "../GameOver/GameOver";
 
 class FightView extends Component {
   render() {
-    const { character, loadCharacters } = this.props;
-
+    const { character, loadCharacters, multiplayerRoom } = this.props;
+    let selected;
     loadCharacters(character.characters, character.selected[0], character.selected[1]);
+    
+    if(multiplayerRoom){
+      selected = [multiplayerRoom.enemySelect, multiplayerRoom.yourSelect]
+    } else {
+      selected = character.selected;
+    }
 
-    const characters = character.selected.map((id, i) => {
+    const characters = selected.map((id, i) => {
       return <CharacterFighter key={i} id={id} numberCharacter={i} />;
     });
+
 
     return (
       <div>
@@ -40,7 +47,8 @@ FightView.propTypes = {
 
 const mapStateToProps = state => ({
   character: state.character,
-  section: state.section.section
+  section: state.section.section,
+  multiplayerRoom: state.multiplayer.room
 });
 
 export default connect(mapStateToProps, { loadCharacters })(FightView);

@@ -21,7 +21,7 @@ class Content extends Component {
       section: props.section
     };
   }
-
+  
   render() {
     const { selected, section } = this.props;
     let content;
@@ -42,24 +42,18 @@ class Content extends Component {
       case sectionJSON.settings:
         content = <Settings />;
         break;
-      /*case sectionJSON.multiplayer:
-        if(selected.length === 1000){
-          content = <FightView multiplayer={true} />;
-        } else {
-          content = <Lobby />;
-        }
-        break;*/
       case sectionJSON.multiplayer:
-        if(this.props.joined){
-          content = <Room />
+        if (this.props.fightInit) {
+          content = <FightView />;
+        } else if (this.props.joined) {
+          content = <Room />;
         } else {
-          content = <GlobalLobby />
+          content = <GlobalLobby />;
         }
         break;
       default:
         break;
     }
-
     return <div>{content}</div>;
   }
 }
@@ -72,7 +66,8 @@ Content.propTypes = {
 const mapStateToProps = state => ({
   selected: state.character.selected,
   section: state.section.section,
-  joined: state.multiplayer.room.joined
+  joined: state.multiplayer.room.joined,
+  fightInit: state.multiplayer.room.fight.init
 });
 
 export default connect(mapStateToProps, null)(Content);

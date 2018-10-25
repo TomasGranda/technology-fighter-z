@@ -112,7 +112,7 @@ class GlobalLobby extends Component {
 										<tr>
 											<th className="col-md-9">
 												Usuario
-                                            </th>
+                      </th>
 											<th className="col-md-3">
 												<i className="fas fa-check" style={{ color: "green" }} />/<i className="fas fa-ban" style={{ color: "red" }} />
 											</th>

@@ -9,6 +9,9 @@ import CharacterCard from "../Character/CharacterCard";
 import { getCharacters } from "../../actions/characterActions";
 import { createSocket } from "../../actions/multiplayerActions";
 
+import CountDown from 'react-countdown-clock'
+import './Room.css';
+
 class Room extends Component {
 
     componentDidMount() {
@@ -36,10 +39,29 @@ class Room extends Component {
         }
     }
 
+    emitCountdownComplete = () => {
+        let { socket, roomId} = this.props;
+        socket.emit("countdown_complete", { roomId });
+    };
+
     render() {
-        const { yourSelect, enemySelect } = this.props;
+        const { yourSelect, enemySelect, countdown } = this.props;
         let select1 = this.getCharacter(yourSelect);
         let select2 = this.getCharacter(enemySelect);
+        let renderCountdown;
+
+        if(countdown){
+            renderCountdown = <CountDown 
+                showMilliseconds={false} 
+                seconds={5} 
+                color="#000" 
+                alpha={0.9} 
+                size={150}
+                onComplete={this.emitCountdownComplete} />;
+        } else {
+            renderCountdown = <div />;
+        }
+
         return (
             <Grid fluid>
                 <Row>
@@ -63,7 +85,9 @@ class Room extends Component {
                             </Panel.Body>
                         </Panel>
                     </Col>
-                    <Col xs={4} />
+                    <Col xs={4} className="countdown">
+                        {renderCountdown}
+                    </Col>
                     <Col xs={4} >
                         <Panel>
                             <Panel.Heading>
@@ -86,7 +110,7 @@ class Room extends Component {
                     </Col>
                 </Row>
                 <Row>
-                    <SelectionView/>
+                    <SelectionView />
                 </Row>
             </Grid>
         );
@@ -96,8 +120,10 @@ class Room extends Component {
 const mapStateToProps = state => ({
     character: state.character,
     socket: state.multiplayer.socket,
+    roomId: state.multiplayer.room.joined,
     yourSelect: state.multiplayer.room.yourSelect,
-    enemySelect: state.multiplayer.room.enemySelect
+    enemySelect: state.multiplayer.room.enemySelect,
+    countdown: state.multiplayer.room.countdown
 });
 
 export default connect(mapStateToProps, { getCharacters, createSocket })(Room);
