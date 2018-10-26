@@ -66,26 +66,30 @@ class CharacterFighter extends Component {
   }
 
   loadingAttack = () => {
-    let time = 250 / calculateSpeedSpecial(this.state.speed);
+    if (this.state.attackProgress === 100) {
+      let time = 250 / calculateSpeedSpecial(this.state.speed);
 
-    for (let i = 0; i <= 100; i++) {
-      setTimeout(() => {
-        this.setState({
-          attackProgress: i
-        });
-      }, time * i);
+      for (let i = 0; i <= 100; i++) {
+        setTimeout(() => {
+          this.setState({
+            attackProgress: i
+          });
+        }, time * i);
+      }
     }
   };
 
   loadingSpecial = () => {
-    let time = 1000 / calculateSpeedSpecial(this.state.speed);
+    if (this.state.specialProgress === 100) {
+      let time = 1000 / calculateSpeedSpecial(this.state.speed);
 
-    for (let i = 0; i <= 100; i++) {
-      setTimeout(() => {
-        this.setState({
-          specialProgress: i
-        });
-      }, time * i);
+      for (let i = 0; i <= 100; i++) {
+        setTimeout(() => {
+          this.setState({
+            specialProgress: i
+          });
+        }, time * i);
+      }
     }
   };
 
@@ -141,6 +145,7 @@ class CharacterFighter extends Component {
 
     return (
       <div>
+        <button onClick={this.loadingAttack}>asd</button>
         <ProgressBar className="margin-bottom-0" now={life * divisorLife} label={`${Math.round(life)}`} />
         <CharacterBuffIcon character={numberCharacter} />
         <Character className="fight" icon={icon} size="200px" dead={dead} />

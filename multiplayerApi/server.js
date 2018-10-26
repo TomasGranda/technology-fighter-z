@@ -77,8 +77,6 @@ io.on('connection', (socket) => {
 	});
 
 	socket.on('make_action', (data) => {
-		console.log("llega al server")
-		console.log("sale del server")
 		socket.to(data.roomId).emit('enemy_action', { action: data.action });
 	});
 

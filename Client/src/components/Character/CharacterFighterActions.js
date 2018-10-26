@@ -5,21 +5,27 @@ class CharacterFighterActions {
   constructor(bind) {
     this.bind = bind;
     this.socket = this.bind.props.socket;
+    window.asd = 0;
     if (this.socket) {
       this.socket.on("enemy_action", (data) => {
+        window.asd++;
+        console.log(window.asd)
         this.makeAction(null, data.action, true)
       });
     }
   }
 
-  makeAttack = () => {
-    if (this.attackProgress === 100) {
+  makeAttack = (online) => {
+    if (this.attackProgress === 100 || online) {
       this.handleAttack();
+      if (this.socket && !online) {
+        this.socket.emit("make_action", { action: "attack", roomId: this.bind.props.roomId })
+      }
     }
   }
 
   makeUltimate = (online) => {
-    if (this.specialProgress === 100) {
+    if (this.specialProgress === 100 || online) {
       this.handleUltimate();
       if (this.socket && !online) {
         this.socket.emit("make_action", { action: "ultimate", roomId: this.bind.props.roomId })
@@ -28,7 +34,7 @@ class CharacterFighterActions {
   }
 
   makeSkill = (online, skillNumber) => {
-    if (this.attackProgress === 100) {
+    if (this.attackProgress === 100 || online) {
       this.handleSkill1();
       if (this.socket && !online) {
         this.socket.emit("make_action", { action: "skill1", roomId: this.bind.props.roomId })

@@ -38,9 +38,9 @@ export const loadCharacters = (characters, id1, id2) => dispatch => {
 
 export const attack = numberCharacter => dispatch => {
   if (numberCharacter === 0) {
-    if (getMultiplayer()) {
-      getMultiplayer().socket.emit("make_action", { action: "attack", roomId: getMultiplayer().room.joined })
-    }
+    // if (getMultiplayer().socket) {
+    //   getMultiplayer().socket.emit("make_action", { action: "attack", roomId: getMultiplayer().room.joined })
+    // }
     dispatch({
       type: ATTACK_0
     });
