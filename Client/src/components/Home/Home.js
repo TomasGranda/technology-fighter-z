@@ -30,7 +30,7 @@ const Home = props => {
             <h3><strong>Select characters</strong></h3>
             <img src={select} alt="Select characters" width="500px"></img>
             <hr />
-            <h3><strong>Fight with they</strong></h3>
+            <h3><strong>Fight with them</strong></h3>
             <img src={fight} alt="Fight" width="500px"></img>
             <hr />
             <h4>Don't forget read the <span className="link" onClick={setSettings}>controls</span> before the fight</h4>
