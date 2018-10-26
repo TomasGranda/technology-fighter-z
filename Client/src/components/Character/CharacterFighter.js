@@ -66,7 +66,7 @@ class CharacterFighter extends Component {
   }
 
   loadingAttack = () => {
-    if (this.state.attackProgress === 100) {
+    if (this.state.attackProgress === 100 || this.state.attackProgress === 0) {
       let time = 250 / calculateSpeedSpecial(this.state.speed);
 
       for (let i = 0; i <= 100; i++) {
@@ -80,7 +80,7 @@ class CharacterFighter extends Component {
   };
 
   loadingSpecial = () => {
-    if (this.state.specialProgress === 100) {
+    if (this.state.specialProgress === 100 || this.state.specialProgress === 0) {
       let time = 1000 / calculateSpeedSpecial(this.state.speed);
 
       for (let i = 0; i <= 100; i++) {
@@ -145,7 +145,6 @@ class CharacterFighter extends Component {
 
     return (
       <div>
-        <button onClick={this.loadingAttack}>asd</button>
         <ProgressBar className="margin-bottom-0" now={life * divisorLife} label={`${Math.round(life)}`} />
         <CharacterBuffIcon character={numberCharacter} />
         <Character className="fight" icon={icon} size="200px" dead={dead} />
