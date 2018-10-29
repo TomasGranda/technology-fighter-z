@@ -33,8 +33,8 @@ class GlobalLobby extends Component {
 
 	render() {
 		const { users, challenges, error } = this.state;
-		let userRows = <div>hola</div>;
-		let challengesRows = <div>hola</div>;
+		let userRows = <div/>;
+		let challengesRows = <div/>;
 
 		if (users) {
 			userRows = users.map((user, index) => {
