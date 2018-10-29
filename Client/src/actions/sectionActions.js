@@ -1,4 +1,4 @@
-import { SET_HOME, SET_CREATE_CHARACTER, SET_FIGHT, SET_SETTINGS, SET_TEST } from "./types";
+import { SET_HOME, SET_CREATE_CHARACTER, SET_FIGHT, SET_SETTINGS, SET_MULTIPLAYER } from "./types";
 
 import { clearSelection } from "./characterActions";
 import { clearFight } from "./fightActions";
@@ -31,10 +31,10 @@ export const setSettings = () => dispatch => {
   });
 };
 
-export const setTest = () => dispatch => {
+export const setMultiplayer = () => dispatch => {
   clearAll(dispatch);
   dispatch({
-    type: SET_TEST
+    type: SET_MULTIPLAYER
   });
 };
 

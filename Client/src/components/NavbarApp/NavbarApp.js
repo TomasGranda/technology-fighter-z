@@ -7,13 +7,13 @@ import {
   setCreateCharacter,
   setFight,
   setSettings,
-  setTest
+  setMultiplayer
 } from "../../actions/sectionActions";
 
 import { Navbar, Nav, NavItem } from "react-bootstrap";
 
 const NavbarApp = props => {
-  const { setTest, setHome, setCreateCharacter, setFight, setSettings } = props;
+  const { setMultiplayer, setHome, setCreateCharacter, setFight, setSettings } = props;
 
   return (
     <Navbar inverse collapseOnSelect>
@@ -36,8 +36,8 @@ const NavbarApp = props => {
           <NavItem eventKey={3} href="#" onClick={setSettings}>
             Settings
           </NavItem>
-          <NavItem eventKey={4} href="#" onClick={setTest}>
-            Test
+          <NavItem eventKey={4} href="#" onClick={setMultiplayer}>
+            Multiplayer
           </NavItem>
         </Nav>
       </Navbar.Collapse>
@@ -52,4 +52,4 @@ NavbarApp.propTypes = {
   setSettings: PropTypes.func.isRequired
 };
 
-export default connect(null, { setHome, setCreateCharacter, setFight, setSettings, setTest })(NavbarApp);
+export default connect(null, { setHome, setCreateCharacter, setFight, setSettings, setMultiplayer })(NavbarApp);

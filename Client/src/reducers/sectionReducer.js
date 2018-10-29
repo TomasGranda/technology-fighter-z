@@ -1,4 +1,4 @@
-import { SET_HOME, SET_CREATE_CHARACTER, SET_FIGHT, SET_SETTINGS, SET_TEST } from "../actions/types";
+import { SET_HOME, SET_CREATE_CHARACTER, SET_FIGHT, SET_SETTINGS, SET_MULTIPLAYER } from "../actions/types";
 
 import * as section from "../config/section.json";
 
@@ -28,7 +28,7 @@ export default function(state = initialState, action) {
         ...state,
         section: section.settings
       }
-    case SET_TEST:
+    case SET_MULTIPLAYER:
       return {
         ...state,
         section: section.multiplayer
