@@ -1,17 +1,18 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { ProgressBar, Button } from "react-bootstrap";
 
 import { attack, skill1, ultimate } from "../../actions/fightActions";
-import { getCharacterById } from "../../utils/getCharacterById";
+import CharacterFighterActions from "./CharacterFighterActions";
 
-import { ProgressBar, Button } from "react-bootstrap";
 import Character from "./Character";
 import CharacterBuffIcon from "./CharacterBuffIcon";
 
 import { calculateSpeedSpecial } from "../../utils/calculateSpeedSpecial";
+import { getCharacterById } from "../../utils/getCharacterById";
+
 import "./CharacterFighter.css";
-import CharacterFighterActions from "./CharacterFighterActions";
 
 class CharacterFighter extends Component {
   constructor(props) {
@@ -27,7 +28,6 @@ class CharacterFighter extends Component {
       specialProgress: 0,
       attackProgress: 0
     };
-    console.log("asd")
 
     this.actions = new CharacterFighterActions(this)
     this.loadingAttack();

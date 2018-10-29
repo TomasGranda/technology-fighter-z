@@ -8,8 +8,6 @@ class CharacterFighterActions {
     window.asd = 0;
     if (this.socket) {
       this.socket.on("enemy_action", (data) => {
-        window.asd++;
-        console.log(window.asd)
         this.makeAction(null, data.action, true)
       });
     }

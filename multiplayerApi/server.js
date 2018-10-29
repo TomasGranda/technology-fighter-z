@@ -98,7 +98,6 @@ io.on('connection', (socket) => {
 	});
 
 	socket.on('accept_challenge', data => {
-		console.log("asd")
 		if (io.sockets.clients().sockets[data.challengerId]) {
 			let userId = data.userId;
 			let challengerId = data.challengerId;
