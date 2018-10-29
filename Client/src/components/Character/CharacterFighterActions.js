@@ -5,7 +5,6 @@ class CharacterFighterActions {
   constructor(bind) {
     this.bind = bind;
     this.socket = this.bind.props.socket;
-    window.asd = 0;
     if (this.socket) {
       this.socket.on("enemy_action", (data) => {
         this.makeAction(null, data.action, true)
