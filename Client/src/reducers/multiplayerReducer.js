@@ -1,7 +1,7 @@
 import {
   CREATE_SOCKET,
   ADD_CHALLENGE,
-  RECIEVE_MESSAGE,
+  RECEIVE_MESSAGE,
   SELECT_MULTIPLAYER_CHARACTER,
   UNSELECT_MULTIPLAYER_CHARACTER,
   ENEMY_SELECT_CHARACTER,
@@ -38,7 +38,7 @@ export default function (state = initialState, action) {
         ...state,
         socket: action.payload
       };
-    case RECIEVE_MESSAGE:
+    case RECEIVE_MESSAGE:
       return {
         ...state,
         message: action.payload

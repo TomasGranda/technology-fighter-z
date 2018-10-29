@@ -16,6 +16,6 @@ const socketEvents = [
 
 const bindFightEvents = (payload, dispatch, params) => {
   socketEvents.map(x => x(payload, dispatch, params));
-}
+};
 
 export default bindFightEvents;

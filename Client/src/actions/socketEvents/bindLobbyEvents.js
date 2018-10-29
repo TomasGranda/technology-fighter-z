@@ -32,6 +32,6 @@ const socketEvents = [
 
 const bindLobbyEvents = (payload, dispatch) => {
   socketEvents.map(x => x(payload, dispatch));
-}
+};
 
 export default bindLobbyEvents;

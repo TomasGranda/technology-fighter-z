@@ -1,5 +1,5 @@
 import {
-  RECIEVE_MESSAGE,
+  RECEIVE_MESSAGE,
   ENEMY_SELECT_CHARACTER,
   ENEMY_UNSELECT_CHARACTER,
   START_COUNTDOWN,
@@ -19,7 +19,7 @@ const join_room = (payload, dispatch) => {
 const new_message = (payload, dispatch) => {
   payload.on("new_message", data => {
     dispatch({
-      type: RECIEVE_MESSAGE,
+      type: RECEIVE_MESSAGE,
       payload: data.message
     });
   });
@@ -69,6 +69,6 @@ const socketEvents = [
 
 const bindRoomEvents = (payload, dispatch) => {
   socketEvents.map(x => x(payload, dispatch));
-}
+};
 
 export default bindRoomEvents;

@@ -27,6 +27,6 @@ const socketEvents = [
 
 const bindErrorsEvents = (payload, dispatch, params) => {
   socketEvents.map(x => x(payload, dispatch, params));
-}
+};
 
 export default bindErrorsEvents;
