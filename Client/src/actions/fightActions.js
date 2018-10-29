@@ -13,6 +13,12 @@ import {
 import { getCharacterById } from "../utils/getCharacterById";
 import { triggerInitialSkills } from "../utils/skills/triggerInitialSkills";
 
+import store from "../store";
+
+const getMultiplayer = () => {
+  return store.getState().multiplayer;
+};
+
 export const loadCharacters = (characters, id1, id2) => dispatch => {
   let payload = [];
 

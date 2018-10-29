@@ -9,6 +9,8 @@ import CreateCharacter from "../CreateCharacter/CreateCharacter";
 import Settings from "../Settings/Settings";
 
 import * as sectionJSON from "../../config/section.json";
+import Room from "../Room/Room";
+import GlobalLobby from "../GlobalLobby/GlobalLobby";
 
 class Content extends Component {
   constructor(props) {
@@ -19,11 +21,10 @@ class Content extends Component {
       section: props.section
     };
   }
-
+  
   render() {
     const { selected, section } = this.props;
     let content;
-
     switch (section) {
       case sectionJSON.home:
         content = <Home />;
@@ -41,10 +42,18 @@ class Content extends Component {
       case sectionJSON.settings:
         content = <Settings />;
         break;
+      case sectionJSON.multiplayer:
+        if (this.props.fightInit) {
+          content = <FightView />;
+        } else if (this.props.joined) {
+          content = <Room />;
+        } else {
+          content = <GlobalLobby />;
+        }
+        break;
       default:
         break;
     }
-
     return <div>{content}</div>;
   }
 }
@@ -56,7 +65,9 @@ Content.propTypes = {
 
 const mapStateToProps = state => ({
   selected: state.character.selected,
-  section: state.section.section
+  section: state.section.section,
+  joined: state.multiplayer.room.joined,
+  fightInit: state.multiplayer.room.fight.init
 });
 
 export default connect(mapStateToProps, null)(Content);

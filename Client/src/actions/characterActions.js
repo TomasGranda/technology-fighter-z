@@ -22,10 +22,10 @@ export const getCharacters = () => dispatch => {
         payload: res.data
       })
     )
-    .catch(() =>
+    .catch((err) =>
       dispatch({
         type: GET_CHARACTERS,
-        payload: null
+        payload: err
       })
     );
 };

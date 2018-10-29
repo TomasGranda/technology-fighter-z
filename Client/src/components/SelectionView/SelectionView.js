@@ -35,7 +35,7 @@ class SelectionView extends Component {
             Create character
           </Button>
         </ElementCenter>
-      );
+      ); 
     } else {
       content = <CharacterList characters={characters} />;
     }
