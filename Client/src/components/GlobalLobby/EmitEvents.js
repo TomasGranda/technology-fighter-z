@@ -1,5 +1,5 @@
 export default class EmitEvents {
-  constructor(bind){
+  constructor(bind) {
     this.bind = bind;
   };
 
@@ -13,7 +13,7 @@ export default class EmitEvents {
       });
     }
   };
-  
+
   acceptChallenge = (challengeIndex) => {
     const { challenges } = this.bind.state;
     let socket = this.bind.props.socket;
@@ -26,7 +26,20 @@ export default class EmitEvents {
       });
     }
   };
-  
+
+  refuseChallenge = (challengeIndex) => {
+    const { challenges } = this.bind.state;
+    let socket = this.bind.props.socket;
+    const challengerInfo = challenges[challengeIndex];
+    if (socket) {
+      this.bind.props.refuseChallenge(challengerInfo.challengerId);
+    } else {
+      this.bind.setState({
+        error: "No estas conectado"
+      });
+    }
+  };
+
   sendChallenge = (userId) => {
     let socket = this.bind.props.socket;
     if (socket) {
@@ -37,10 +50,10 @@ export default class EmitEvents {
       });
     }
   };
-  
+
   handleConnect = () => {
     const username = document.getElementById("username").value || "Player";
-    if(!this.bind.props.socket){
+    if (!this.bind.props.socket) {
       this.bind.props.createSocket(username);
       this.bind.setState({
         error: ""
@@ -51,7 +64,7 @@ export default class EmitEvents {
       });
     }
   };
-  
+
   handleChangeUsername = () => {
     const username = document.getElementById("username").value || "Player";
     let socket = this.bind.props.socket;

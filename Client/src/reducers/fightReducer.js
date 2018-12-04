@@ -7,7 +7,8 @@ import {
   SKILL1_1,
   ULTIMATE_0,
   ULTIMATE_1,
-  SET_WINNER
+  SET_WINNER,
+  SET_MODAL
 } from "../actions/types";
 
 import { calculateDamage } from "../utils/calculateDamage";
@@ -15,7 +16,8 @@ import { triggerActiveSkills } from "../utils/skills/triggerActiveSkills";
 
 const initialState = {
   characters: [],
-  winner: null
+  winner: null,
+  modalShow: false
 };
 
 export default function (state = initialState, action) {
@@ -108,6 +110,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         winner: action.payload
+      };
+    case SET_MODAL:
+      return {
+        ...state,
+        modalShow: action.payload
       };
     default:
       return state;

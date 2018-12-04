@@ -38,7 +38,7 @@ export const setMultiplayer = () => dispatch => {
   });
 };
 
-const clearAll = dispatch => {
+export const clearAll = dispatch => {
   dispatch(clearFight());
   dispatch(clearSelection());
 };

@@ -23,6 +23,7 @@ export const SKILL1_1 = "SKILL1_1";
 export const ULTIMATE_0 = "ULTIMATE_0";
 export const ULTIMATE_1 = "ULTIMATE_1";
 export const SET_WINNER = "SET_WINNER";
+export const SET_MODAL = "SET_MODAL";
 
 // Multiplayer
 export const CREATE_SOCKET = "CREATE_SOCKET";
@@ -33,10 +34,12 @@ export const ENEMY_SELECT_CHARACTER = "ENEMY_SELECT_CHARACTER";
 export const ENEMY_UNSELECT_CHARACTER = "ENEMY_UNSELECT_CHARACTER";
 export const GET_USERS = "GET_USERS";
 export const ADD_CHALLENGE = "ADD_CHALLENGE";
+export const REMOVE_CHALLENGE = "REMOVE_CHALLENGE";
 export const JOIN_ROOM = "JOIN_ROOM";
 export const START_COUNTDOWN = "START_COUNTDOWN";
 export const STOP_COUNTDOWN = "STOP_COUNTDOWN";
 export const FIGHT_INIT = "FIGHT_INIT";
+export const FIGHT_FINISH = "FIGHT_FINISH";
 
 // Error
 export const GET_ERRORS = "GET_ERRORS";

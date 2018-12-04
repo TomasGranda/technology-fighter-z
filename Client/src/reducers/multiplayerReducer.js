@@ -1,6 +1,7 @@
 import {
   CREATE_SOCKET,
   ADD_CHALLENGE,
+  REMOVE_CHALLENGE,
   RECEIVE_MESSAGE,
   SELECT_MULTIPLAYER_CHARACTER,
   UNSELECT_MULTIPLAYER_CHARACTER,
@@ -10,7 +11,8 @@ import {
   JOIN_ROOM,
   START_COUNTDOWN,
   STOP_COUNTDOWN,
-  FIGHT_INIT
+  FIGHT_INIT,
+  FIGHT_FINISH
 } from "../actions/types";
 
 const initialState = {
@@ -88,6 +90,12 @@ export default function (state = initialState, action) {
           action.payload
         ]
       };
+    case REMOVE_CHALLENGE:
+      const filteredChallenges = state.challenges.filter(x => x.challengerId !== action.payload);
+      return {
+        ...state,
+        challenges: [...filteredChallenges]
+      };
     case START_COUNTDOWN:
       return {
         ...state,
@@ -123,6 +131,36 @@ export default function (state = initialState, action) {
           }
         }
       };
+    case FIGHT_FINISH:
+      switch (action.payload) {
+        case "change_characters":
+          return {
+            ...state,
+            room: {
+              ...state.room,
+              yourSelect: "",
+              enemySelect: "",
+              fight: {
+                ...state.fight,
+                init: false
+              },
+              countdown: false
+            }
+          };
+        case "rematch":
+          return {
+            ...state,
+            room: {
+              ...state.room,
+              fight: {
+                ...state.fight,
+                init: false
+              }
+            }
+          };
+        default:
+          return state;
+      }
     default:
       return state;
   }

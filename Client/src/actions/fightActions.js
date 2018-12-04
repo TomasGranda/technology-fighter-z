@@ -7,17 +7,12 @@ import {
   ULTIMATE_0,
   ULTIMATE_1,
   SET_WINNER,
-  CLEAR_FIGHT
+  CLEAR_FIGHT,
+  SET_MODAL
 } from "./types";
 
 import { getCharacterById } from "../utils/getCharacterById";
 import { triggerInitialSkills } from "../utils/skills/triggerInitialSkills";
-
-import store from "../store";
-
-const getMultiplayer = () => {
-  return store.getState().multiplayer;
-};
 
 export const loadCharacters = (characters, id1, id2) => dispatch => {
   let payload = [];
@@ -83,5 +78,12 @@ export const setWinner = id => dispatch => {
 export const clearFight = () => {
   return {
     type: CLEAR_FIGHT
+  };
+};
+
+export const setModal = () => {
+  return {
+    type: SET_MODAL,
+    payload: true
   };
 };

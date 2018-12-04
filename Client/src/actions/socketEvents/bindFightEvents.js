@@ -3,7 +3,7 @@ import {
 } from "../types";
 
 const fight_init = (payload, dispatch) => {
-  payload.on("fight_init", err => {
+  payload.on("fight_init", () => {
     dispatch({
       type: FIGHT_INIT
     });

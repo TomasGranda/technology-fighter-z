@@ -1,5 +1,6 @@
 const express = require('express');
 const getSelections = require('./utils/getSelections');
+const clearSelections = require('./utils/cleanSelections');
 const app = express();
 
 const fightController = require('./routes/fightController');
@@ -19,6 +20,18 @@ io.on('connection', (socket) => {
 
 	//default username
 	socket.username = "Player";
+
+	let users = [];
+	for (let user in io.sockets.clients().sockets) {
+		if (socket.id !== user) {
+			users.push({
+				socketId: socket.id,
+				id: user,
+				username: io.sockets.clients().sockets[user].username
+			});
+		}
+	}
+	socket.emit('get_users', { users: users });
 
 	socket.on('get_users', () => {
 		let users = [];
@@ -57,10 +70,29 @@ io.on('connection', (socket) => {
 		socket.to(data.roomId).emit('select_character', { characterId: data.characterId });
 		socket.select = data.characterId;
 		const selections = await getSelections(io, data.roomId);
-		if(selections.length > 1){
+		if (selections.length > 1) {
 			io.in(data.roomId).emit('start_countdown');
+			await clearSelections(io, data.roomId);
 		} else {
 			io.in(data.roomId).emit('stop_countdown');
+		}
+	});
+
+	socket.on('rematch', async (data) => {
+		if(!io.sockets.adapter.rooms[data.roomId].rematch) io.sockets.adapter.rooms[data.roomId].rematch = 0;
+		io.sockets.adapter.rooms[data.roomId].rematch++;
+		if(io.sockets.adapter.rooms[data.roomId].rematch === 2){
+			io.in(data.roomId).emit('rematch_success');
+			io.sockets.adapter.rooms[data.roomId].rematch = 0;
+		}
+	});
+
+	socket.on('change_characters', async (data) => {
+		if(!io.sockets.adapter.rooms[data.roomId].changeCharacters) io.sockets.adapter.rooms[data.roomId].changeCharacters = 0;
+		io.sockets.adapter.rooms[data.roomId].changeCharacters++;
+		if(io.sockets.adapter.rooms[data.roomId].changeCharacters === 2){
+			io.in(data.roomId).emit('change_characters_success');
+			io.sockets.adapter.rooms[data.roomId].changeCharacters = 0;
 		}
 	});
 
@@ -91,7 +123,10 @@ io.on('connection', (socket) => {
 			let errorObject = {
 				errorType: 'user_not_found',
 				event: 'send_challenge',
-				msg: 'Error al intentar desafiar(Usuario no encontrado)'
+				msg: 'Error al intentar desafiar(Usuario no encontrado)',
+				data: {
+					userId: data.userId
+				}
 			};
 			socket.emit('handle_error', errorObject);
 		}
@@ -113,8 +148,11 @@ io.on('connection', (socket) => {
 		} else {
 			let errorObject = {
 				errorType: 'user_not_found',
-				event: 'send_challenge',
-				msg: 'Error al intentar desafiar(Usuario no encontrado)'
+				event: 'accept_challenge',
+				msg: 'Error al intentar aceptar desafio (Usuario no encontrado)',
+				data: {
+					userId: challengerId
+				}
 			};
 			socket.emit('handle_error', errorObject);
 		}
@@ -122,8 +160,9 @@ io.on('connection', (socket) => {
 
 	socket.on('countdown_complete', (data) => {
 		io.sockets.adapter.rooms[data.roomId].countdown++
-		if(io.sockets.adapter.rooms[data.roomId].countdown === 2){
+		if (io.sockets.adapter.rooms[data.roomId].countdown === 2) {
 			io.in(data.roomId).emit('fight_init');
+			io.sockets.adapter.rooms[data.roomId].countdown = 0;
 		}
 	});
 

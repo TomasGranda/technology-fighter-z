@@ -1,4 +1,4 @@
-import { SELECT_MULTIPLAYER_CHARACTER, UNSELECT_MULTIPLAYER_CHARACTER, CREATE_SOCKET } from './types';
+import { SELECT_MULTIPLAYER_CHARACTER, UNSELECT_MULTIPLAYER_CHARACTER, REMOVE_CHALLENGE, CREATE_SOCKET } from './types';
 
 import io from 'socket.io-client';
 
@@ -42,4 +42,11 @@ export const selectMultiplayerCharacter = (id, socket, roomId) => dispatch => {
 	});
 	
 	socket.emit("select_character", { characterId: id, roomId });
+};
+
+export const refuseChallenge = (challengerId) => dispatch => {
+	dispatch({
+		type: REMOVE_CHALLENGE,
+		payload: challengerId
+	});
 };

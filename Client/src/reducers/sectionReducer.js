@@ -21,7 +21,8 @@ export default function(state = initialState, action) {
     case SET_FIGHT:
       return {
         ...state,
-        section: section.fight
+        section: section.fight,
+        modalShow: false
       };
     case SET_SETTINGS:
       return {

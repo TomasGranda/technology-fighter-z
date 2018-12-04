@@ -23,7 +23,7 @@ class CharacterBuffIcon extends Component {
                 <span>
                     <i className={`${stats[buff.stat]} stat`} />
                     <OverlayTrigger trigger="hover" placement="top" overlay={popoverTop}>
-                        <i class={`effect ${buff.buff > 0 ? "fas fa-angle-double-up buff" : "fas fa-angle-double-down debuff"}`} />
+                        <i className={`effect ${buff.buff > 0 ? "fas fa-angle-double-up buff" : "fas fa-angle-double-down debuff"}`} />
                     </OverlayTrigger>
                 </span>
             );

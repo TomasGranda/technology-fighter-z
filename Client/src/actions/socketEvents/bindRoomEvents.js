@@ -4,8 +4,11 @@ import {
   ENEMY_UNSELECT_CHARACTER,
   START_COUNTDOWN,
   STOP_COUNTDOWN,
-  JOIN_ROOM
+  JOIN_ROOM,
+  FIGHT_FINISH,
+  SET_MODAL
 } from "../types";
+import { clearAll } from "../sectionActions";
 
 const join_room = (payload, dispatch) => {
   payload.on("join_room", data => {
@@ -58,13 +61,46 @@ const stop_countdown = (payload, dispatch) => {
   });
 };
 
+const rematch_success = (payload, dispatch) => {
+  payload.on("rematch_success", () => {
+    dispatch({
+      type: FIGHT_FINISH,
+      payload: "rematch"
+    });
+    setTimeout(() => {
+      dispatch({
+        type: SET_MODAL,
+        payload: false
+      });
+    }, 200);
+  });
+};
+
+const change_characters_success = (payload, dispatch) => {
+  payload.on("change_characters_success", () => {
+    dispatch({
+      type: FIGHT_FINISH,
+      payload: "change_characters"
+    });
+    setTimeout(() => {
+      clearAll(dispatch);
+      dispatch({
+        type: SET_MODAL,
+        payload: false
+      });
+    }, 200);
+  });
+};
+
 const socketEvents = [
   join_room,
   new_message,
   select_character,
   unselect_character,
   start_countdown,
-  stop_countdown
+  stop_countdown,
+  change_characters_success,
+  rematch_success
 ];
 
 const bindRoomEvents = (payload, dispatch) => {

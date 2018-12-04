@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Panel, Table, Grid, Row, Col } from 'react-bootstrap';
 
-import { createSocket } from "../../actions/multiplayerActions";
+import { createSocket, refuseChallenge } from "../../actions/multiplayerActions";
 import EmitEvents from './EmitEvents';
 
 class GlobalLobby extends Component {
@@ -33,15 +33,15 @@ class GlobalLobby extends Component {
 
 	render() {
 		const { users, challenges, error } = this.state;
-		let userRows = <div/>;
-		let challengesRows = <div/>;
+		let userRows = <div />;
+		let challengesRows = <div />;
 
 		if (users) {
 			userRows = users.map((user, index) => {
 				return (
 					<tr key={index}>
+						<td>{user.id}</td>
 						<td>{user.username}</td>
-						<td>algomas</td>
 						<td>
 							<center>
 								<i style={{ cursor: "pointer" }} className="far fa-envelope" onClick={() => this.EmitEvents.sendChallenge(user.id)} />
@@ -57,7 +57,7 @@ class GlobalLobby extends Component {
 					<tr key={index}>
 						<td>{challenge.challengerName}</td>
 						<td>
-							<i className="fas fa-check" style={{ color: "green", cursor: "pointer" }} onClick={() => this.EmitEvents.acceptChallenge(index)} />/<i className="fas fa-ban" style={{ color: "red", cursor: "pointer" }} />
+							<i className="fas fa-check" style={{ color: "green", cursor: "pointer" }} onClick={() => this.EmitEvents.acceptChallenge(index)} />/<i className="fas fa-ban" style={{ color: "red", cursor: "pointer" }} onClick={() => this.EmitEvents.refuseChallenge(index)}/>
 						</td>
 					</tr>
 				);
@@ -78,18 +78,18 @@ class GlobalLobby extends Component {
 						<Panel>
 							<Panel.Heading>
 								Usuarios
-                            </Panel.Heading>
+              </Panel.Heading>
 							<Panel.Body>
 								<Table bordered>
 									<thead>
 										<tr>
-											<th>
+											<th className="col-xs-3">
+												Id
+                      </th>
+											<th className="col-xs-8">
 												Nombre
                       </th>
-											<th>
-												Otracosa
-                      </th>
-											<th style={{ width: "1px" }}>
+											<th style={{ width: "1px" }} className="col-xs-1">
 												Inv.
                       </th>
 										</tr>
@@ -105,7 +105,7 @@ class GlobalLobby extends Component {
 						<Panel>
 							<Panel.Heading>
 								Invitaciones
-                            </Panel.Heading>
+              </Panel.Heading>
 							<Panel.Body>
 								<Table bordered>
 									<thead>
@@ -137,4 +137,4 @@ const mapStateToProps = state => ({
 	challenges: state.multiplayer.challenges
 });
 
-export default connect(mapStateToProps, { createSocket })(GlobalLobby);
+export default connect(mapStateToProps, { createSocket, refuseChallenge })(GlobalLobby);
